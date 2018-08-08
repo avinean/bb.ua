@@ -1,0 +1,67 @@
+@import "../var";
+@import "../mixin";
+
+.call {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 999;
+    width: 100px;
+    height: 100px;
+    border: 5px solid;
+    border-radius: 100%;
+    text-align: center;
+    font-size: 60px;
+    line-height: 89px;
+    color: $sun;
+    animation: wawe 5s;
+    animation-iteration-count: infinite;
+    transition: all ease .5s;
+
+    @keyframes wawe {
+        0% {box-shadow: 0 0 0 0 $sun;}
+        15% {box-shadow: 0 0 15px 4px $sun;}
+        30% {box-shadow: 0 0 0 0 $sun;}
+        45% {box-shadow: 0 0 15px 4px $sun;}
+        55% {transform: rotate(0deg);}
+        57% {transform: rotate(15deg);}
+        59% {transform: rotate(0deg);}
+        61% {transform: rotate(15deg); box-shadow: 0 0 0 0 $sun;}
+        63% {transform: rotate(0deg);}
+        65% {transform: rotate(15deg);}
+        67% {transform: rotate(0deg);}
+        69% {transform: rotate(15deg);}
+        71% {transform: rotate(0deg);}
+        73% {transform: rotate(15deg);}
+        75% {transform: rotate(0deg); box-shadow: 0 0 15px 4px $sun;}
+        100% {box-shadow: 0 0 0 0 $sun;}
+    }
+}
+
+a.call {
+    display: none;
+    text-decoration: none;
+}
+
+.in {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+
+    input {
+        width: 250px;
+        padding: 5px;
+        font-style: italic;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    a.call {
+        display: block;
+    }
+
+    i.call {
+        display: none;
+    }
+}

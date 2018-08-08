@@ -1,0 +1,40 @@
+@import "../var";
+@import "../mixin";
+
+.btn {
+    margin: 5px;
+    color: #eee;
+    cursor: pointer;
+    user-select: none;
+
+    &-sm {
+        height: 30px;
+        width: 30px;
+        text-align: center;
+        line-height: 30px;
+        font-size: 10px;
+    }
+
+    &-md {
+        height: 35px;
+        width: 75px;
+        text-align: center;
+        line-height: 35px;
+        font-size: 16px;
+    }
+
+    &-lg {
+        height: 50px;
+        width: 150px;
+        text-align: center;
+        line-height: 50px;
+        font-size: 20px;
+    }
+
+    &:active {
+        transition: all ease .5s;
+        position: relative;
+        top: 1px;
+        left: 1px;
+    }
+}

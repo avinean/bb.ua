@@ -1,0 +1,137 @@
+@import "../var";
+@import "../mixin";
+
+.footer {
+    position: relative;
+    padding: 20px 0;
+    min-height: 300px;
+    width: 100vw;
+    background: #282828;
+
+
+    .footer-body {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        .logo {
+            display: flex;
+            flex-grow: 1;
+            align-items: center;
+            justify-content: space-around;
+            img {
+                height: 70px;
+                margin: 0 30px;
+            }
+        }
+        .nav {
+            display: flex;
+            flex-wrap: wrap;
+            flex-grow: 1;
+
+            h2 {
+                width: 100%;
+                color: $sky;
+                padding: 10px 0;
+            }
+            .items-block {
+                margin-right: 30px;
+
+                .footer-nav-item {
+                    text-decoration: none;
+                    color: $sky;
+                }
+                .footer-nav-subitem {
+                    text-decoration: none;
+                    color: $sky;
+                }
+                .footer-nav-item:hover, .footer-nav-subitem:hover {
+                    color: #cd3c3c;
+                }
+            }
+        }
+        .contacts {
+            flex-grow: 1;
+
+            h2 {
+                width: 100%;
+                color: $sky;
+                padding: 10px 0;
+            }
+
+            .addr {
+                margin: 5px 0;
+                i {
+                    color: $sky;
+                    margin: 0 10px 0 0;
+                }
+                span, a {
+                    color: $sky;
+                }
+                a:hover {
+                    color: #cd3c3c;
+                }
+            }
+        }
+        .links {
+            flex-grow: 1;
+
+            a {
+                text-decoration: none;
+                i {
+                    display: block;
+                    color: $sky;
+                    font-size: 40px;
+                    cursor: pointer;
+                    &:hover {
+                        color: #cd3c3c;
+                    }
+                }
+            }
+        }
+    }
+    .footer-foot {
+        margin: auto;
+        padding: 10px 0;
+        display: flex;
+        justify-content: space-around;
+        text-align: center;
+        color: #a52a2a;
+        font-size: 14px;
+
+        div {
+            width: 50%;
+
+            &:first-child {
+                text-align: left;
+            }
+            &:last-child {
+                text-align: right;
+            }
+        }
+    }
+
+    @media screen and (max-width: 1024px) {
+        .footer-body {
+            flex-direction: column;
+            justify-content: center;
+
+            .nav {
+                margin: 30px 0;
+                text-align: center;
+                justify-content: center;
+            }
+
+            .contacts {
+                margin: 30px 0;
+                text-align: center;
+            }
+
+            .links {
+                margin: 30px 0;
+                width: 200px;
+                display: flex;
+                justify-content: space-around;
+            }
+        }
+    }
+}
