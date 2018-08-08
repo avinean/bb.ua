@@ -334,20 +334,56 @@ export default new Vuex.Store({
 		],
 		pages: [
 			{
-				name: 'Головна',
-				url: '/'
+				name: 'Каталог продукції',
+				url: '/catalog',
+				children: [
+					{
+						name: 'Тротуарна плитка',
+						url: '/'
+					},
+					{
+						name: 'Дорожні елементи',
+						url: '/'
+					},
+					{
+						name: 'Вертикальні елементи',
+						url: '/'
+					},
+					{
+						name: 'Сертифікати',
+						url: '/'
+					},
+					{
+						name: 'Оплата',
+						url: '/'
+					},
+					{
+						name: 'Доставка',
+						url: '/'
+					},
+					{
+						name: 'Акції',
+						url: '/'
+					}
+				]
 			},
 			{
-				name: 'Галерея',
-				url: '/gallery'
+				name: 'Про благобуд',
+				url: '/about'
 			},
 			{
-				name: 'Прайс',
-				url: '/price'
+				name: 'Диллерам',
+				url: '/fransh'
 			},
 			{
-				name: 'Якість',
-				url: '/quality'
+				name: 'Новини',
+				url: '/news',
+				children: [
+					{
+						name: 'Корисна інформація',
+						url: '/info'
+					},
+				]
 			},
 			{
 				name: 'Контакти',

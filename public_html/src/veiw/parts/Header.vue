@@ -61,7 +61,7 @@
 			showList(ch, event) {
 				this.children = ch
 				if (!ch) return
-				let navList = 150
+				let navList = 250
 				let el = event.target
 				this.listPos = el.offsetLeft + el.clientWidth/2 - navList/2
 			},

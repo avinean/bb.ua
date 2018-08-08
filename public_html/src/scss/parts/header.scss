@@ -7,10 +7,10 @@
     left: 0;
     right: 0;
     z-index: 9999;
-    height: 70px;
-    width: 70vw;
+    height: 75px;
     margin: auto;
     display: flex;
+    justify-content: space-around;
     flex-wrap: wrap;
     align-items: center;
     background-color: $l-snow;
@@ -39,15 +39,13 @@
         }
 
         span {
-            color: $sky;
             font-size: 16px;
         }
     }
 
     .phone {
         text-align: center;
-        font-size: 30px;
-        color: $sky;
+        font-size: 25px;
     }
 
     @media screen and (max-width: 1024px) {
@@ -61,7 +59,7 @@
 
 .header {
     position: fixed;
-    top: 70px;
+    top: 75px;
     z-index: 999;
     height: 50px;
     font-size: 20px;
@@ -74,13 +72,13 @@
         .items-row {
             height: 50px;
             display: flex;
-            justify-content: flex-end;
-            padding: 0 20px;
             align-items: center;
 
             .nav-item {
+                height: 50px;
+                line-height: 50px;
                 display: block;
-                margin-left: 20px;
+                padding: 0 30px;
                 color: $main;
                 font-weight: 600;
                 text-decoration: none;
@@ -97,13 +95,29 @@
                         width: 100%;
                     }
                 }
+
+                &:first-child {
+                    background-color: $grass;
+                    color: $snow;
+                    text-transform: uppercase;
+                    position: relative;
+
+                    &::after {
+                        content: '▼';
+                        display: block;
+                        position: absolute;
+                        top: 0;
+                        right: 5px;
+                    }
+                }
+
             }
         }
     }
 
     .nav-list {
         position: absolute;
-        width: 150px;
+        width: 250px;
         background-color: rgba(255,255,255,.8);
         text-align: center;
         padding: 5px;
