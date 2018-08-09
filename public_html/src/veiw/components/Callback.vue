@@ -39,4 +39,4 @@
 	}
 </script>
 
-<style lang="scss" scoped src="@/scss/parts/callback.scss"></style>
+<style lang="scss" scoped src="@/scss/components/callback.scss"></style>

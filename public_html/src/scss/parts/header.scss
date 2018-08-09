@@ -7,7 +7,8 @@
     left: 0;
     right: 0;
     z-index: 9999;
-    height: 75px;
+    height: 80px;
+    padding: 2px;
     margin: auto;
     display: flex;
     justify-content: space-around;
@@ -33,6 +34,7 @@
         font-weight: bold;
 
         &>i {
+            color: $brand;
             position: absolute;
             left: 0;
             font-size: 20px;
@@ -46,10 +48,24 @@
     .phone {
         text-align: center;
         font-size: 25px;
+
+        i {
+            margin: 5px;
+        }
     }
 
     @media screen and (max-width: 1024px) {
         width: 100vw;
+    }
+
+    @media screen and (max-width: 960px) {
+        .address, .time {
+            font-size: 15px;
+        }
+
+        .phone {
+            font-size: 17px;
+        }
     }
 
     @media screen and (max-width: 860px) {
@@ -59,12 +75,11 @@
 
 .header {
     position: fixed;
-    top: 75px;
+    top: 80px;
     z-index: 999;
     height: 50px;
     font-size: 20px;
-    box-shadow: inset 0 0 20px -2px #000000;
-    background-color: rgba(255,255,255,.8);
+    background-color: $l-main;
 
     .nav-panel {
         width: 100vw;
@@ -83,21 +98,23 @@
                 font-weight: 600;
                 text-decoration: none;
 
-                .after {
-                    height: 3px;
-                    width: 0;
-                    background-color: $lady;
-                    transition: all ease .3s;
-                }
+                //.after {
+                //    height: 3px;
+                //    width: 0;
+                //    background-color: $brand;
+                //    transition: all ease .3s;
+                //}
 
                 &:hover {
-                    .after {
-                        width: 100%;
-                    }
+                    background-color: $brand;
+                    color: $snow;
+                    //.after {
+                    //    width: 100%;
+                    //}
                 }
 
                 &:first-child {
-                    background-color: $grass;
+                    background-color: $brand;
                     color: $snow;
                     text-transform: uppercase;
                     position: relative;
@@ -159,6 +176,12 @@
         }
     }
 
+    @media screen and (max-width: 960px) {
+        .nav-item {
+            font-size: 16px;
+        }
+    }
+
     @media screen and (max-width: 860px) {
         display: none;
     }
@@ -206,7 +229,7 @@
         }
 
         .nav-item {
-            color: $sky;
+            color: $brand;
         }
     }
 

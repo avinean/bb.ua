@@ -13,7 +13,7 @@ Vue.use(VueAgile)
 
 import Header from './veiw/parts/Header'
 import Footer from './veiw/parts/Footer'
-import Callback from './veiw/parts/Callback'
+import Callback from './veiw/components/Callback'
 import Slider from './veiw/components/Slider'
 import Btn from './veiw/components/Btn'
 import Popup from './veiw/components/Popup'

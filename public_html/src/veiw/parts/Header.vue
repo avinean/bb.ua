@@ -8,11 +8,18 @@
 				)
 			.address
 				i.fas.fa-map-marked-alt
-				span {{contacts.region}},<br> {{contacts.city}},<br> {{contacts.street}}
+				span
+					strong Адреса:<br>
+					| {{contacts.city}}, {{contacts.street}}
 			.time
 				i.fas.fa-clock
-				span Графік роботи: <br> Пн-Пт з 8.00 до 18.00
-			.phone {{contacts.phone}}
+				span
+					strong Графік роботи:
+					|<br> Пн-Cб з 8.00 до 18.00
+			.phone
+				i.fab.fa-viber.brand
+				i.fab.fa-whatsapp.grass
+				|{{contacts.phone}}
 		.header(@mouseleave='children = null')
 			.nav-panel
 				.inner-wrapper.items-row
@@ -33,9 +40,12 @@
 			transition(name='live')
 				.nav-panel(v-show='show')
 					a.logo(href='/')
-						img(:src="require('@/img/brand/logo-blue.png')" alt='Blagobud-logo')
+						img(:src="require('@/img/brand/logo-big-blue.png')" alt='Blagobud-logo')
 					a.nav-item(v-for='page in pages' :href='page.url') {{page.name}}
-					span {{contacts.phone}}
+					span
+						i.fab.fa-viber.brand
+						i.fab.fa-whatsapp.grass
+						|{{contacts.phone}}
 </template>
 
 <script>

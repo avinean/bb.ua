@@ -2,9 +2,10 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Main from '@/veiw/pages/Main'
 import Contacts from '@/veiw/pages/Contacts'
-import Quality from '@/veiw/pages/Quality'
-import Price from '@/veiw/pages/Price'
-import Gallery from '@/veiw/pages/Gallery'
+import About from '@/veiw/pages/About'
+import Dillers from '@/veiw/pages/Dillers'
+import News from '@/veiw/pages/News'
+import Info from '@/veiw/pages/Info'
 
 Vue.use(Router)
 
@@ -22,19 +23,24 @@ export default new Router({
 			component: Contacts
 		},
 		{
-			path: '/gallery',
-			name: 'Gallery',
-			component: Gallery
+			path: '/about',
+			name: 'About',
+			component: About
 		},
 		{
-			path: '/quality',
-			name: 'Quality',
-			component: Quality
+			path: '/dillers',
+			name: 'Dillers',
+			component: Dillers
 		},
 		{
-			path: '/price',
-			name: 'Price',
-			component: Price
+			path: '/news',
+			name: 'News',
+			component: News
+		},
+		{
+			path: '/info',
+			name: 'Info',
+			component: Info
 		}
 	]
 })
