@@ -457,6 +457,29 @@ export default new Vuex.Store({
 			// 		['1680(1500)x90x890', 986.40]
 			// 	]
 			// },
-		}
+		},
+		sale: [
+			{
+				title: 'Акція 1',
+				description: 'huiHuh f fsidfh sdfdfh sdfhssdfhohweh wefh owih  oohsiohfsoeh l vioh ori',
+				img: '/91126184.jpg',
+				url: '/',
+				id: 1
+			},
+			{
+				title: 'Акція 2',
+				description: 'huiHuh f fsidfh sdfdfh sdfhssdfhohweh wefh owih  oohsiohfsoeh l vioh ori',
+				img: '/91126184.jpg',
+				url: '/',
+				id: 2
+			},
+			{
+				title: 'Акція 3',
+				description: 'huiHuh f fsidfh sdfdfh sdfhssdfhohweh wefh owih  oohsiohfsoeh l vioh ori',
+				img: '/91126184.jpg',
+				url: '/',
+				id: 3
+			}
+		]
 	}
 })

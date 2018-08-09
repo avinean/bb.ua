@@ -7,13 +7,15 @@
 				v-for='(dot, i) in items'
 				:class='i == cur ? "dot-cur" : ""'
 				@click='dotSlide(i)'
-				)
+			)
 		.slide(v-for='(item, i) in items')
 			transition(:name='mode')
-				.slide-inner(v-show='i == cur' :style='"background-image: url(" + require("@/img/" + item.img) + ")"')
-					.slide-inner-wrap(v-if='item.title || item.desc')
+				.slide-inner(v-show='i == cur')
+					.img
+						img(:src='require("@/img" + item.img)')
+					.text
 						.title {{item.title}}
-						.desc {{item.desc}}
+						.desc {{item.description}}
 </template>
 
 <script>

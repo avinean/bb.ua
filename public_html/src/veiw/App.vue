@@ -1,8 +1,8 @@
 <template lang="pug">
 	#app
-		page-header(view='narrow')
-		<!--.main-block-->
-			<!--router-view-->
+		<!--page-header(view='narrow')-->
+		.main-block
+			router-view
 		<!--page-footer-->
 </template>
 

@@ -22,3 +22,7 @@ route('/gallery');
 route('/price');
 route('/quality');
 route('/contacts');
+route('/dillers');
+route('/info');
+route('/news');
+route('/about');

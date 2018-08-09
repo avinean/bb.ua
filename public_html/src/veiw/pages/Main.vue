@@ -3,23 +3,22 @@
 		<!--.top-->
 			<!--img(:src='require("@/img/bg.jpg")')-->
 			<!--h2.title Тротуарна плитка від виробника-->
-		.inner-wrapper
-			slider.slider(:items='slides')
-		.inner-wrapper.content
-			h3 Про нас
-			.content-section(v-for='(sup, i) in sups' :class='sup.pos')
-				span.fas.ico(:class='sup.color + " fa-" + sup.ico')
-				div.text
-					.title {{sup.title}}
-					.desc {{sup.desc}}
-				.clearfix
-		iframe.map(
-			src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d24197.837221142432!2d30.237533177612363!3d50.39481092032332!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40d4cb932c18e567%3A0x63292aa8267936d0!2z0KLQntCSICLQktCaICLQkdCb0JDQk9Ce0JHQo9CUIg!5e0!3m2!1sen!2sua!4v1532096416036"
-			height='450'
-			frameborder='0'
-			style='border:0'
-			allowfullscreen
-		)
+		slider.slider(:items='sale')
+		<!--.inner-wrapper.content-->
+			<!--h3 Про нас-->
+			<!--.content-section(v-for='(sup, i) in sups' :class='sup.pos')-->
+				<!--span.fas.ico(:class='sup.color + " fa-" + sup.ico')-->
+				<!--div.text-->
+					<!--.title {{sup.title}}-->
+					<!--.desc {{sup.desc}}-->
+				<!--.clearfix-->
+		<!--iframe.map(-->
+			<!--src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d24197.837221142432!2d30.237533177612363!3d50.39481092032332!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40d4cb932c18e567%3A0x63292aa8267936d0!2z0KLQntCSICLQktCaICLQkdCb0JDQk9Ce0JHQo9CUIg!5e0!3m2!1sen!2sua!4v1532096416036"-->
+			<!--height='450'-->
+			<!--frameborder='0'-->
+			<!--style='border:0'-->
+			<!--allowfullscreen-->
+		<!--)-->
 </template>
 
 <script>
@@ -28,23 +27,6 @@
 		name: 'page-main',
 		data() {
 			return {
-				// slides: [
-				// 	{
-				// 		img: "products/2.jpg",
-				// 		// title: 'Вибір',
-				// 		// desc: 'те, що вирізняє між інших',
-				// 	},
-				// 	{
-				// 		img: "products/15.jpg",
-				// 		// title: 'Якість',
-				// 		// desc: 'те, що вище за ціну',
-				// 	},
-				// 	{
-				// 		img: "products/23.jpg",
-				// 		// title: 'Надійність',
-				// 		// desc: 'те, що робить ближчими',
-				// 	}
-				// ],
 				sups: [
 					{
 						pos: "",
@@ -106,10 +88,7 @@
 			}
 		},
 		computed: {
-			...mapState(['goods']),
-			slides() {
-				return this.goods.map(e => {return {img: 'products/' + e.img}})
-			}
+			...mapState(['sale'])
 		}
 	}
 </script>
