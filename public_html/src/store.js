@@ -462,21 +462,21 @@ export default new Vuex.Store({
 			{
 				title: 'Акція 1',
 				description: 'huiHuh f fsidfh sdfdfh sdfhssdfhohweh wefh owih  oohsiohfsoeh l vioh ori',
-				img: '/91126184.jpg',
+				img: '/price/t.jpg',
 				url: '/',
 				id: 1
 			},
 			{
 				title: 'Акція 2',
 				description: 'huiHuh f fsidfh sdfdfh sdfhssdfhohweh wefh owih  oohsiohfsoeh l vioh ori',
-				img: '/91126184.jpg',
+				img: '/price/bruk.jpg',
 				url: '/',
 				id: 2
 			},
 			{
 				title: 'Акція 3',
 				description: 'huiHuh f fsidfh sdfdfh sdfhssdfhohweh wefh owih  oohsiohfsoeh l vioh ori',
-				img: '/91126184.jpg',
+				img: '/price/old.jpg',
 				url: '/',
 				id: 3
 			}

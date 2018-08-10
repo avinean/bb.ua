@@ -1,5 +1,5 @@
 <template lang="pug">
-	.slider(@mouseenter='pause' @mouseleave='autoslide')
+	.slider(@mouseenter='pause' @mouseleave='outStart')
 		i.fas.fa-arrow-left.left.arr(@click='slide(--cur); mode="left"')
 		i.fas.fa-arrow-right.right.arr(@click='slide(++cur); mode="right"')
 		.dots
@@ -8,14 +8,15 @@
 				:class='i == cur ? "dot-cur" : ""'
 				@click='dotSlide(i)'
 			)
-		.slide(v-for='(item, i) in items')
+		a.slide(v-for='(item, i) in items' :href="item.url")
 			transition(:name='mode')
 				.slide-inner(v-show='i == cur')
 					.img
 						img(:src='require("@/img" + item.img)')
 					.text
-						.title {{item.title}}
-						.desc {{item.description}}
+						.wrap
+							.title {{item.title}}
+							.desc {{item.description}}
 </template>
 
 <script>
@@ -26,7 +27,8 @@
 			return {
 				cur: 0,
 				mode: 'right',
-				timer: null
+				timer: null,
+				out: null
 			}
 		},
 		methods: {
@@ -35,11 +37,16 @@
 				else if (cur === -1) this.cur = this.items.length -1
 			},
 			autoslide() {
+				console.log(this.cur);
 				if (this.auto) {
 					this.mode = 'right'
 					this.slide(++this.cur)
 					this.timer = setTimeout(this.autoslide, this.interval)
 				}
+			},
+			outStart() {
+				clearTimeout(this.out)
+				this.out = setTimeout(this.autoslide, this.interval)
 			},
 			pause() {
 				clearTimeout(this.timer)

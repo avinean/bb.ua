@@ -1,9 +1,27 @@
 <template lang="pug">
 	.main
-		<!--.top-->
-			<!--img(:src='require("@/img/bg.jpg")')-->
-			<!--h2.title Тротуарна плитка від виробника-->
-		slider.slider(:items='sale')
+		slider.slider(:items='sale' auto='1' interval='7000')
+		.inner-wrapper
+			.inf-icons
+				.inf-ico
+					i.ico.far.fa-check-square
+					.lable Онлайн замовлення
+				.inf-ico
+					i.ico.fas.fa-map-marker-alt
+					.lable Актуальні ціни
+				.inf-ico
+					i.ico.fas.fa-clipboard-list
+					.lable Якісна продукція
+				.inf-ico
+					i.ico.far.fa-clock
+					.lable Оперативна доставка
+		.goods-banner
+			a.good-item(
+				v-for='item in goodsBannerItems'
+				:href='item.url'
+				:style='"background-img: " + item.img'
+			) {{item.title}}
+
 		<!--.inner-wrapper.content-->
 			<!--h3 Про нас-->
 			<!--.content-section(v-for='(sup, i) in sups' :class='sup.pos')-->
@@ -12,13 +30,6 @@
 					<!--.title {{sup.title}}-->
 					<!--.desc {{sup.desc}}-->
 				<!--.clearfix-->
-		<!--iframe.map(-->
-			<!--src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d24197.837221142432!2d30.237533177612363!3d50.39481092032332!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40d4cb932c18e567%3A0x63292aa8267936d0!2z0KLQntCSICLQktCaICLQkdCb0JDQk9Ce0JHQo9CUIg!5e0!3m2!1sen!2sua!4v1532096416036"-->
-			<!--height='450'-->
-			<!--frameborder='0'-->
-			<!--style='border:0'-->
-			<!--allowfullscreen-->
-		<!--)-->
 </template>
 
 <script>
@@ -83,6 +94,13 @@
 						color: "main",
 						title: "Вигода",
 						desc: "ТОВ «ВК «Благобуд» пропонує вигідні умови співробітництва для дилерів та постійних оптових клієнтів."
+					}
+				],
+				goodsBannerItems: [
+					{
+						url: '/',
+						img: '/',
+						title: ''
 					}
 				]
 			}
