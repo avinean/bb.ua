@@ -1,9 +1,9 @@
 <template lang="pug">
 	#app
-		<!--page-header(view='narrow')-->
+		page-header(view='narrow')
 		.main-block
 			router-view
-		<!--page-footer-->
+		page-footer
 </template>
 
 <script>

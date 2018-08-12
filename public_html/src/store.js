@@ -6,332 +6,56 @@ Vue.use(Vuex)
 export default new Vuex.Store({
 	state: {
 		popup: null,
-		goods: [
-			{
-				img: "c2.jpg",
-				title: 'Some title',
-				desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
-				url: 'wetsdfgdsrsrdhr'
+		goods: {
+			pave: {
+				1: {
+					img: "1.jpg",
+					title: 'Some title',
+					desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
+					id: 1
+				},
+				2: {
+					img: "2.jpg",
+					title: 'Some title',
+					desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
+					id: 2
+				},
+				3: {
+					img: "4.jpg",
+					title: 'Some title',
+					desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
+					id: 3
+				},
 			},
-			{
-				img: "c3.jpg",
-				title: 'Some title',
-				desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
-				url: 'wetsdfgdsrsrdhr'
+			road: {
+				4: {
+					img: "3.jpg",
+					title: 'Some title',
+					desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
+					id: 4
+				},
+				5: {
+					img: "5.jpg",
+					title: 'Some title',
+					desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
+					id: 5
+				},
 			},
-			{
-				img: "c1.jpg",
-				title: 'Some title',
-				desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
-				url: 'wetsdfgdsrsrdhr'
-			},
-			{
-				img: "1.jpg",
-				title: 'Some title',
-				desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
-				url: 'wetsdfgdsrsrdhr'
-			},
-			{
-				img: "2.jpg",
-				title: 'Some title',
-				desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
-				url: 'wetsdfgdsrsrdhr'
-			},
-			{
-				img: "3.jpg",
-				title: 'Some title',
-				desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
-				url: 'wetsdfgdsrsrdhr'
-			},
-			{
-				img: "4.jpg",
-				title: 'Some title',
-				desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
-				url: 'wetsdfgdsrsrdhr'
-			},
-			{
-				img: "5.jpg",
-				title: 'Some title',
-				desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
-				url: 'wetsdfgdsrsrdhr'
-			},
-			{
-				img: "6.jpg",
-				title: 'Some title',
-				desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
-				url: 'wetsdfgdsrsrdhr'
-			},
-			{
-				img: "7.jpg",
-				title: 'Some title',
-				desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
-				url: 'wetsdfgdsrsrdhr'
-			},
-			{
-				img: "8.jpg",
-				title: 'Some title',
-				desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
-				url: 'wetsdfgdsrsrdhr'
-			},
-			{
-				img: "9.jpg",
-				title: 'Some title',
-				desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
-				url: 'wetsdfgdsrsrdhr'
-			},
-			{
-				img: "10.jpg",
-				title: 'Some title',
-				desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
-				url: 'wetsdfgdsrsrdhr'
-			},
-			{
-				img: "11.jpg",
-				title: 'Some title',
-				desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
-				url: 'wetsdfgdsrsrdhr'
-			},
-			{
-				img: "12.jpg",
-				title: 'Some title',
-				desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
-				url: 'wetsdfgdsrsrdhr'
-			},
-			{
-				img: "13.jpg",
-				title: 'Some title',
-				desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
-				url: 'wetsdfgdsrsrdhr'
-			},
-			{
-				img: "14.jpg",
-				title: 'Some title',
-				desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
-				url: 'wetsdfgdsrsrdhr'
-			},
-			{
-				img: "15.jpg",
-				title: 'Some title',
-				desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
-				url: 'wetsdfgdsrsrdhr'
-			},
-			{
-				img: "16.jpg",
-				title: 'Some title',
-				desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
-				url: 'wetsdfgdsrsrdhr'
-			},
-			{
-				img: "17.jpg",
-				title: 'Some title',
-				desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
-				url: 'wetsdfgdsrsrdhr'
-			},
-			{
-				img: "18.jpg",
-				title: 'Some title',
-				desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
-				url: 'wetsdfgdsrsrdhr'
-			},
-			{
-				img: "19.jpg",
-				title: 'Some title',
-				desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
-				url: 'wetsdfgdsrsrdhr'
-			},
-			{
-				img: "20.jpg",
-				title: 'Some title',
-				desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
-				url: 'wetsdfgdsrsrdhr'
-			},
-			{
-				img: "21.jpg",
-				title: 'Some title',
-				desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
-				url: 'wetsdfgdsrsrdhr'
-			},
-			{
-				img: "22.jpg",
-				title: 'Some title',
-				desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
-				url: 'wetsdfgdsrsrdhr'
-			},
-			{
-				img: "23.jpg",
-				title: 'Some title',
-				desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
-				url: 'wetsdfgdsrsrdhr'
-			},
-			{
-				img: "24.jpg",
-				title: 'Some title',
-				desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
-				url: 'wetsdfgdsrsrdhr'
-			},
-			{
-				img: "25.jpg",
-				title: 'Some title',
-				desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
-				url: 'wetsdfgdsrsrdhr'
-			},
-			{
-				img: "26.jpg",
-				title: 'Some title',
-				desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
-				url: 'wetsdfgdsrsrdhr'
-			},
-			{
-				img: "28.jpg",
-				title: 'Some title',
-				desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
-				url: 'wetsdfgdsrsrdhr'
-			},
-			{
-				img: "29.jpg",
-				title: 'Some title',
-				desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
-				url: 'wetsdfgdsrsrdhr'
-			},
-			{
-				img: "30.jpg",
-				title: 'Some title',
-				desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
-				url: 'wetsdfgdsrsrdhr'
-			},
-			{
-				img: "31.jpg",
-				title: 'Some title',
-				desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
-				url: 'wetsdfgdsrsrdhr'
-			},
-			{
-				img: "32.jpg",
-				title: 'Some title',
-				desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
-				url: 'wetsdfgdsrsrdhr'
-			},
-			{
-				img: "33.jpg",
-				title: 'Some title',
-				desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
-				url: 'wetsdfgdsrsrdhr'
-			},
-			{
-				img: "34.jpg",
-				title: 'Some title',
-				desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
-				url: 'wetsdfgdsrsrdhr'
-			},
-			{
-				img: "35.jpg",
-				title: 'Some title',
-				desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
-				url: 'wetsdfgdsrsrdhr'
-			},
-			{
-				img: "36.jpg",
-				title: 'Some title',
-				desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
-				url: 'wetsdfgdsrsrdhr'
-			},
-			{
-				img: "37.jpg",
-				title: 'Some title',
-				desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
-				url: 'wetsdfgdsrsrdhr'
-			},
-			{
-				img: "38.jpg",
-				title: 'Some title',
-				desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
-				url: 'wetsdfgdsrsrdhr'
-			},
-			{
-				img: "39.jpg",
-				title: 'Some title',
-				desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
-				url: 'wetsdfgdsrsrdhr'
-			},
-			{
-				img: "40.jpg",
-				title: 'Some title',
-				desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
-				url: 'wetsdfgdsrsrdhr'
-			},
-			{
-				img: "50.jpg",
-				title: 'Some title',
-				desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
-				url: 'wetsdfgdsrsrdhr'
-			},
-			{
-				img: "51.jpg",
-				title: 'Some title',
-				desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
-				url: 'wetsdfgdsrsrdhr'
-			},
-			{
-				img: "52.jpg",
-				title: 'Some title',
-				desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
-				url: 'wetsdfgdsrsrdhr'
-			},
-			{
-				img: "53.jpg",
-				title: 'Some title',
-				desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
-				url: 'wetsdfgdsrsrdhr'
-			},
-			{
-				img: "54.jpg",
-				title: 'Some title',
-				desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
-				url: 'wetsdfgdsrsrdhr'
-			},
-			{
-				img: "55.jpg",
-				title: 'Some title',
-				desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
-				url: 'wetsdfgdsrsrdhr'
-			},
-			{
-				img: "56.jpg",
-				title: 'Some title',
-				desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
-				url: 'wetsdfgdsrsrdhr'
-			},
-			{
-				img: "57.jpg",
-				title: 'Some title',
-				desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
-				url: 'wetsdfgdsrsrdhr'
-			},
-			{
-				img: "58.jpg",
-				title: 'Some title',
-				desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
-				url: 'wetsdfgdsrsrdhr'
-			},
-			{
-				img: "59.jpg",
-				title: 'Some title',
-				desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
-				url: 'wetsdfgdsrsrdhr'
-			},
-			{
-				img: "60.jpg",
-				title: 'Some title',
-				desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
-				url: 'wetsdfgdsrsrdhr'
-			},
-			{
-				img: "61.jpg",
-				title: 'Some title',
-				desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
-				url: 'wetsdfgdsrsrdhr'
-			},
-		],
+			vert: {
+				6: {
+					img: "6.jpg",
+					title: 'Some title',
+					desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
+					id: 6
+				},
+				7: {
+					img: "7.jpg",
+					title: 'Some title',
+					desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
+					id: 7
+				}
+			}
+		},
 		pages: [
 			{
 				name: 'Каталог продукції',
@@ -339,19 +63,19 @@ export default new Vuex.Store({
 				children: [
 					{
 						name: 'Тротуарна плитка',
-						url: '/'
+						url: '/catalog/pave'
 					},
 					{
 						name: 'Дорожні елементи',
-						url: '/'
+						url: '/catalog/road'
 					},
 					{
 						name: 'Вертикальні елементи',
-						url: '/'
+						url: '/catalog/vert'
 					},
 					{
 						name: 'Сертифікати',
-						url: '/'
+						url: '/quality'
 					},
 					{
 						name: 'Оплата',

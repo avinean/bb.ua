@@ -2,11 +2,10 @@
 @import "../mixin";
 
 .main {
-
     .inf-icons {
         display: flex;
         justify-content: space-around;
-        align-items: center;
+        align-items: stretch;
         padding: 50px 0;
 
         .inf-ico {
@@ -29,6 +28,60 @@
                 font-weight: bold;
                 padding: 2px;
             }
+        }
+
+        @media screen and (max-width: 670px) {
+            flex-direction: column;
+
+            .inf-ico {
+                flex-direction: column;
+                padding: 20px;
+            }
+        }
+    }
+
+    .goods-banner {
+        display: flex;
+        justify-content: space-around;
+        padding: 30px 0;
+        .good-item {
+            height: 200px;
+            width: 30%;
+            // background-size: cover;
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            background-position: center;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            padding: 20px;
+            display: flex;
+            align-items: flex-end;
+            font-size: 27px;
+            transition: all ease .5s;
+
+            &:hover {
+                background-size: 105% 105%;
+            }
+        }
+
+        @media screen and (max-width: 670px) {
+            flex-direction: column;
+            align-items: center;
+
+            .good-item {
+                width: 90%;
+                margin: 10px;
+            }
+        }
+    }
+
+    .vereteno {
+        padding: 20px 0;
+        background-color: #f5f5f5;
+        h3 {
+            text-align: center;
+            padding: 20px;
         }
     }
 

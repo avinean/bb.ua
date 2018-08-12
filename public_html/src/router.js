@@ -6,6 +6,10 @@ import About from '@/veiw/pages/About'
 import Dillers from '@/veiw/pages/Dillers'
 import News from '@/veiw/pages/News'
 import Info from '@/veiw/pages/Info'
+import Quality from '@/veiw/pages/Quality'
+import Catalog from '@/veiw/pages/Catalog'
+import Categories from '@/veiw/pages/Categories'
+import Description from '@/veiw/pages/Description'
 
 Vue.use(Router)
 
@@ -41,6 +45,26 @@ export default new Router({
 			path: '/info',
 			name: 'Info',
 			component: Info
+		},
+		{
+			path: '/quality',
+			name: 'Quality',
+			component: Quality
+		},
+		{
+			path: '/catalog',
+			name: 'Catalog',
+			component: Catalog
+		},
+		{
+			path: '/catalog/:category',
+			name: 'Categories',
+			component: Categories
+		},
+		{
+			path: '/catalog/:category/:id',
+			name: 'Description',
+			component: Description
 		}
 	]
 })

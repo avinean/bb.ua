@@ -9,5 +9,5 @@
     require_once ROOT.'/../vendor/autoload.php';
 
 	 $app = new \Klein\Klein();
-	 require_once __DIR__ . '/../router/index_r.php';
+	 require_once __DIR__ . '/../router/index.php';
 	 $app->dispatch();

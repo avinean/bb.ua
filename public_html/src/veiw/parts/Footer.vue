@@ -2,7 +2,7 @@
 	.footer
 		.footer-body
 			.contacts.logo
-				img.logo(:src="require('@/img/brand/logo-white.png')" alt='Blagobud-logo')
+				img.logo(:src='require("@/img/brand/logo-white.png")' alt='Blagobud-logo')
 				.addr
 					span У НАС Є РІШЕННЯ САМЕ ДЛЯ ВАС!
 				br

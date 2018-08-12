@@ -9,9 +9,9 @@ function route($path) {
 			$service->render('index.html');
 		});
 
-		$filename = ROOT.'/../router/panel/'.$path.'.php';
+		$filename = ROOT.'/../router/routes/'.$path.'.php';
 		if (file_exists($filename)) {
-			require_once ROOT . '/../router/panel/' . $path . '.php';
+			require_once ROOT . '/../router/routes/' . $path . '.php';
 		}
 	});
 
@@ -26,3 +26,8 @@ route('/dillers');
 route('/info');
 route('/news');
 route('/about');
+route('/catalog');
+route('/catalog/[:action]');
+route('/catalog/[:action]/[:id]');
+
+require_once ROOT . '/../router/router.php';

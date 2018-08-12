@@ -1,7 +1,7 @@
 <template lang="pug">
 	.slider(@mouseenter='pause' @mouseleave='outStart')
-		i.fas.fa-arrow-left.left.arr(@click='slide(--cur); mode="left"')
-		i.fas.fa-arrow-right.right.arr(@click='slide(++cur); mode="right"')
+		//- i.fas.fa-arrow-left.left.arr(@click='slide(--cur); mode="left"')
+		//- i.fas.fa-arrow-right.right.arr(@click='slide(++cur); mode="right"')
 		.dots
 			.dot(
 				v-for='(dot, i) in items'
@@ -49,6 +49,8 @@
 				this.out = setTimeout(this.autoslide, this.interval)
 			},
 			pause() {
+				console.log(1);
+				
 				clearTimeout(this.timer)
 			},
 			dotSlide(i) {

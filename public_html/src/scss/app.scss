@@ -12,12 +12,13 @@
     #app {
         display: flex;
         flex-direction: column;
-        padding-top: 120px;
+        padding-top: 130px;
         overflow: hidden;
         font-size: 18px;
 
         .inner-wrapper {
             width: 70%;
+            min-width: 1024px;
             margin: 0 auto;
 
             h3 {
@@ -29,6 +30,7 @@
 
             @media screen and (max-width: 1024px) {
                 width: 100%;
+                min-width: auto;
             }
         }
 

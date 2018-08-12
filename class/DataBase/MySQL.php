@@ -67,4 +67,28 @@ class MySQL extends Singleton {
     public function escape($str) {
         return mysqli_real_escape_string($this->open_conn(), $str);
     }
+
+    public function where($opts) {
+        if (is_array($opts)) {
+
+			$where = [1];
+			foreach ($opts as $value) {
+				if (isset($value['type']) && isset($value['comp']) && isset($value['val']) && isset($value['field'])) {
+					
+					$field = $this->escape($value['field']);
+
+					if ($value['comp'] === '>') $comp = '>';
+					if ($value['comp'] === '<') $comp = '<';
+					if ($value['comp'] === '=') $comp = '=';
+
+					if ($value['type'] === 's') $val = $this->quote($value['val']);
+					if ($value['type'] === 'i') $val = intval($value['val']);
+
+					$where[] = $field . ' ' . $comp . ' ' . $val;
+				}
+			}
+			return '(' .implode(') AND (', $where) . ')';
+        }
+        return [1];
+    }
 }

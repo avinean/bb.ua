@@ -3,7 +3,7 @@
 		.upheader
 			a.logo(href='/')
 				img(
-					:src="require('@/img/brand/logo-big-blue.png')"
+					:src='require("@/img/brand/logo-big-blue.png")'
 					alt='Blagobud-logo'
 				)
 			.address
@@ -88,8 +88,6 @@
 						h: 100
 					}
 				}
-
-				console.log(this.logoStyles);
 			}
 		},
 		mounted() {

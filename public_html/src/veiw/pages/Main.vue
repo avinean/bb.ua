@@ -17,11 +17,13 @@
 					.lable Оперативна доставка
 		.goods-banner
 			a.good-item(
-				v-for='item in goodsBannerItems'
+				v-for='item in goodsBannerItems' 
 				:href='item.url'
-				:style='"background-img: " + item.img'
-			) {{item.title}}
-
+				:style='"background-image: url(" + require("@/img/plug/" + item.img + ".jpg") + ")"'
+				) {{item.title}}
+		.vereteno
+			h3 Популярні товари
+			vereteno(:items='listedGoods')
 		<!--.inner-wrapper.content-->
 			<!--h3 Про нас-->
 			<!--.content-section(v-for='(sup, i) in sups' :class='sup.pos')-->
@@ -98,15 +100,35 @@
 				],
 				goodsBannerItems: [
 					{
-						url: '/',
-						img: '/',
-						title: ''
+						url: '/catalog/pave',
+						img: 'trot',
+						title: 'Тротуарна плитка'
+					},
+					{
+						url: '/catalog/road',
+						img: 'dor',
+						title: 'Дорожні елементи'
+					},
+					{
+						url: '/catalog/vert',
+						img: 'vert',
+						title: 'Вертикальні елементи'
 					}
-				]
+				],
 			}
 		},
 		computed: {
-			...mapState(['sale'])
+			...mapState(['sale', 'goods']),
+			listedGoods() {
+				let list = []
+				for (let key in this.goods) {
+					for (let k in this.goods[key]) {
+						this.goods[key][k].cat = key
+						list.push(this.goods[key][k])
+					}
+				}
+				return list;
+			}
 		}
 	}
 </script>

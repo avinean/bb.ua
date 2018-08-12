@@ -11,12 +11,16 @@ Vue.use(VueAxios, axios)
 import VueAgile from 'vue-agile'
 Vue.use(VueAgile)
 
+import Mixins from './mixins'
+Vue.mixin(Mixins)
+
 import Header from './veiw/parts/Header'
 import Footer from './veiw/parts/Footer'
 import Callback from './veiw/components/Callback'
 import Slider from './veiw/components/Slider'
 import Btn from './veiw/components/Btn'
 import Popup from './veiw/components/Popup'
+import Vereteno from './veiw/components/Vereteno'
 
 Vue.component('page-header', Header)
 Vue.component('page-footer', Footer)
@@ -24,6 +28,7 @@ Vue.component('callback', Callback)
 Vue.component('slider', Slider)
 Vue.component('btn', Btn)
 Vue.component('popup', Popup)
+Vue.component('vereteno', Vereteno)
 
 
 Vue.config.productionTip = false
