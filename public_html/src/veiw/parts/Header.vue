@@ -1,7 +1,7 @@
 <template lang="pug">
 	div
 		.upheader
-			a.logo(href='/')
+			router-link.logo(to='/')
 				img(
 					:src='require("@/img/brand/logo-big-blue.png")'
 					alt='Blagobud-logo'
@@ -24,24 +24,25 @@
 			.nav-panel
 				.inner-wrapper.items-row
 					a.nav-item(
-					v-for='page in pages'
-					:href='page.url'
-					@mouseenter='showList(page.children, $event)'
+						:key='page.name'
+						v-for='page in pages'
+						:href='page.url'
+						@mouseenter='showList(page.children, $event)'
 					) {{page.name}}
 						.after
 			.nav-list(v-show='children' :style='"left: " + listPos + "px"')
 				.arr
 				.nav-item(v-for='child in children')
-					a(:href='child.url') {{child.name}}
+					router-link(:to='child.url') {{child.name}}
 					.after
 		.header-mob
 			.open-btn(@click='show = !show')
 				i.fas(:class='show ? "fa-times" : "fa-bars"')
 			transition(name='live')
 				.nav-panel(v-show='show')
-					a.logo(href='/')
+					router-link.logo(to='/')
 						img(:src="require('@/img/brand/logo-big-blue.png')" alt='Blagobud-logo')
-					a.nav-item(v-for='page in pages' :href='page.url') {{page.name}}
+					router-link.nav-item(:key='page.name' v-for='page in pages' :to='page.url') {{page.name}}
 					span
 						i.fab.fa-viber.brand
 						i.fab.fa-whatsapp.grass
@@ -69,6 +70,7 @@
 		},
 		methods: {
 			showList(ch, event) {
+				console.log(1);
 				this.children = ch
 				if (!ch) return
 				let navList = 250

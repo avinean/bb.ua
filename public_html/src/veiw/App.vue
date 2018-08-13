@@ -3,6 +3,7 @@
 		page-header(view='narrow')
 		.main-block
 			router-view
+		up
 		page-footer
 </template>
 

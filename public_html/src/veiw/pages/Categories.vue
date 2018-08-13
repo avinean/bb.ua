@@ -2,8 +2,12 @@
 	.categories
 		.inner-wrapper
 			.content-block
-				h3 {{categories[curCat]}}
-				p(v-for='i in goods[curCat]') {{i.img}}
+				h3 {{categories[category]}}
+				.vereteno-inner(v-if='goods')
+					.item(v-for='item in goods')
+						img(:src='require("@/img" + item.img)')
+						.title {{item.title}}
+						router-link.btn(:to='"/catalog/" + item.category + "/" + item.id') Детальніше
 </template>
 
 <script>
@@ -17,27 +21,26 @@
 					'road': 'Дорожні елементи',
 					'vert': 'Вертикальні елементи'
 				},
-				curCat: null
+				goods: null
 			}
 		},
 		computed: {
-			...mapState(['goods'])
+			category() {
+				return this.$route.params.category
+			}
 		},
 		methods: {
 			async loadGoodsList() {
-				let params = {
-					category: this.curCat
-				}
 				let res = await this.request({
 					method: 'get',
 					className: 'Catalog',
-					methodName: 'getGoodsByCategory',
+					methodName: 'getGoods',
 					opts: {
 						where: [
 							{
 								type: 's',
 								comp: '=',
-								val: 'pave',
+								val: this.category,
 								field: 'category'
 							},
 							{
@@ -49,13 +52,17 @@
 						]
 					}
 				})
-				console.log(res);
+				this.goods = res.data;
 				
 			}
 		},
 		mounted() {
-			this.curCat = this.$route.params.category
 			this.loadGoodsList()
+		},
+		watch: {
+			category() {
+				this.loadGoodsList()
+			}
 		}
 	}
 </script>

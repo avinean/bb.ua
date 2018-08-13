@@ -17,6 +17,17 @@ class Response {
         else return mysqli_fetch_assoc($this->response);
     }
 
+    public function fetchAll() {
+		if (gettype($this->response) === 'boolean') return $this->response;
+		else {
+			$res = [];
+			while ($val = mysqli_fetch_assoc($this->response)) {
+				$res[] = $val;
+			}
+			return $res;
+		}
+	}
+
     public function fetchArray() {
         if (gettype($this->response) === 'boolean') return $this->response;
         else return mysqli_fetch_all($this->response);

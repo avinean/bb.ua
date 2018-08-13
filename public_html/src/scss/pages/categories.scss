@@ -1,2 +1,60 @@
+@import "../var";
+@import "../mixin";
+
 .categories {
+
+    .vereteno-inner {
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        min-height: 300px;
+        padding: 20px 0;
+
+        .arr {
+            font-size: 45px;
+            position: absolute;
+            z-index: 100;
+            color: $cherry;
+            cursor: pointer;
+        }
+
+        .left {
+            left: 5px;
+        }
+
+        .right {
+            right: 5px;
+        }
+
+        .item {
+            position: relative;
+            flex: 1;
+            min-height: 300px;
+            min-width: 200px;
+            overflow: hidden;
+            margin: 0 20px;
+            text-align: center;
+            padding: 20px;
+
+            img {
+                height: 150px;
+            }
+
+            .btn {
+                position: absolute;
+                display: block;
+                text-decoration: none;
+                background: $cherry;
+                height: 40px;
+                width: 200px;
+                margin: auto;
+                line-height: 40px;
+                color: $snow;
+                bottom: 18px;
+                left: 0;
+                right: 0;
+            }
+        }
+    }
 }

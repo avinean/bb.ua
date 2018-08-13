@@ -37,7 +37,6 @@
 				else if (cur === -1) this.cur = this.items.length -1
 			},
 			autoslide() {
-				console.log(this.cur);
 				if (this.auto) {
 					this.mode = 'right'
 					this.slide(++this.cur)
@@ -49,8 +48,6 @@
 				this.out = setTimeout(this.autoslide, this.interval)
 			},
 			pause() {
-				console.log(1);
-				
 				clearTimeout(this.timer)
 			},
 			dotSlide(i) {

@@ -7,7 +7,9 @@ $app->respond(['GET', 'POST'], '/api/request', function($req, $res, $ser) {
 
 	$ins = new $className();
 
-	$result = $ins->$methodName(json_decode($params['opts'], 1));
+	$opts = @$params['opts'] ?: '[]';
+
+	$result = $ins->$methodName(json_decode($opts, 1));
 
 	if (is_array($result)) {
 		return $res->json($result);

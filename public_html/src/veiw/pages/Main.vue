@@ -17,13 +17,50 @@
 					.lable Оперативна доставка
 		.goods-banner
 			a.good-item(
-				v-for='item in goodsBannerItems' 
+				v-for='item in goodsBannerItems'
 				:href='item.url'
 				:style='"background-image: url(" + require("@/img/plug/" + item.img + ".jpg") + ")"'
 				) {{item.title}}
 		.vereteno
 			h3 Популярні товари
-			vereteno(:items='listedGoods')
+			.vereteno-inner(v-if='goods')
+				i.fas.fa-chevron-circle-left.left.arr(@click='slideVereteno(0)')
+				i.fas.fa-chevron-circle-right.right.arr(@click='slideVereteno(1)')
+				.item(v-for='item in cur')
+					img(:src='require("@/img" + goods[item].img)')
+					.title {{goods[item].title}}
+					a.btn(:href='"/catalog/" + goods[item].category + "/" + goods[item].id') Детальніше
+		.news
+			h3 Новини
+			.inner-wrapper
+				template(v-for='item in news')
+					.pos-wrap
+						.pos-left
+							router-link.item(
+									:key='item[0].img'
+									:to='"/news/" + item[0].id'
+									:style='"background-image: url(" + require("@/img" + item[0].img) + ")"'
+								)
+								.title {{item[0].title}}
+									.date {{item[0].datetime}}
+						.pos-right
+							router-link.item(
+									:key='item[1].img'
+									:to='"/news/" + item[1].id'
+									:style='"background-image: url(" + require("@/img" + item[1].img) + ")"'
+								)
+								.title {{item[1].title}}
+									.date {{item[1].datetime}}
+							router-link.item(
+									:key='item[2].img'
+									:to='"/news/" + item[2].id'
+									:style='"background-image: url(" + require("@/img" + item[2].img) + ")"'
+								)
+								.title {{item[2].title}}
+									.date {{item[2].datetime}}
+			.btn(@click='loadNewsList') Показати більше
+
+
 		<!--.inner-wrapper.content-->
 			<!--h3 Про нас-->
 			<!--.content-section(v-for='(sup, i) in sups' :class='sup.pos')-->
@@ -40,6 +77,7 @@
 		name: 'page-main',
 		data() {
 			return {
+				cur: [0,1,2,3],
 				sups: [
 					{
 						pos: "",
@@ -115,20 +153,64 @@
 						title: 'Вертикальні елементи'
 					}
 				],
+				goods: null,
+				news: [],
+				newsPortion: 1
 			}
 		},
 		computed: {
-			...mapState(['sale', 'goods']),
-			listedGoods() {
-				let list = []
-				for (let key in this.goods) {
-					for (let k in this.goods[key]) {
-						this.goods[key][k].cat = key
-						list.push(this.goods[key][k])
-					}
+			...mapState(['sale'])
+		},
+		methods: {
+			slideVereteno(d) {
+
+				if (d) {
+					this.cur = this.cur.map(e => {
+						e++;
+						if (e > this.goods.length - 1) return 0;
+						return e;
+					})
 				}
-				return list;
+				if (!d) {
+					this.cur = this.cur.map(e => {
+						e--;
+						if (e < 0) return this.goods.length - 1;
+						return e
+					})
+				}
+			},
+			async loadGoodsList(opts = {}) {
+				let res = await this.request({
+					method: 'get',
+					className: 'Catalog',
+					methodName: 'getGoods'
+				})
+				this.goods = res.data;
+			},
+			async loadNewsList(opts = {}) {
+
+				if (opts.init) {
+					this.newsPortion = 1
+				}
+				else  {
+					this.newsPortion++
+				}
+
+				let res = await this.request({
+					method: 'get',
+					className: 'News',
+					methodName: 'getNews',
+					opts: {
+						offset: (this.newsPortion - 1) * 3,
+						limit: 3
+					}
+				})
+				this.news.push(res.data)
 			}
+		},
+		mounted() {
+			this.loadGoodsList({init:1});
+			this.loadNewsList({init:1});
 		}
 	}
 </script>

@@ -47,7 +47,6 @@
         .good-item {
             height: 200px;
             width: 30%;
-            // background-size: cover;
             background-repeat: no-repeat;
             background-size: 100% 100%;
             background-position: center;
@@ -58,7 +57,7 @@
             display: flex;
             align-items: flex-end;
             font-size: 27px;
-            transition: all ease .5s;
+            transition: all ease .3s;
 
             &:hover {
                 background-size: 105% 105%;
@@ -82,6 +81,146 @@
         h3 {
             text-align: center;
             padding: 20px;
+        }
+        .vereteno-inner {
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            min-height: 300px;
+            padding: 20px 0;
+
+            .arr {
+                font-size: 45px;
+                position: absolute;
+                z-index: 100;
+                color: $cherry;
+                cursor: pointer;
+            }
+
+            .left {
+                left: 5px;
+            }
+
+            .right {
+                right: 5px;
+            }
+
+            .item {
+                position: relative;
+                flex: 1;
+                min-height: 300px;
+                min-width: 200px;
+                overflow: hidden;
+                margin: 0 20px;
+                text-align: center;
+                padding: 20px;
+
+                img {
+                    height: 150px;
+                }
+
+                .btn {
+                    position: absolute;
+                    display: block;
+                    text-decoration: none;
+                    background: $cherry;
+                    height: 40px;
+                    width: 200px;
+                    margin: auto;
+                    line-height: 40px;
+                    color: $snow;
+                    bottom: 18px;
+                    left: 0;
+                    right: 0;
+                }
+            }
+        }
+    }
+
+    .news {
+        padding: 20px 0;
+        background-color: #f5f5f5;
+
+        h3 {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .btn {
+            background: $cherry;
+            height: 40px;
+            width: 200px;
+            margin: 50px auto;
+            line-height: 40px;
+            color: $snow;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .inner-wrapper {
+            min-height: 400px;
+
+            .pos-wrap {
+                display: flex;
+
+                &:nth-child(even) {
+                    flex-direction: row-reverse;
+                }
+
+                .pos-left, .pos-right {
+                    overflow: hidden;
+                    height: 400px;
+                    .item {
+                        position: relative;
+                        display: block;
+                        width: 100%;
+                        background-size: 100% 100%;
+                        background-position: center;
+                        transition: all ease .3s;
+                        .title {
+                            position: absolute;
+                            bottom: 0;
+                            width: 100%;
+                            padding: 10px;
+                            background: rgba(255, 255, 255, .8);
+                            color: $d-main;
+                            text-transform: uppercase;
+
+                            .date {
+                                font-size: 13px;
+                            }
+                        }
+
+                        &:hover {
+                            background-size: 105% 105%;
+                        }
+                    }
+                }
+            }
+
+            .pos-left {
+                width: 65%;
+                .item {
+                    height: 400px;
+                }
+            }
+
+            .pos-right {
+                width: 35%;
+                .item {
+                    height: 200px;
+
+                    .title {
+                        padding: 5px;
+                        font-size: 15px;
+
+                        .date {
+                            font-size: 10px;
+                        }
+                    }
+                }
+            }
         }
     }
 
