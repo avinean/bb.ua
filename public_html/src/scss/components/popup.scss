@@ -31,8 +31,8 @@
         .head {
             flex-basis: 40px;
             position: relative;
-            background-color: $main;
-            color: #fff;
+            background-color: $brand;
+            color: $snow;
 
             .title {
                 position: absolute;
@@ -40,8 +40,8 @@
                 left: 11px;
                 bottom: 11px;
                 min-width: 90%;
-                text-transform: uppercase;
-                color: #fff;
+                font-size: 16px;
+                color: $snow;
             }
 
             .close {

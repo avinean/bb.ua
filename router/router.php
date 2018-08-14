@@ -2,6 +2,7 @@
 
 $app->respond(['GET', 'POST'], '/api/request', function($req, $res, $ser) {
 	$params = $req->params();
+	return json_encode($params);
 	$className = 'App\\Model\\' . $params['className'];
 	$methodName = $params['methodName'];
 

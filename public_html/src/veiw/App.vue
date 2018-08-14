@@ -1,10 +1,11 @@
 <template lang="pug">
 	#app
-		page-header(view='narrow')
-		.main-block
-			router-view
-		up
-		page-footer
+		<!--page-header(view='narrow')-->
+		<!--.main-block-->
+			<!--router-view-->
+		callback
+		<!--up-->
+		<!--page-footer-->
 </template>
 
 <script>

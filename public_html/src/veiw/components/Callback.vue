@@ -1,19 +1,18 @@
 <template lang="pug">
 	div
-		i.fas.fa-phone.call(@click='showPopup = {name:"", phone: ""}')
-			.bg
-		popup(v-if='showPopup' @close='showPopup = null')
-			template(slot='head') Ми вам перетелефонуємо
-			template(slot='body')
-				p Залиште свої контакті дані і наші менеджери звяжуться з вами найближчим часом
-				p.in(placeholder="Введіть ваше ім'я") Ваше ім'я:
-					input(v-model='showPopup.name')
-				p.in(placeholder="Введіть ваш телефон") Ваш телефон:
-					input(v-model='showPopup.phone')
-			template(slot='foot')
-				btn.center(@click='send') Передзвонити
-		a.fas.fa-phone.call(href='/contacts')
-			.bg
+		.callback(@mouseenter='stop' @mouseleave='start' @click='show = phone')
+			i.fas(:class="phone ? 'fa-phone' : 'fa-envelope'")
+			| {{phone ? 'Замовте дзвінок' : 'Напишіть, що вас цікавить'}}
+		popup(v-if='show !== null' @close='show = null')
+			template(slot='head') {{ show ? 'Ми зателефонуємо Вам на протязі 15 хвилин' : 'Напишіть, що Вас цікавить?'}}
+			.form(slot='body')
+				template(v-if='show')
+					input.input-field(v-model='showPopup.name' placeholder="Вкажіть Ваше ім'я")
+					input.input-field(v-model='showPopup.phone' placeholder='Вкажіть номер Вашого телефону')
+				template(v-else)
+					div 1
+			div(slot='foot')
+				.btn(@click='send(show)') Відправити
 </template>
 
 <script>
@@ -21,20 +20,45 @@
 		name: 'callback',
 		data() {
 			return {
-				showPopup: null
+				phone: 1,
+				timer: null,
+				show: null,
+				showPopup: {
+					name: '',
+					phone: ''
+				}
 			}
 		},
 		methods: {
-			send() {
-				if (!this.showPopup.name || !this.showPopup.phone) {
-					alert('Будь-ласка, заповніть всі поля!')
-					return
+			stop() {
+				console.log(1);
+				clearTimeout(this.timer)
+			},
+			start() {
+				this.timer = setTimeout(this.circ, 3000)
+			},
+			circ() {
+				this.phone = !this.phone
+				this.timer = setTimeout(this.circ, 3000)
+			},
+			send(opt) {
+				if (opt) {
+					if (!this.showPopup.name || !this.showPopup.phone) {
+						alert('Будь-ласка, заповніть всі поля!')
+						return
+					}
+
+					this.request({
+						method: 'get',
+						className: 'Contacts',
+						methodName: 'sendRequest',
+						opts: this.showPopup
+					})
 				}
-				let params = this.showPopup
-				params['req'] = 'call';
-				this.axios('/contacts/callback', {params})
-				this.showPopup = null
 			}
+		},
+		mounted() {
+			this.start()
 		}
 	}
 </script>

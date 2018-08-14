@@ -5,8 +5,11 @@ import store from './store.js'
 
 import axios from 'axios'
 import VueAxios from 'vue-axios'
-axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
-Vue.use(VueAxios, axios)
+// axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
+const axiosInstance = axios.create({
+	headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+});
+Vue.use(VueAxios, axiosInstance)
 
 import VueAgile from 'vue-agile'
 Vue.use(VueAgile)
