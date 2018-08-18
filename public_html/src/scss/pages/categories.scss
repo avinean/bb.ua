@@ -3,58 +3,85 @@
 
 .categories {
 
-    .vereteno-inner {
-        position: relative;
+    padding: 20px;
+
+    .category-block {
         display: flex;
+        justify-content: space-around;
         flex-wrap: wrap;
-        align-items: center;
-        min-height: 300px;
-        padding: 20px 0;
+        background-color: grey;
+        padding: 20px;
 
-        .arr {
-            font-size: 45px;
-            position: absolute;
-            z-index: 100;
-            color: $cherry;
-            cursor: pointer;
-        }
+        .list {
+            flex-basis: 200px;
+            flex-grow: 1;
+            margin-right: 20px;
+            background-color: $snow;
 
-        .left {
-            left: 5px;
-        }
-
-        .right {
-            right: 5px;
-        }
-
-        .item {
-            position: relative;
-            flex: 1;
-            min-height: 300px;
-            min-width: 200px;
-            overflow: hidden;
-            margin: 0 20px;
-            text-align: center;
-            padding: 20px;
-
-            img {
-                height: 150px;
+            .item {
+                padding: 10px 20px;
             }
+        }
 
-            .btn {
-                position: absolute;
-                display: block;
-                text-decoration: none;
-                background: $cherry;
-                height: 40px;
-                width: 200px;
-                margin: auto;
-                line-height: 40px;
+        .grid {
+            flex-grow: 20;
+            max-width: 1200px;
+
+            .grid-head {
+                padding: 20px 0;
                 color: $snow;
-                bottom: 18px;
-                left: 0;
-                right: 0;
+                font-size: 25px;
+                text-transform: uppercase;
+            }
+
+            .grid-params {
+                background: $snow;
+                padding: 10px;
+            }
+
+            .grid-items {
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+
+                .grid-item {
+                    width: 270px;
+                    min-height: 320px;
+                    margin: 20px 0;
+                    padding: 10px;
+                    background: $snow;
+
+                    img {
+                        width: 100%;
+                        min-height: 187px;
+                    }
+
+                    .title {
+                        padding: 5px;
+                        text-align: center;
+                        color: black;
+                    }
+
+                    .price {
+                        padding: 10px;
+                        text-align: center;
+                        color: $cherry;
+                    }
+
+                    .btn {
+                        display: block;
+                        text-decoration: none;
+                        text-align: center;
+                        color: blue;
+                        border: 2px solid;
+                        height: 40px;
+                        line-height: 37px;
+                        font-weight: bold;
+                        margin-bottom: 10px;
+                    }
+                }
             }
         }
+
     }
 }

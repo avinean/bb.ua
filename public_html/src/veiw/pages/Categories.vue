@@ -1,25 +1,56 @@
 <template lang="pug">
 	.categories
-		.inner-wrapper
-			.content-block
-				h3 {{categories[category]}}
-				.vereteno-inner(v-if='goods')
-					.item(v-for='item in goods')
+		.category-block
+			.list
+				.item(v-for='v, k in categories[category].list' @click='curItem = k') {{v}}
+			.grid
+				.grid-head {{curItem ? categories[category].list[curItem] : ''}}
+				.grid-params
+					.color Color
+					.height Height
+				.grid-items(v-if='curItem')
+					.grid-item(v-for='item in filteredGoods')
 						img(:src='require("@/img" + item.img)')
 						.title {{item.title}}
+						.price {{item.price}} грн
 						router-link.btn(:to='"/catalog/" + item.category + "/" + item.id') Детальніше
+						.btn(@click='') Оформити замовлення
 </template>
 
 <script>
-	import {mapState} from 'vuex'
 	export default {
 		name: 'page-categories',
 		data() {
 			return {
+				curItem: '',
 				categories: {
-					'pave': 'Тротуарні елементи',
-					'road': 'Дорожні елементи',
-					'vert': 'Вертикальні елементи'
+					'pave': {
+						title: 'Тротуарні елементи',
+						list: {
+							bruk: 'Бруківка',
+							square: 'Квадрат',
+							old: 'Старе місто',
+							t: 'Подвійна Т'
+						}
+					},
+					'road': {
+						title: 'Дорожні елементи',
+						list: {
+							bruk: 'Бруківка',
+							square: 'Квадрат',
+							old: 'Старе місто',
+							t: 'Подвійна Т'
+						}
+					},
+					'vert': {
+						title: 'Вертикальні елементи',
+						list: {
+							bruk: 'Бруківка',
+							square: 'Квадрат',
+							old: 'Старе місто',
+							t: 'Подвійна Т'
+						}
+					}
 				},
 				goods: null
 			}
@@ -27,6 +58,9 @@
 		computed: {
 			category() {
 				return this.$route.params.category
+			},
+			filteredGoods() {
+				return this.goods
 			}
 		},
 		methods: {

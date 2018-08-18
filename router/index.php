@@ -17,6 +17,8 @@ function route($path) {
 
 }
 
+route('/test');
+
 route('/');
 route('/gallery');
 route('/price');
