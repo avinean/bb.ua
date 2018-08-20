@@ -2,7 +2,7 @@
 	.info
 		.inner-wrapper
 			.content-block
-				h3 Корисна інформація
+				.divide-head Корисна інформація
 </template>
 
 <script>

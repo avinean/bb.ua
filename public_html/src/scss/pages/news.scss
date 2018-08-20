@@ -1,13 +1,63 @@
-.quality {
-    .gallery {
-        img {
-            display: block;
-            margin: 0 auto;
-            width: 50%;
+@import "../var";
+@import "../mixin";
 
-            @media screen and (max-width: 1024px) {
-                width: 100%;
+.news {
+    display: flex;
+
+    .btn {
+        background: $cherry;
+        height: 40px;
+        width: 200px;
+        margin: 50px auto;
+        line-height: 40px;
+        color: $snow;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    .content-block {
+        flex-basis: 300px;
+        flex-grow: 1;
+        .item {
+            display: flex;
+            height: 300px;
+            margin: 20px 40px;
+            .image {
+                flex-basis: 300px;
+                background-size: cover;
+                background-position: center;
+            }
+            .text {
+                flex-basis: 300px;
+                flex-grow: 1;
+                padding: 20px;
+                .title {
+                    padding: 20px 0;
+                    text-transform: uppercase;
+                    color: $brand;
+                }
+                .date {
+                    font-size: 14px;
+                    color: $brand;
+                }
+                .description {
+                    font-size: 16px;
+                    padding: 20px 0;
+                    color: black;
+                }
+                .link {
+                    display: block;
+                    padding: 20px 0;
+                    color: $brand;
+                }
             }
         }
+    }
+
+
+    .banner {
+        display: block;
+        flex-basis: 300px;
+        background-color: grey;
     }
 }

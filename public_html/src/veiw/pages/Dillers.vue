@@ -2,7 +2,7 @@
 	.dillers
 		.inner-wrapper
 			.content-block
-				h3 Диллерам
+				.divide-head Диллерам
 
 </template>
 

@@ -2,7 +2,7 @@
 	.catalog
 		.inner-wrapper
 			.content-block
-				h3 Каталог
+				.divide-head Каталог
 				p
 					a(href='/catalog/pave') Тротуарні елементи
 				p

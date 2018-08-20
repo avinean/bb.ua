@@ -30,5 +30,21 @@ class Contacts extends Model {
 //			$email \n\n
 //			$msg"
 //		);
-    }
+	}
+	
+	public function sendMessage($opts = []) {
+		$name = $opts['name'];
+		$msg = $opts['msg'];
+		$phone = $opts['phone'];
+		$email = $opts['email'];
+
+		return mail(
+			'avinean@gmail.com',
+			'Запит. Лист',
+			"$name відправив листа з сайту blagobudvk.com.ua \n\n
+			email: $email \n\n
+			телефон: $phone \n\n
+			$msg"
+		);
+	}
 }

@@ -2,7 +2,7 @@
 	.quality
 		.inner-wrapper
 			.content-block
-				h3 Якість
+				.divide-head Якість
 				.gallery
 					img(:src="require('@/img/sert/1.jpg')")
 					img(:src="require('@/img/sert/2.jpg')")

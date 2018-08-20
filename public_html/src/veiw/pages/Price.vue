@@ -1,7 +1,7 @@
 <template lang="pug">
 	.price
 		.inner-wrapper
-			h3 Прайс
+			.divide-head Прайс
 			.table-wrap
 				table
 					thead

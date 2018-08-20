@@ -2,7 +2,7 @@
 	.gallery
 		.inner-wrapper
 			.content-block
-				h3 Галерея
+				.divide-head Галерея
 				.lib
 					img.gallery-item(
 						v-for='(good, i) in goods'

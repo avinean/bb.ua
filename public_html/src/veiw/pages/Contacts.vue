@@ -2,27 +2,22 @@
 	.contacts
 		.inner-wrapper.content
 			.content-block
-				h3 Наші контакти
-				.content-section
-					p.addr
-						i.fas.fa-hotel
-						span ТОВ "ВК "Благобуд""
-					p.addr
-						i.fas.fa-phone
-						span {{contacts.phone}}
-					p.addr
-						i.fas.fa-envelope
-						span
-							a.mailto(:href='"mailto:" + contacts.email') {{contacts.email}}
-					p.addr
-						i.fas.fa-map-marked-alt
-						span {{contacts.country}}, {{contacts.region}}, {{contacts.city}},<br>{{contacts.street}}, {{contacts.index}}
+				.divide-head Наші контакти
 				.send-form
-					h2 Напишіть нам
-					p: input(v-model='name' placeholder="Ваше ім'я")
-					p: input(v-model='email' placeholder='Ваш email')
+					.contacts-list
+						p: input(v-model='name' placeholder="Ваше ім'я")
+						p.cen: input(v-model='phone' placeholder='Ваш телефон')
+						p: input(v-model='email' placeholder='Ваш email')
 					p: textarea(v-model='msg' placeholder='Ваше повідомлення')
 					btn.btn(@click='send') Відправити
+		iframe.map(
+			src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2543.5173033518304!2d30.23982171572933!3d50.394196179467684!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40d4cb932c18e567%3A0x63292aa8267936d0!2z0KLQntCSICLQktCaICLQkdCb0JDQk9Ce0JHQo9CUIg!5e0!3m2!1sen!2sua!4v1534780179207" 
+			height="450" 
+			frameborder="0" 
+			style="border:0; width: 100%" 
+			allowfullscreen
+			)
+		message(msg='hello' bg='brand')
 </template>
 
 <script>
@@ -33,7 +28,8 @@
 			return {
 				email: '',
 				msg: '',
-				name: ''
+				name: '',
+				phone: ''
 			}
 		},
 		computed: {
@@ -41,16 +37,22 @@
 		},
 		methods: {
 			send() {
-				if (!this.name || !this.email || !this.msg) {
+				if (!this.name || !this.email || !this.msg || !this.phone) {
 					alert('Будь-ласка, заповніть всі поля!')
 					return
 				}
-				let params = {
-					email: this.email,
-					msg: this.msg,
-					name: this.name,
-				};
-				this.axios('/contacts/send-msg', {params})
+
+				this.request({
+					method: 'get',
+					className: 'Contacts',
+					methodName: 'sendMessage',
+					opts: {
+						email: this.email,
+						msg: this.msg,
+						phone: this.phone,
+						name: this.name,
+					}
+				})
 			}
 		}
 	}

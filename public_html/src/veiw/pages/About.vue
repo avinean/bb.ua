@@ -2,7 +2,7 @@
 	.about
 		.inner-wrapper
 			.content-block
-				h3 Про нас
+				.divide-head Про нас
 				p Ми благобуд
 
 </template>

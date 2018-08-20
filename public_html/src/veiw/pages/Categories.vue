@@ -2,7 +2,7 @@
 	.categories
 		.inner-wrapper
 			.content-block
-				h3 {{categories[category]}}
+				.divide-head {{categories[category]}}
 				.vereteno-inner(v-if='goods')
 					.item(v-for='item in goods')
 						img(:src='require("@/img" + item.img)')
