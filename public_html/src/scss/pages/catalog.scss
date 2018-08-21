@@ -1,2 +1,24 @@
 .catalog {
+
+    .goods-banner {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        .good-item {
+            width: 400px;
+            height: 400px;
+            margin: 30px;
+            text-decoration: none;
+            background-size: cover;
+            display: flex;
+            align-items: flex-end;
+
+            .title {
+                color: white;
+                font-size: 30px;
+                padding: 20px;
+            }
+        }
+    }
+
 }

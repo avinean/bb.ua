@@ -3,6 +3,7 @@
 		.callback(@mouseenter='stop' @mouseleave='start' @click='show = phone')
 			i.fas(:class="phone ? 'fa-phone' : 'fa-envelope'")
 			| {{phone ? 'Замовте дзвінок' : 'Напишіть, що вас цікавить'}}
+		.clearfix
 		popup(v-if='show !== null' @close='show = null')
 			template(slot='head') {{ show ? 'Ми зателефонуємо Вам на протязі 15 хвилин' : 'Напишіть, що Вас цікавить?'}}
 			.form(slot='body')
@@ -10,7 +11,11 @@
 					input.input-field(v-model='showPopup.name' placeholder="Вкажіть Ваше ім'я")
 					input.input-field(v-model='showPopup.phone' placeholder='Вкажіть номер Вашого телефону')
 				template(v-else)
-					div 1
+					input.input-field(v-model='showPopup.name' placeholder="Вкажіть Ваше ім'я")
+					input.input-field(v-model='showPopup.email' placeholder='Вкажіть Ваш email')
+					input.input-field(v-model='showPopup.viber' placeholder='Вкажіть Ваш viber')
+					input.input-field(v-model='showPopup.watsapp' placeholder='Вкажіть Ваш watsapp')
+					textarea.input-field(v-model='showPopup.msg')
 			div(slot='foot')
 				.btn(@click='send(show)') Відправити
 </template>
@@ -25,7 +30,11 @@
 				show: null,
 				showPopup: {
 					name: '',
-					phone: ''
+					phone: '',
+					msg: '',
+					viber: '',
+					watsapp: '',
+					email: ''
 				}
 			}
 		},
@@ -42,19 +51,22 @@
 				this.timer = setTimeout(this.circ, 3000)
 			},
 			send(opt) {
-				if (opt) {
-					if (!this.showPopup.name || !this.showPopup.phone) {
-						alert('Будь-ласка, заповніть всі поля!')
-						return
-					}
+				let opts = this.showPopup;
+				opts.type = opt;
 
-					this.request({
-						method: 'get',
-						className: 'Contacts',
-						methodName: 'sendRequest',
-						opts: this.showPopup
-					})
+				if (opt && !this.showPopup.phone) {
+					alert('Введіть будь-ласка Ваш номер телефону');
 				}
+				if (!opt && !this.showPopup.email) {
+					alert('Вкажіть будь-ласка Ваш email');
+				}
+
+				this.request({
+					method: 'get',
+					className: 'Contacts',
+					methodName: 'sendRequest',
+					opts
+				})
 			}
 		},
 		mounted() {

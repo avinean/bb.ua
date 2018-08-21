@@ -7,29 +7,33 @@ class Contacts extends Model {
 
 	public function sendRequest($opts = []) {
 
-		return $opts;
+		if ($opts['type']) {
+			$name = $opts['name'];
+			$phone = $opts['phone'];
+			return mail(
+				'avinean@gmail.com',
+				'Запит. Передзвонити',
+				"$name залишив запит, щоб йому перетелефонували на номер $phone"
+			);
+		}
+		else {
+			$name = $opts['name'];
+			$viber = $opts['viber'];
+			$watsapp = $opts['watsapp'];
+			$msg = $opts['msg'];
+			$email = $opts['email'];
 
-//		$name = $req->paramsGet()->all()['name'];
-//		$phone = $req->paramsGet()->all()['phone'];
-//
-//		return mail(
-//			'avinean@gmail.com',
-//			'Запит. Передзвонити',
-//			"$name залишив запит, щоб йому перетелефонували на номер $phone"
-//		);
 
-
-//		$name = $req->paramsGet()->all()['name'];
-//		$msg = $req->paramsGet()->all()['msg'];
-//		$email = $req->paramsGet()->all()['email'];
-//
-//		return mail(
-//			'avinean@gmail.com',
-//			'Запит. Лист',
-//			"$name відправив листа з сайту blagobud.com \n\n
-//			$email \n\n
-//			$msg"
-//		);
+			return mail(
+				'avinean@gmail.com',
+				'Запит. Лист',
+				"$name відправив листа з сайту blagobud.com \n\n
+				email:		$email \n
+				viber:		$viber \n
+				watsapp:	$watsapp \n\n
+				$msg"
+			);
+		}
 	}
 	
 	public function sendMessage($opts = []) {

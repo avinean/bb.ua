@@ -18,7 +18,7 @@ class News extends Model {
 
 		$query = '
 			SELECT * 
-			FROM blagobud.news 
+			FROM news 
 			WHERE '.$where.'
 			LIMIT '.$limit.'
 			OFFSET '.$offset;
