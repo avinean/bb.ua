@@ -1,6 +1,6 @@
 <template lang="pug">
 	.categories
-		.divide-head {{categories[category]}}
+		.divide-head {{categories[category].title}}
 		.category-block
 			.list
 				.item(v-for='v, k in categories[category].list' @click='curItem = k') {{v}}
