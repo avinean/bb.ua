@@ -17,7 +17,6 @@
 			style="border:0; width: 100%" 
 			allowfullscreen
 			)
-		message(msg='hello' bg='brand')
 </template>
 
 <script>
@@ -54,6 +53,10 @@
 					}
 				})
 			}
+		},
+		mounted() {
+			console.log(this);
+			
 		}
 	}
 </script>

@@ -1,6 +1,8 @@
 export default {
-    data: {
-        general: 123
+    data() {
+        return {
+            showMessage: null
+        }
     },
     methods: {
         async request(j) {

@@ -6,6 +6,7 @@
 		callback
 		up
 		page-footer
+		.result-message(v-if='showMessage' v-html='showMessage')
 </template>
 
 <script>
