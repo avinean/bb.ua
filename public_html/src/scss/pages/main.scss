@@ -2,6 +2,15 @@
 @import "../mixin";
 
 .main {
+    .logo-mob {
+        display: none;
+        @media screen and (max-width: 860px){
+            display: block;
+            width: 85%;
+            margin: auto;
+        }
+    }
+
     .inf-icons {
         display: flex;
         justify-content: space-around;
@@ -11,20 +20,22 @@
         .inf-ico {
             flex: 1;
             text-align: center;
-            box-shadow: 0px 8px 22px -7px grey;
+            // box-shadow: 0px 8px 22px -7px grey;
 
             .ico {
                 color: $cherry;
-                border: 1px solid rgba(206, 88, 25, .6);
+                border: 1px solid rgba(206, 88, 25, 0.6);
                 border-radius: 100%;
-                width: 50px;
-                height: 50px;
-                line-height: 48px;
+                width: 100px;
+                height: 100px;
+                line-height: 98px;
+                font-size: 62px;
+                margin-bottom: 15px;
             }
 
             .lable {
                 text-align: center;
-                color: $d-main;
+                color: $main;
                 font-weight: bold;
                 padding: 2px;
             }
@@ -45,22 +56,51 @@
         justify-content: space-around;
         padding: 30px 0;
         .good-item {
+            position: relative;
             height: 200px;
             width: 30%;
+            overflow: hidden;
             background-repeat: no-repeat;
-            background-size: 100% 100%;
+            background-size: cover;
             background-position: center;
             text-decoration: none;
-            color: white;
-            font-weight: bold;
-            padding: 20px;
-            display: flex;
-            align-items: flex-end;
-            font-size: 27px;
-            transition: all ease .3s;
+
+            .good-item-inner {
+                position: absolute;
+                height: 200px;
+                width: 100%;
+                top: 125px;
+                background: rgba(0,0,0,0);
+                color: $snow;
+                font-weight: bold;
+                padding: 20px;
+                font-size: 22px;
+                transition: all ease .5s;
+
+                .btn {
+                    background: $brand;
+                    color: $snow;
+                    width: 150px;
+                    height: 45px;
+                    font-size: 20px;
+                    text-align: center;
+                    line-height: 45px;
+                    margin: 40px 0;
+                    opacity: 0;
+                    transition: all ease 1s;
+                }
+            }
 
             &:hover {
-                background-size: 105% 105%;
+                .good-item-inner {
+                    top: 0;
+                    font-size: 27px;
+                    background: rgba(0,0,0,.5);
+
+                    .btn {
+                        opacity: 1;
+                    }
+                }
             }
         }
 
@@ -77,9 +117,8 @@
 
     .vereteno {
         padding: 20px 0;
-        background-color: #f5f5f5;
         h3 {
-            text-align: center;
+            text-align: center;     
             padding: 20px;
         }
         .vereteno-inner {
@@ -140,7 +179,6 @@
 
     .news {
         padding: 20px 0;
-        background-color: #f5f5f5;
 
         h3 {
             text-align: center;
@@ -175,8 +213,7 @@
                         position: relative;
                         display: block;
                         width: 100%;
-                        background-size: 100% 100%;
-                        background-position: center;
+                        background-size: cover;
                         transition: all ease .3s;
                         .title {
                             position: absolute;
@@ -184,16 +221,12 @@
                             width: 100%;
                             padding: 10px;
                             background: rgba(255, 255, 255, .8);
-                            color: $d-main;
+                            color: $main;
                             text-transform: uppercase;
 
                             .date {
                                 font-size: 13px;
                             }
-                        }
-
-                        &:hover {
-                            background-size: 105% 105%;
                         }
                     }
                 }
@@ -217,6 +250,26 @@
 
                         .date {
                             font-size: 10px;
+                        }
+                    }
+                }
+            }
+
+            @media screen and (max-width: 540px) {
+                .pos-wrap {
+                    flex-direction: column;
+                    &:nth-child(even) {
+                        flex-direction: column;
+                    }
+    
+                    .pos-left, .pos-right {
+                        width: 100%;
+                    }
+       
+                    .pos-right {
+                        height: 800px;
+                        .item {
+                            height: 400px;
                         }
                     }
                 }

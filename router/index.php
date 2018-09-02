@@ -26,10 +26,15 @@ route('/quality');
 route('/contacts');
 route('/dillers');
 route('/info');
+route('/info/[:id]');
 route('/news');
+route('/news/[:id]');
+route('/sale');
+route('/sale/[:id]');
 route('/about');
 route('/catalog');
 route('/catalog/[:action]');
 route('/catalog/[:action]/[:id]');
 
 require_once ROOT . '/../router/router.php';
+require_once ROOT . '/../router/admin.php';

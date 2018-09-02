@@ -8,21 +8,25 @@ use App\Core\Singleton;
 
 class MySQL extends Singleton {
 
+    function __construct() {
+        $this->config = require_once($_SERVER['DOCUMENT_ROOT'].'/../config/config.php');
+    }
+
 	public function getMySQL($db) {
 
         switch ($db) {
-            case 'local':
-            $HOST = "localhost";
-            $USER = "root";
-            $PASS = "";
-            $DB = "blagobud";
-            break;
 			case 'prod':
-			$HOST = "localhost";
-			$USER = "blagobu1_2";
-			$PASS = "Coba1953";
-			$DB = "blagobu1_2";
+                $HOST = "localhost";
+                $USER = "blagobu1_2";
+                $PASS = "Coba1953";
+                $DB = "blagobu1_2";
 			break;
+            case 'local':
+                $HOST = "localhost";
+                $USER = "root";
+                $PASS = "";
+                $DB = "blagobud";
+            break;
             default:
             break;
         }
@@ -38,7 +42,7 @@ class MySQL extends Singleton {
     }
     
     private function open_conn() {
-        $i = $this->getMySQL('local');
+        $i = $this->getMySQL($this->config['base']);
         return mysqli_connect( $i['h'], $i['u'], $i['p'], $i['d']); 
     }
 
@@ -48,7 +52,7 @@ class MySQL extends Singleton {
 
     public function query($query) {
         $this->conn = $this->open_conn();
-
+        mysqli_set_charset($this->conn,"utf8");
         $result = mysqli_query($this->conn, $query.' --');
 
         $response = new Response;

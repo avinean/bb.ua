@@ -1,0 +1,214 @@
+@import '../var.scss';
+
+.productpage {
+
+    .card {
+        display: flex;
+        height: 300px;
+        .image {
+            width: 50%;
+            overflow: hidden;
+            &>img {
+                width: 100%;
+            }
+        }
+        .short-info {
+            width: 50%;
+            padding: 80px;
+            text-align: center;
+
+            .title {
+                font-weight: bold;
+                padding: 10px;
+            }
+            .devider {
+                width: 50px;
+                margin: 0 auto;
+                background: $brand;
+                height: 2px;
+                border: none;
+            }
+            .hz {
+                padding: 10px;
+                font-size: 14px;
+            }
+            .btn {
+                display: block;
+                text-decoration: none;
+                text-align: center;
+                color: $brand;
+                border: 2px solid;
+                height: 40px;
+                line-height: 37px;
+                font-weight: bold;
+                margin-bottom: 10px;
+                font-size: 15px;
+                width: 195px;
+                margin: 20px auto;
+            }
+
+            @media screen and (max-width: 750px){
+                padding: 0;
+            } 
+        }
+    }
+    .full-info {
+        .info-row {
+            display: flex;
+            height: 50px;
+            margin: 7px 0;
+            line-height: 50px;
+
+            .key {
+                width: 50%;
+            }
+            .val {
+                width: 50%;
+                padding: 0 10px;
+                text-align: right;
+                background-color: $dust;
+            }
+        }
+    }
+
+    .contact-us {
+        height: 250px;
+        background-size: cover;
+        position: relative;
+
+
+        .bgc {
+            position: absolute;
+            height: 250px;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(0,0,0,.5);
+
+            .title {
+                width: 420px;
+                font-size: 33px;
+                h3 {
+                    color: $snow;
+                    padding: 20px 0;
+                }
+                p {
+                    font-size: 16px;
+                    color: $dust;
+                }
+            }
+            .form {
+                width: 420px;
+                display: flex;
+
+                input {
+                    height: 50px;
+                    width: 50%;
+                    padding: 10px;
+                    font-style: italic;
+                }
+                .btn {
+                    background: $brand;
+                    color: $snow;
+                    line-height: 50px;
+                    text-align: center;
+                    font-size: 16px;
+                    width: 50%;
+                    cursor: pointer;
+                }
+
+                @media screen and (max-width: 750px){
+                    flex-direction: column;
+                    align-items: center;
+                }   
+            }
+        }
+    }
+
+    .vereteno {
+        padding: 20px 0;
+        h3 {
+            padding: 20px;
+            width: 90%;
+            border-bottom: 1px solid;
+            margin: 0 auto;
+        }
+        .vereteno-inner {
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            min-height: 300px;
+            padding: 20px 0;
+
+            .arr {
+                font-size: 45px;
+                position: absolute;
+                z-index: 100;
+                color: $cherry;
+                cursor: pointer;
+            }
+
+            .left {
+                left: 5px;
+            }
+
+            .right {
+                right: 5px;
+            }
+
+            .item {
+                position: relative;
+                flex: 1;
+                min-height: 300px;
+                min-width: 200px;
+                overflow: hidden;
+                margin: 0 20px;
+                text-align: center;
+                padding: 20px;
+
+                img {
+                    height: 150px;
+                }
+
+                .btn {
+                    position: absolute;
+                    display: block;
+                    text-decoration: none;
+                    background: $cherry;
+                    height: 40px;
+                    width: 200px;
+                    margin: auto;
+                    line-height: 40px;
+                    color: $snow;
+                    bottom: 18px;
+                    left: 0;
+                    right: 0;
+                }
+            }
+        }
+    }
+
+    .popup {
+        .input-field {
+            display: block;
+            width: 80%;
+            margin: 20px auto;
+            padding: 10px;
+            font-style: italic;
+        }
+        
+        
+        .btn {
+            background: $cherry;
+            height: 40px;
+            width: 200px;
+            margin: 10px auto;
+            line-height: 40px;
+            color: $snow;
+            text-align: center;
+            cursor: pointer;
+        }
+    }
+}

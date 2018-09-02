@@ -1,5 +1,6 @@
-$snow: #eee;
+$snow: #fff;
 $brand: #0048c5;
+// $brand: cmyk(100%, 70%, 18%, 6%);
 $sky: #4d5084;
 $lady: #bf353b;
 $sun: #fbb737;
@@ -7,23 +8,9 @@ $grass: #2ab42f;
 $main: #636363;
 $flor: #cc94f0;
 $cherry: #ce5819;
+$dust: #efe9e9;
 
-$l-snow: lighten($snow, 50%);
-$l-brand: lighten($brand, 50%);
-$l-sky: lighten($sky, 50%);
-$l-lady: lighten($lady, 50%);
-$l-sun: lighten($sun, 50%);
-$l-grass: lighten($grass, 50%);
-$l-main: lighten($main, 50%);
-$l-flor: lighten($flor, 50%);
-$l-cherry: lighten($cherry, 50%);
-
-$d-snow: darken($snow, 50%);
-$d-brand: darken($brand, 50%);
-$d-sky: darken($sky, 50%);
-$d-lady: darken($lady, 50%);
-$d-sun: darken($sun, 50%);
-$d-grass: darken($grass, 50%);
-$d-main: darken($main, 50%);
-$d-flor: darken($flor, 50%);
-$d-cherry: darken($cherry, 50%);
+$facebook: #3b5998;
+$linkedin: #0077b5;
+$google: #dd4b39;
+$instagram: #fcaf45;

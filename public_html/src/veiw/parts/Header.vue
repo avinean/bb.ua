@@ -23,13 +23,12 @@
 		.header(@mouseleave='children = null')
 			.nav-panel
 				.inner-wrapper.items-row
-					a.nav-item(
-						:key='page.name'
-						v-for='page in pages'
-						:href='page.url'
-						@mouseenter='showList(page.children, $event)'
-					) {{page.name}}
-						.after
+					p.x-wrapper(v-for='page in pages' @mouseenter='showList(page.children, $event)')
+						router-link.nav-item(
+							:key='page.name'
+							:to='page.url'
+						) {{page.name}}
+							.after
 			.nav-list(v-show='children' :style='"left: " + listPos + "px"')
 				.arr
 				.nav-item(v-for='child in children')
@@ -42,7 +41,9 @@
 				.nav-panel(v-show='show')
 					router-link.logo(to='/')
 						img(:src="require('@/img/brand/logo-big-blue.png')" alt='Blagobud-logo')
-					router-link.nav-item(:key='page.name' v-for='page in pages' :to='page.url') {{page.name}}
+					template( v-for='page in pages')
+						router-link.nav-item(:key='page.name' :to='page.url') {{page.name}}
+						router-link(v-if='page.children' v-for='child in page.children' :to='child.url' :key='child.url') {{child.name}}
 					span
 						i.fab.fa-viber.brand
 						i.fab.fa-whatsapp.grass
@@ -70,7 +71,6 @@
 		},
 		methods: {
 			showList(ch, event) {
-				console.log(1);
 				this.children = ch
 				if (!ch) return
 				let navList = 250
@@ -90,6 +90,11 @@
 						h: 100
 					}
 				}
+			}
+		},
+		watch: {
+			'$route'() {
+				this.show = null
 			}
 		},
 		mounted() {

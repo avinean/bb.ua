@@ -20,6 +20,10 @@
         border-radius: 100%;
         margin: 0 10px;
     }
+
+    @media screen and (max-width: 760px) {
+        display: none;
+    }
 }
 
 .clearfix {
@@ -42,6 +46,17 @@
     margin: 10px auto;
     line-height: 40px;
     color: $snow;
+    text-align: center;
+    cursor: pointer;
+}
+
+.simple-btn {
+    border: 3px solid $brand;
+    color: $brand;
+    height: 40px;
+    width: 220px;
+    margin: 10px auto;
+    line-height: 40px;
     text-align: center;
     cursor: pointer;
 }

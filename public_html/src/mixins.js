@@ -1,9 +1,4 @@
 export default {
-    data() {
-        return {
-            showMessage: null
-        }
-    },
     methods: {
         async request(j) {
             let params;

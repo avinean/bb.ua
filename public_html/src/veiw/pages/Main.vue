@@ -1,6 +1,7 @@
 <template lang="pug">
 	.main
-		slider.slider(:items='sale' auto='1' interval='7000')
+		img.logo-mob(:src="require('@/img/brand/logo-big-blue.png')" alt='Blagobud-logo')
+		slider.slider(:items='formedSale' auto='0' interval='7000')
 		.inner-wrapper
 			.inf-icons
 				.inf-ico
@@ -20,7 +21,9 @@
 				v-for='item in goodsBannerItems'
 				:href='item.url'
 				:style='"background-image: url(" + require("@/img/plug/" + item.img + ".jpg") + ")"'
-				) {{item.title}}
+				) 
+				.good-item-inner {{item.title}}
+					.btn Детальніше
 		.vereteno
 			h3 Популярні товари
 			.vereteno-inner(v-if='goods')
@@ -60,15 +63,6 @@
 									.date {{item[2].datetime}}
 			.btn(@click='loadNewsList') Показати більше
 
-
-		<!--.inner-wrapper.content-->
-			<!--h3 Про нас-->
-			<!--.content-section(v-for='(sup, i) in sups' :class='sup.pos')-->
-				<!--span.fas.ico(:class='sup.color + " fa-" + sup.ico')-->
-				<!--div.text-->
-					<!--.title {{sup.title}}-->
-					<!--.desc {{sup.desc}}-->
-				<!--.clearfix-->
 </template>
 
 <script>
@@ -78,64 +72,6 @@
 		data() {
 			return {
 				cur: [0,1,2,3],
-				sups: [
-					{
-						pos: "",
-						ico: "clipboard-check",
-						color: "sun",
-						title: "Рекомендації",
-						desc: "Компанія працює на ринку України 3 роки, і за цей час зарекомендувала себе надійним постачальником якісної продукції."
-					},
-					{
-						pos: "rev",
-						ico: "cubes",
-						color: "sky",
-						title: "Професіоналізм",
-						desc: "ТОВ «ВК «Благобуд» спеціалізується на виробництві вібропресованої бетонної продукції: тротуарної плитки різних форм, кольорів, товщини; дорожного каменю та садового бордюра; стінових блоків і т.д."
-					},
-					{
-						pos: "",
-						ico: "cogs",
-						color: "main",
-						title: "Сучасність",
-						desc: "Виробництво оснащене сучасними автоматизованими лініями, які забезпечують поліпшені експлуатаційні характеристики продукції. Сертифікована сировина, якісні формовочні матриці, професійний персонал, забезпечують точність та ідеальну геометрію форми виробів."
-					},
-					{
-						pos: "rev",
-						ico: "bong",
-						color: "lady",
-						title: "Якість",
-						desc: "Якість продукції підтверджено відповідними сертифікатами, а також власниками товарно-транспортних комплексів, АЗС, супермаркетів, автостоянок, житлових і офісних комплексів."
-					},
-					{
-						pos: "",
-						ico: "handshake",
-						color: "sky",
-						title: "Партнерство",
-						desc: "85% наших партнерів, прийшли по рекомендації інших клієнтів компанії. Серед них такі компанії як ТОВ «К.А.Н. Буд», ТОВ «ДБК-7»"
-					},
-					{
-						pos: "rev",
-						ico: "glasses",
-						color: "grass",
-						title: "Підтримка",
-						desc: "Ви можете розраховувати на нас для оперативного і якісного вирішення Ваших задач, а саме головне, Ви будете задоволені результатом."
-					},
-					{
-						pos: "",
-						ico: "balance-scale",
-						color: "sun",
-						title: "Оптимальність",
-						desc: "Ми пропонуємо оптимальні ціни, що дозволить Вам реально зекономити свої кошти та скоротити бюджет з благоустрою."
-					},
-					{
-						pos: "rev",
-						ico: "barcode",
-						color: "main",
-						title: "Вигода",
-						desc: "ТОВ «ВК «Благобуд» пропонує вигідні умови співробітництва для дилерів та постійних оптових клієнтів."
-					}
-				],
 				goodsBannerItems: [
 					{
 						url: '/catalog/pave',
@@ -155,11 +91,19 @@
 				],
 				goods: null,
 				news: [],
-				newsPortion: 1
+				newsPortion: 1,
+				sale: []
 			}
 		},
 		computed: {
-			...mapState(['sale'])
+			formedSale() {
+				return this.sale.map(e => {
+					return {
+						...e,
+						url: '/sale/' + e.id
+					}
+				})
+			}
 		},
 		methods: {
 			slideVereteno(d) {
@@ -199,18 +143,26 @@
 				let res = await this.request({
 					method: 'get',
 					className: 'News',
-					methodName: 'getNews',
+					methodName: 'getRows',
 					opts: {
 						offset: (this.newsPortion - 1) * 3,
 						limit: 3
 					}
 				})
 				this.news.push(res.data)
+			},
+			async loadSales() {
+				this.sale = (await this.request({
+					method: 'get',
+					className: 'Sale',
+					methodName: 'getRows',
+				})).data
 			}
 		},
 		mounted() {
 			this.loadGoodsList({init:1});
 			this.loadNewsList({init:1});
+			this.loadSales({init:1});
 		}
 	}
 </script>

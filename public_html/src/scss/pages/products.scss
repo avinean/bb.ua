@@ -1,0 +1,139 @@
+@import "../var";
+@import "../mixin";
+
+.products {
+
+    padding: 20px;
+
+    .category-block {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        padding: 20px;
+
+        .list {
+            flex-basis: 200px;
+            margin-right: 20px;
+            background-color: $snow;
+
+            .item {
+                padding: 10px 20px;
+            }
+
+            .price {
+                display: block;
+                padding: 10px 20px;
+                margin: 25px 10px;
+                background: $dust;
+                color: $cherry;
+                border: 1px solid;
+                font-size: 14px;
+
+                &>i {
+                    font-size: 20px;
+                    color: $cherry;
+                    margin-right: 10px;
+                }
+            }
+        }
+
+        .grid {
+            flex-grow: 1;
+            flex-basis: 560px;
+
+            .grid-head {
+                padding: 20px 0;
+                font-size: 25px;
+                text-transform: uppercase;
+            }
+
+            .grid-params {
+                background: $snow;
+                padding: 10px;
+
+                .params-block {
+                    display: flex;
+                    margin: 20px 0;
+                    min-height: 40px;
+                    border-bottom: 1px solid;
+                    .title {
+                        flex-basis: 200px;
+                    }
+
+                    .params-items {
+                        flex-basis: 200px;
+                        flex-grow: 1;
+                        display: flex;
+                        flex-wrap: wrap;
+
+                        .params-item {
+                            font-size: 14px;
+                            margin: 0 5px 5px 0;
+                            cursor: pointer;
+                            height: 25px;
+                            padding: 0 10px;
+                            text-align: center;
+                            line-height: 26px;
+
+                            &>i {
+                                color: $snow;
+                                margin-left: 10px
+                            }
+                        }
+                    }
+                }
+            }
+
+            .clear-filter {
+                color: $cherry;
+                text-decoration: underline;
+                cursor: pointer;
+            }
+
+            .grid-items {
+                display: flex;
+                justify-content: space-around;
+                flex-wrap: wrap;
+
+                .grid-item {
+                    width: 230px;
+                    min-height: 320px;
+                    margin: 20px 0;
+                    padding: 10px;
+                    background: $snow;
+
+                    img {
+                        width: 100%;
+                        // min-height: 187px;
+                    }
+
+                    .title {
+                        padding: 5px;
+                        text-align: center;
+                        color: black;
+                    }
+
+                    .price {
+                        padding: 10px;
+                        text-align: center;
+                        color: $cherry;
+                    }
+
+                    .btn {
+                        display: block;
+                        text-decoration: none;
+                        text-align: center;
+                        color: $brand;
+                        border: 2px solid;
+                        height: 40px;
+                        line-height: 37px;
+                        font-weight: bold;
+                        margin-bottom: 10px;
+                        font-size: 15px;
+                    }
+                }
+            }
+        }
+
+    }
+}

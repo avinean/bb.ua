@@ -16,6 +16,10 @@
         overflow: hidden;
         font-size: 18px;
 
+        .main-block {
+            padding-top: 50px;
+        }
+
         .inner-wrapper {
             width: 70%;
             min-width: 1024px;
@@ -27,6 +31,46 @@
             }
         }
 
+        .withbanner-page {
+            padding: 50px;
+            display: flex;
+
+            .content-block {
+                flex-basis: 300px;
+                flex-grow: 1;
+                margin-right: 50px;
+            }
+
+            .banner {
+                flex-basis: 375px;
+                max-width: 375px;
+                background-repeat: no-repeat;
+                height: 500px;
+                background-size: auto 500px;
+                color: $snow;
+                text-decoration: none;
+                font-weight: bold;
+                font-size: 45px;
+                padding: 13px;
+
+            }
+
+            @media screen and (max-width: 950px){
+                display: block;
+                padding: 0;
+
+                .content-block {
+                    margin: 0;
+                    word-break: break-all;
+                }
+
+                .banner{
+                    display: none;
+                }
+            }
+
+        }
+
         .mailto {
             color: $sky;
         }
@@ -36,12 +80,12 @@
         }
 
         .divide-head {
-            padding: 40px;
+            margin-bottom: 40px;
             text-transform: uppercase;
             font-size: 30px;
         }
 
-        result-message {
+        .result-message {
             position: fixed;
             z-index: 999;
             bottom: 0;
@@ -55,8 +99,27 @@
             text-align: center;
             display: flex;
             align-items: center;
+            justify-content: center;
             padding: 10px;
-            background: rgba(0, 72, 197, .6);
+            background: rgba(0, 72, 197, .9);
+            transition: all ease .5s;
         }
+
+        .clearfix {
+            clear: both;
+        }
+
+        .appear-enter, .appear-leave-to {
+            opacity: 0;
+        }
+
+        .appear-enter-to, .appear-leave {
+            opacity: 1; 
+        }
+
+        .devider {
+            margin: 20px auto;
+        }
+
     }
 }

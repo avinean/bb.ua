@@ -14,7 +14,7 @@
     justify-content: space-around;
     flex-wrap: wrap;
     align-items: center;
-    background-color: $l-snow;
+    background-color: $snow;
 
     .logo, .address, .time, .phone {
         width: 25%;
@@ -79,7 +79,7 @@
     z-index: 999;
     height: 50px;
     font-size: 20px;
-    background-color: $l-main;
+    background-color: $dust;
 
     .nav-panel {
         width: 100vw;
@@ -88,6 +88,25 @@
             height: 50px;
             display: flex;
             align-items: center;
+
+            .x-wrapper {
+                &:first-child {
+                    &>a {
+                        background-color: $brand;
+                        color: $snow;
+                        text-transform: uppercase;
+                        position: relative;
+
+                        &::after {
+                            content: '▼';
+                            display: block;
+                            position: absolute;
+                            top: 0;
+                            right: 5px;
+                        }
+                    }
+                }
+            }
 
             .nav-item {
                 height: 50px;
@@ -99,34 +118,9 @@
                 text-decoration: none;
                 font-size: 18px;
 
-                //.after {
-                //    height: 3px;
-                //    width: 0;
-                //    background-color: $brand;
-                //    transition: all ease .3s;
-                //}
-
                 &:hover {
-                    background-color: $brand;
-                    color: $snow;
-                    //.after {
-                    //    width: 100%;
-                    //}
-                }
-
-                &:first-child {
-                    background-color: $brand;
-                    color: $snow;
-                    text-transform: uppercase;
-                    position: relative;
-
-                    &::after {
-                        content: '▼';
-                        display: block;
-                        position: absolute;
-                        top: 0;
-                        right: 5px;
-                    }
+                    color: $brand;
+                    // color: $snow;
                 }
 
             }
@@ -158,9 +152,12 @@
             }
 
             &:hover {
-                .after {
-                    width: 100%;
+                &>a {
+                    color: $brand;
                 }
+                // .after {
+                //     width: 100%;
+                // }
             }
         }
     }

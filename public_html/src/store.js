@@ -79,15 +79,15 @@ export default new Vuex.Store({
 					},
 					{
 						name: 'Оплата',
-						url: '/'
+						url: '/payment'
 					},
 					{
 						name: 'Доставка',
-						url: '/'
+						url: '/arrival'
 					},
 					{
 						name: 'Акції',
-						url: '/'
+						url: '/sale'
 					}
 				]
 			},

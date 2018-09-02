@@ -3,7 +3,7 @@
 namespace App\Model;
 use App\Core\Model;
 
-class News extends Model {
+class Sale extends Model {
 
 	public function getRows($opts = []) {
 
@@ -18,7 +18,7 @@ class News extends Model {
 
 		$query = '
 			SELECT id, DATE(datetime) as datetime, title, description, img 
-			FROM news 
+			FROM sales 
 			WHERE '.$where.'
 			LIMIT '.$limit.'
 			OFFSET '.$offset;
@@ -28,6 +28,6 @@ class News extends Model {
 	}
 	
 	public function getSingleRow($opts) {
-		return $this->db->query('SELECT id, DATE(datetime) as datetime, title, description, img  FROM news WHERE id = '.intval($opts['id']))->fetchAssoc();
+		return $this->db->query('SELECT id, DATE(datetime) as datetime, title, description, img  FROM sales WHERE id = '.intval($opts['id']))->fetchAssoc();
 	}
 }

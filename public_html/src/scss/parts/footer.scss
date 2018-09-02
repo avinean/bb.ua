@@ -76,12 +76,26 @@
         padding: 10px 0;
         display: flex;
         justify-content: space-around;
+        align-items: center;
         text-align: center;
         font-size: 14px;
 
         &>div {
             flex: 1;
             color: $snow;
+        }
+
+        .logo-brig {
+            width: 100px;
+            display: flex;
+            align-items: center;
+            margin: 0 auto;
+            &>img {
+                width: 50px;
+            }
+            .title {
+                width: 50px;
+            }
         }
     }
 

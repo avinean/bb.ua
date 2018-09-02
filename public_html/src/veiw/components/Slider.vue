@@ -8,7 +8,7 @@
 				:class='i == cur ? "dot-cur" : ""'
 				@click='dotSlide(i)'
 			)
-		a.slide(v-for='(item, i) in items' :href="item.url")
+		router-link.slide(v-for='(item, i) in items' :to="item.url" :key="item.url")
 			transition(:name='mode')
 				.slide-inner(v-show='i == cur')
 					.img

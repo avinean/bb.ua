@@ -1,3 +1,5 @@
+@import '../var.scss';
+
 .catalog {
 
     .goods-banner {
@@ -5,6 +7,7 @@
         flex-wrap: wrap;
         justify-content: center;
         .good-item {
+            position: relative;
             width: 400px;
             height: 400px;
             margin: 30px;
@@ -12,11 +15,87 @@
             background-size: cover;
             display: flex;
             align-items: flex-end;
+            overflow: hidden;
 
             .title {
-                color: white;
+                color: $snow;
                 font-size: 30px;
                 padding: 20px;
+            }
+
+            .good-item-inner {
+                position: absolute;
+                height: 400px;
+                width: 100%;
+                top: 320px;
+                background: rgba(0,0,0,0);
+                color: $snow;
+                font-weight: bold;
+                padding: 20px;
+                font-size: 25px;
+                transition: all ease .5s;
+
+                .btn {
+                    background: blue;
+                    color: white;
+                    width: 150px;
+                    height: 45px;
+                    font-size: 20px;
+                    text-align: center;
+                    line-height: 45px;
+                    margin: 40px 0;
+                    opacity: 0;
+                    transition: all ease 1s;
+                }
+            }
+
+
+            &:hover {
+                .good-item-inner {
+                    top: 0;
+                    font-size: 27px;
+                    padding: 100px 20px;
+                    background: rgba(0,0,0,.5);
+
+                    .btn {
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+
+        .info {
+            flex-direction: column;
+            align-items: flex-start;
+            font-size: 22px;
+
+            .links {
+                background: rgba(0,0,0,.4);
+                box-shadow: 0 0 10px 6px rgba(0,0,0,.4);
+                width: 96%;
+                margin: 0 auto;
+                
+                .link {
+                    display: block;
+                    margin: 20px;
+                    color: $snow;
+                    // text-decoration: none;
+
+                    &>i {
+                        color: $snow;
+                        background: $brand;
+                        width: 35px;
+                        height: 35px;
+                        text-align: center;
+                        line-height: 35px;
+                        margin-right: 10px;
+                    }
+
+                    .name {
+                        color: $snow;
+                        font-size: 17px;
+                    }
+                }
             }
         }
     }

@@ -1,9 +1,12 @@
 <template lang="pug">
 	div
-		.callback(@mouseenter='stop' @mouseleave='start' @click='show = phone')
-			i.fas(:class="phone ? 'fa-phone' : 'fa-envelope'")
-			| {{phone ? 'Замовте дзвінок' : 'Напишіть, що вас цікавить'}}
-		.clearfix
+		template(v-if='simple')
+			.simple-btn(@click='show = 1') Замовити консультацію
+		template(v-else)
+			.callback(@mouseenter='stop' @mouseleave='start' @click='show = phone' :style='"bottom: " + bottom + "px"')
+				i.fas(:class="phone ? 'fa-phone' : 'fa-envelope'")
+				| {{phone ? 'Замовте дзвінок' : 'Напишіть, що вас цікавить'}}
+			.clearfix
 		popup(v-if='show !== null' @close='show = null')
 			template(slot='head') {{ show ? 'Ми зателефонуємо Вам на протязі 15 хвилин' : 'Напишіть, що Вас цікавить?'}}
 			.form(slot='body')
@@ -23,11 +26,13 @@
 <script>
 	export default {
 		name: 'callback',
+		props: ['simple'],
 		data() {
 			return {
 				phone: 1,
 				timer: null,
 				show: null,
+				bottom: 0,
 				showPopup: {
 					name: '',
 					phone: '',
@@ -40,7 +45,6 @@
 		},
 		methods: {
 			stop() {
-				console.log(1);
 				clearTimeout(this.timer)
 			},
 			start() {
@@ -56,9 +60,11 @@
 
 				if (opt && !this.showPopup.phone) {
 					alert('Введіть будь-ласка Ваш номер телефону');
+					return
 				}
 				if (!opt && !this.showPopup.email) {
 					alert('Вкажіть будь-ласка Ваш email');
+					return
 				}
 
 				this.request({
@@ -67,10 +73,23 @@
 					methodName: 'sendRequest',
 					opts
 				})
+
+				this.$parent.showMessage = `
+					Дякуємо! 
+					<br> Ваш запит відправлено
+				`
+				setTimeout(e => this.$parent.showMessage = null, 4000)
+			},
+			scroll() {
+				let b = document.scrollingElement.offsetHeight - document.scrollingElement.scrollTop - document.scrollingElement.clientHeight;
+				this.bottom = b < 300 ? 300 - b : 0
 			}
 		},
 		mounted() {
-			this.start()
+			if (!this.simple) {
+				this.start()
+				window.addEventListener('scroll', this.scroll)
+			}			
 		}
 	}
 </script>
