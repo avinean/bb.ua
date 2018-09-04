@@ -9,3 +9,4 @@ AddType application/x-httpd-php .php .htm .html .phtml
 RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule . index.php [L]
+

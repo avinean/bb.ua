@@ -1,41 +1,42 @@
 <template lang="pug">
 	.products
-		.divide-head {{categories[category].title}}
-		.category-block
-			.list
-				.item(v-for='v, k in categories[category].list' @click='curItem = k') {{v}}
-				a.price(href='/store/price.pdf')
-					i.fas.fa-file-pdf 
-					|Cкачати прайс
-			.grid
-				.grid-head {{curItem ? categories[category].list[curItem] : ''}}
-				.grid-params
-					.params-block
-						.title Колір
-						.params-items
-							span.params-item(
-								v-for='color in colors' 
-								@click='curColors.includes(color.id) ? curColors = remove(curColors, color.id) : curColors.push(color.id)'
-								:class='curColors.includes(color.id) ? "bg-lady snow" : "bg-dust"'
-							) {{color.title}}
-								i.fas.fa-times(v-if='curColors.includes(color.id)')
-					.params-block
-						.title Висота, мм
-						.params-items
-							span.params-item(
-								v-for='height in heights' 
-								@click='curHeights.includes(height)  ? curHeights = remove(curHeights, height) : curHeights.push(height)'
-								:class='curHeights.includes(height) ? "bg-lady snow" : "bg-dust"'
-							) {{height}}
-								i.fas.fa-times(v-if='curHeights.includes(height)')
-				.clear-filter(v-if='curHeights.length || curColors.length' @click='curHeights = []; curColors = []') Очистити всі фільтри
-				.grid-items(v-if='curItem')
-					.grid-item(v-for='item in filteredGoods')
-						img(:src='require("@/img" + item.img)')
-						.title {{item.title}}
-						.price {{item.price}} грн
-						router-link.btn(:to='"/catalog/" + item.category + "/" + item.id') Детальніше
-						//- .btn(@click='') Оформити замовлення
+		.inner-wraper
+			.divide-head {{categories[category].title}}
+			.category-block
+				.list
+					.item(v-for='v, k in categories[category].list' @click='curItem = k') {{v}}
+					a.price(href='/store/price.pdf')
+						i.fas.fa-file-pdf
+						|Cкачати прайс
+				.grid
+					.grid-head {{curItem ? categories[category].list[curItem] : ''}}
+					.grid-params
+						.params-block
+							.title Колір
+							.params-items
+								span.params-item(
+									v-for='color in colors'
+									@click='curColors.includes(color.id) ? curColors = remove(curColors, color.id) : curColors.push(color.id)'
+									:class='curColors.includes(color.id) ? "bg-lady snow" : "bg-dust"'
+								) {{color.title}}
+									i.fas.fa-times(v-if='curColors.includes(color.id)')
+						.params-block
+							.title Висота, мм
+							.params-items
+								span.params-item(
+									v-for='height in heights'
+									@click='curHeights.includes(height)  ? curHeights = remove(curHeights, height) : curHeights.push(height)'
+									:class='curHeights.includes(height) ? "bg-lady snow" : "bg-dust"'
+								) {{height}}
+									i.fas.fa-times(v-if='curHeights.includes(height)')
+					.clear-filter(v-if='curHeights.length || curColors.length' @click='curHeights = []; curColors = []') Очистити всі фільтри
+					.grid-items(v-if='curItem')
+						.grid-item(v-for='item in filteredGoods')
+							img(:src='require("@/img" + item.img)')
+							.title {{item.title}}
+							.price {{item.price}} грн
+							router-link.btn(:to='"/catalog/" + item.category + "/" + item.id') Детальніше
+							//- .btn(@click='') Оформити замовлення
 </template>
 
 <script>

@@ -1,24 +1,25 @@
 <template lang="pug">
 	.withbanner-page
-		.content-block
-			.divide-head {{classes[this.page].title}}
-			.item(
-					v-for='item in rows'
-					:key='item.img'
-				)
-				.image(:style='"background-image: url(" + require("@/img" + item.img) + ")"')
-				.text 
-					.title {{item.title}}
-					.date 
-						i.fas.fa-calendar-alt
-						|   {{item.datetime}}
-					.description {{item.description.slice(0, 100) + ' ...'}}
-					router-link.link(:to='"/" + page + "/" + item.id') Читати далі >
-			.btn(@click='loadRows') Показати більше
-		router-link.banner(
-			:to='"/catalog/"'
-			:style='"background-image: url(" + require("@/img/plug/road.jpg") + ")"'
-			) 250 видів тротуарної плитки
+		.inner-wrapper
+			.content-block
+				.divide-head {{classes[this.page].title}}
+				.item(
+						v-for='item in rows'
+						:key='item.img'
+					)
+					.image(:style='"background-image: url(" + require("@/img" + item.img) + ")"')
+					.text
+						.title {{item.title}}
+						.date
+							i.fas.fa-calendar-alt
+							|   {{item.datetime}}
+						.description {{item.description.slice(0, 100) + ' ...'}}
+						router-link.link(:to='"/" + page + "/" + item.id') Читати далі >
+				.btn(@click='loadRows') Показати більше
+			router-link.banner(
+				:to='"/catalog/"'
+				:style='"background-image: url(" + require("@/img/plug/road.jpg") + ")"'
+				) 250 видів тротуарної плитки
 
 </template>
 

@@ -1,0 +1,44 @@
+<form method="post" action="/admin">
+	<p>User <br><input type="text" name="user"></p>
+	<p>Password <br><input type="text" name="pass"></p>
+	<input type="submit" value="Enter">
+</form>
+
+<style>
+	form {
+		width: 300px;
+		height: 250px;
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		margin: auto;
+		box-shadow: 0 0 30px -11px;
+		border-radius: 32px;
+	}
+
+	p {
+		text-align: center;
+		padding: 5px;
+		font-size: 16px;
+		font-style: italic;
+	}
+
+	p>input {
+		padding: 5px;
+		height: 30px;
+		width: 200px;
+	}
+
+	form>input {
+		width: 150px;
+		height: 50px;
+		display: block;
+		margin: auto;
+		border: none;
+		outline: none;
+		font-size: 30px;
+		cursor: pointer;
+	}
+</style>

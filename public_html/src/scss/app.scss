@@ -1,12 +1,13 @@
 @import "var";
 @import "mixin";
+@import "fonts";
 
 
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-family: Main-Blagobud, Arial, "Helvetica Neue", Helvetica, sans-serif;
     color: $main;
 
     #app {
@@ -21,7 +22,7 @@
         }
 
         .inner-wrapper {
-            width: 70%;
+            width: 80%;
             min-width: 1024px;
             margin: 0 auto;
 

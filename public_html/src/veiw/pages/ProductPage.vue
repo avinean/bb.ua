@@ -22,15 +22,16 @@
 				.form
 					input(v-model='phone' placeholder='Ваш номер телефону')
 					.btn(@click='send(0)') Замовити консультацію
-		.vereteno
-			h3 Супутні товари
-			.vereteno-inner(v-if='goods')
-				//- i.fas.fa-chevron-circle-left.left.arr(@click='slideVereteno(0)')
-				//- i.fas.fa-chevron-circle-right.right.arr(@click='slideVereteno(1)')
-				.item(v-for='item in cur')
-					img(:src='require("@/img" + goods[item].img)')
-					.title {{goods[item].title}}
-					a.btn(:href='"/catalog/" + goods[item].category + "/" + goods[item].id') Детальніше
+		.inner-wrapper
+			.vereteno
+				h3 Супутні товари
+				.vereteno-inner(v-if='goods')
+					//- i.fas.fa-chevron-circle-left.left.arr(@click='slideVereteno(0)')
+					//- i.fas.fa-chevron-circle-right.right.arr(@click='slideVereteno(1)')
+					.item(v-for='item in cur')
+						img(:src='require("@/img" + goods[item].img)')
+						.title {{goods[item].title}}
+						a.btn(:href='"/catalog/" + goods[item].category + "/" + goods[item].id') Детальніше
 		popup.popup(v-if='showPopup' @close='showPopup = null')
 			template(slot='head') Ми зателефонуємо Вам на протязі 15 хвилин
 			.form(slot='body')

@@ -1,2 +1,26 @@
+@import "../var";
+@import "../fonts";
+
 .admin {
+    .admin-head {
+        display: flex;
+        justify-content: center;
+
+        .btn {
+            text-align: center;
+            padding: 10px 20px;
+            margin-right: 2px;
+        }
+    }
+
+    .admin-body {
+        padding: 20px;
+        table {
+            margin: auto;
+
+            tr:nth-child(even) {
+                background: $dust;
+            }
+        }
+    }
 }
