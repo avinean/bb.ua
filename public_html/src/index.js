@@ -17,19 +17,8 @@ Vue.use(VueAgile)
 import Mixins from './mixins'
 Vue.mixin(Mixins)
 
-import Header from './veiw/parts/Header'
-import Footer from './veiw/parts/Footer'
-import Callback from './veiw/components/Callback'
-import Slider from './veiw/components/Slider'
-import Popup from './veiw/components/Popup'
-import Up from './veiw/components/Up'
-
-Vue.component('page-header', Header)
-Vue.component('page-footer', Footer)
-Vue.component('callback', Callback)
-Vue.component('slider', Slider)
-Vue.component('popup', Popup)
-Vue.component('up', Up)
+import Components from './components'
+Components.forEach(e => Vue.component(e.name, e.comp))
 
 
 Vue.config.productionTip = false
