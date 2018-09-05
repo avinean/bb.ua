@@ -8,13 +8,11 @@
 				)
 			.address
 				i.fas.fa-map-marked-alt
-				span
-					strong Адреса:<br>
+				span Адреса:<br>
 					| {{contacts.city}}, {{contacts.street}}
 			.time
 				i.fas.fa-clock
-				span
-					strong Графік роботи:
+				span Графік роботи:
 					|<br> Пн-Cб з 8.00 до 18.00
 			.phone
 				i.fab.fa-viber.brand

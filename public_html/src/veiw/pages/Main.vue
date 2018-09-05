@@ -16,23 +16,25 @@
 				.inf-ico
 					i.ico.far.fa-clock
 					.lable Оперативна доставка
-		.goods-banner
-			a.good-item(
-				v-for='item in goodsBannerItems'
-				:href='item.url'
-				:style='"background-image: url(" + require("@/img/plug/" + item.img + ".jpg") + ")"'
-				) 
-				.good-item-inner {{item.title}}
-					.btn Детальніше
-		.vereteno
-			h3 Популярні товари
-			.vereteno-inner(v-if='goods')
-				i.fas.fa-chevron-circle-left.left.arr(@click='slideVereteno(0)')
-				i.fas.fa-chevron-circle-right.right.arr(@click='slideVereteno(1)')
-				.item(v-for='item in cur')
-					img(:src='require("@/img" + goods[item].img)')
-					.title {{goods[item].title}}
-					a.btn(:href='"/catalog/" + goods[item].category + "/" + goods[item].id') Детальніше
+		.inner-wrapper
+			.goods-banner
+				a.good-item(
+					v-for='item in goodsBannerItems'
+					:href='item.url'
+					:style='"background-image: url(" + require("@/img/plug/" + item.img + ".jpg") + ")"'
+					) 
+					.good-item-inner {{item.title}}
+						.btn Детальніше
+		.inner-wrapper
+			.vereteno
+				h3 Популярні товари
+				.vereteno-inner(v-if='goods')
+					i.fas.fa-chevron-circle-left.left.arr(@click='slideVereteno(0)')
+					i.fas.fa-chevron-circle-right.right.arr(@click='slideVereteno(1)')
+					.item(v-for='item in cur')
+						img(:src='require("@/img" + goods[item].img)')
+						.title {{goods[item].title}}
+						a.btn(:href='"/catalog/" + goods[item].category + "/" + goods[item].id') Детальніше
 		.news
 			h3 Новини
 			.inner-wrapper

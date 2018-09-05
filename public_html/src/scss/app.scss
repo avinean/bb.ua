@@ -7,7 +7,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: Main-Blagobud, Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-family: RobotoRegular, Arial, "Helvetica Neue", Helvetica, sans-serif;
     color: $main;
 
     #app {
@@ -33,7 +33,6 @@
         }
 
         .withbanner-page {
-            padding: 50px;
             display: flex;
 
             .content-block {
