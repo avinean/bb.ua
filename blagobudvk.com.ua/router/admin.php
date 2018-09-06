@@ -2,12 +2,12 @@
 
 use App\Model\Admin;
 
-$app->respond('POST', '/admin', function($req, $res, $ser) {
+$app->respond(['GET', 'POST'], '/admin', function($req, $res, $ser) {
     if (
         !isset($_POST['user']) ||
         !isset($_POST['pass']) || 
-        $_POST['user'] !== "admin" || 
-        $_POST['pass'] !== "-T*7K!d?={+v)"
+        @$_POST['user'] !== "admin" ||
+        @$_POST['pass'] !== "Coba1953"
     ) {
 		$ser->render('admin.html');
     }
