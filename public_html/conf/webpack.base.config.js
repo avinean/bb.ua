@@ -4,7 +4,7 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 module.exports = {
 	output: {
-		path: path.resolve(__dirname, '../dist'),
+		path: path.resolve(__dirname, '../'),
 		// publicPath: '/'
 	},
 	resolve: {
@@ -45,7 +45,7 @@ module.exports = {
 				loader: 'url-loader',
 				options: {
 					limit: 10000,
-					name: '../img/[name].[ext]',
+					name: 'img/[name].[ext]',
 					publicPath: '/',
 				}
 			},
@@ -54,7 +54,7 @@ module.exports = {
 				loader: 'url-loader',
 				options: {
 					limit: 10000,
-					name: '../media/[name].[ext]'
+					name: 'media/[name].[ext]'
 				}
 			},
 			{
@@ -62,7 +62,7 @@ module.exports = {
 				loader: 'url-loader',
 				options: {
 					limit: 10000,
-					name: '../fonts/[name].[ext]'
+					name: 'fonts/[name].[ext]'
 				}
 			},
 			{
