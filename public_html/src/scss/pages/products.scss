@@ -18,6 +18,8 @@
 
             .item {
                 padding: 10px 20px;
+                cursor: pointer;
+
             }
 
             .price {
@@ -56,6 +58,11 @@
                     margin: 20px 0;
                     min-height: 40px;
                     border-bottom: 1px solid;
+
+                    @media screen and (max-width: 640px) {
+                        display: block;
+                    }
+
                     .title {
                         flex-basis: 200px;
                     }
