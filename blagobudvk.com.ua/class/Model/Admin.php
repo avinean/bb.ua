@@ -10,5 +10,14 @@ class Admin extends Model {
 		return $this->db->query($query)->fetchAll();
 	}
 
+	public function changeField($opts = []) {
+
+		$query = '
+			UPDATE '.$this->db->escape($opts['table']).'
+			SET '.$this->db->escape($opts['key']).' = '.$this->db->quote($opts['data'][$opts['key']]).'
+			WHERE id = '.intval($opts['data']['id']);
+		return $this->db->query($query)->fetchAll();
+	}
+
 }
 

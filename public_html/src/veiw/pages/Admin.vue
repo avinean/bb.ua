@@ -13,8 +13,10 @@
 							template(v-if='key === "id"') {{f}}
 							template(v-else-if='key === "img"')
 								img(:src='require("@/img" + f)' style='width: 50px')
+							template(v-else-if='key === "datetime"')
+								input(v-model='item[key]' type='datetime-local' @change='changeText(item, key)')
 							template(v-else)
-								input(v-model='item[key]' @change='changeText(item.id, )')
+								input(v-model='item[key]' @change='changeText(item, key)')
 
 </template>
 
@@ -75,15 +77,16 @@
 					})).data
 				}
 			},
-			async changeText(arr) {
+			async changeText(data, key) {
 				if (!confirm('Ви впевнені, що хочете змінити дані?')) return
-				console.log(arr);
-				// let res = (await this.admin({
-				// 	methodName: 'changeField',
-				// 	opts: {
-				// 		table: this.curSet.table
-				// 	}
-				// })).data
+				let res = (await this.admin({
+					methodName: 'changeField',
+					opts: {
+						table: this.curSet.table,
+						key,
+						data
+					}
+				}))
 			}
 		},
 		watch: {
