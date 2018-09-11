@@ -14,7 +14,7 @@ export default {
 				return await this.axios.post('/api/request', params)
             }
         },
-        async admin(j) {
+        async admin(j, headers) {
 			let params = new URLSearchParams()
 			for (let key in j) {
 				if (key === 'opts') {
@@ -24,7 +24,7 @@ export default {
 					params.append(key, j[key])
 				}
 			}
-			return await this.axios.post('/secure/admin', params)
+			return await this.axios.post('/secure/admin', params, headers)
         }
     }
 }

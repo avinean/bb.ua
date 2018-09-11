@@ -10,13 +10,16 @@
 				tbody
 					tr(v-for='item in curSet.data')
 						th(v-for='f, key in item')
-							template(v-if='key === "id"') {{f}}
+							template(v-if='key === "id" || key === "datetime"') {{f}}
 							template(v-else-if='key === "img"')
-								img(:src='require("@/img" + f)' style='width: 50px')
-							template(v-else-if='key === "datetime"')
-								input(v-model='item[key]' type='datetime-local' @change='changeText(item, key)')
+								img(
+									:src='require("@/img" + f)' 
+									style='width: 50px; cursor: pointer'
+									@click='loadImg = item')
 							template(v-else)
 								input(v-model='item[key]' @change='changeText(item, key)')
+		transition(name='appear')
+			img-loader(v-if='loadImg')
 
 </template>
 
@@ -63,7 +66,8 @@
 					type: 'Тип',
 					height: 'Висота',
 				},
-				curSet: null
+				curSet: null,
+				loadImg: true
 			}
 		},
 		methods: {

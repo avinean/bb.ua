@@ -19,5 +19,9 @@ class Admin extends Model {
 		return $this->db->query($query)->fetchAll();
 	}
 
+	public function uploadImg() {
+		return $_FILES;
+	}
+
 }
 
