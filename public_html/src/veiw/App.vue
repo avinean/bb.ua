@@ -3,10 +3,10 @@
 		page-header(view='narrow' v-if='isHeader')
 		.main-block(:style='styles')
 			router-view
-			callback(v-if='isCallback')
-			up(v-if='isUp')
-			transition(name='appear')
-				.result-message(v-if='showMessage' v-html='showMessage')
+		callback(v-if='isCallback')
+		up(v-if='isUp')
+		transition(name='appear')
+			.result-message(v-if='showMessage' v-html='showMessage')
 		page-footer(v-if='isFooter')
 		
 </template>

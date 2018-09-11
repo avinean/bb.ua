@@ -4,6 +4,7 @@ import Callback from './veiw/components/Callback'
 import Slider from './veiw/components/Slider'
 import Popup from './veiw/components/Popup'
 import Up from './veiw/components/Up'
+import ImgLoader from './veiw/components/ImgLoader'
 
 export default [
 	{name: 'page-header', comp: Header},
@@ -12,4 +13,5 @@ export default [
 	{name: 'slider', comp: Slider},
 	{name: 'popup', comp: Popup},
 	{name: 'up', comp: Up},
+	{name: 'img-loader', comp: ImgLoader},
 ]
