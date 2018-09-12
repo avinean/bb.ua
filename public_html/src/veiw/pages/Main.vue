@@ -5,16 +5,16 @@
 		.inner-wrapper
 			.inf-icons
 				.inf-ico
-					i.ico.far.fa-check-square
+					i.ico.fas.fa-at
 					.lable Онлайн замовлення
 				.inf-ico
-					i.ico.fas.fa-map-marker-alt
+					i.ico.fas.fa-thumbs-up
 					.lable Актуальні ціни
 				.inf-ico
-					i.ico.fas.fa-clipboard-list
+					i.ico.fas.fa-award
 					.lable Якісна продукція
 				.inf-ico
-					i.ico.far.fa-clock
+					i.ico.fas.fa-shipping-fast
 					.lable Оперативна доставка
 		.inner-wrapper
 			.goods-banner
