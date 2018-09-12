@@ -34,6 +34,13 @@
             .cen {
                 margin: 0 20px;
             }
+
+            @media screen and (max-width: 850px) {
+                display: block;
+                .cen {
+                    margin: auto;
+                }
+            }
         }
 
         input, textarea {
