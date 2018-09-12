@@ -37,7 +37,7 @@
 			.form(slot='body')
 					input.input-field(v-model='showPopup.name' placeholder="Вкажіть Ваше ім'я")
 					input.input-field(v-model='showPopup.phone' placeholder='Вкажіть номер Вашого телефону')
-					input.input-field(v-model='showPopup.cnt' placeholder='Вкажіть номер Вашого телефону')
+					input.input-field(v-model='showPopup.cnt' placeholder='Вкажіть кількість')
 			div(slot='foot')
 				.btn(@click='send(1)') Відправити
 </template>
