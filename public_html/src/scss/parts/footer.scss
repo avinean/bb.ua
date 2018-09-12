@@ -10,6 +10,7 @@
 
 
     .footer-body {
+
         width: 100%;
         display: flex;
         flex-wrap: wrap;
@@ -35,7 +36,7 @@
                 }
                 span, a {
                     color: $snow;
-
+                    font-size: 16px;
                     &.fa-facebook {
                         font-size: 35px;
                     }
@@ -47,6 +48,12 @@
                     color: #cd3c3c;
                 }
             }
+        }
+
+        .header1 {
+            color: $snow;
+            margin: 35px 0 5px;
+            font-size: 20px;
         }
 
         .links {

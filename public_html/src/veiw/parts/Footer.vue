@@ -11,15 +11,15 @@
 				.addr
 					span ІНН {{contacts.inn}}
 			.contacts.links
-				h3 Приєднуйтесь до нас в соціальних мережах
+				p.header1 Приєднуйтесь до нас в соціальних мережах
 				.addr
 					a.fab.fa-facebook(href='https://www.facebook.com/vkblagobud' target='_blank')
-				h3 Наші партнери
+				p.header1 Наші партнери
 				.addr
 					a(href='http://www.promenad.ua' target='_blank')
 						img(:src="require('@/img/partners/promenad-logo.png')" alt='Promenad-logo')
 			.contacts.info
-				h2 Контакти
+				p.header1 Контакти
 				.addr
 					i.fas.fa-map-marker-alt
 					span.title Адреса: {{contacts.region}}, <br>{{contacts.district}}
