@@ -17,10 +17,9 @@ $app->respond(['GET', 'POST'], '/admin', function($req, $res, $ser) {
 });
 
 $app->respond('POST', '/secure/admin', function($req, $res, $ser) {
-
+	
     $params = $req->params();
 	$methodName = $params['methodName'];
-
 	$result = Admin::c()->$methodName(json_decode($params['opts'], 1));
 
 	if (is_array($result)) {
@@ -33,7 +32,7 @@ $app->respond('POST', '/secure/admin', function($req, $res, $ser) {
 
 $app->respond('POST', '/secure/upload', function($req, $res, $ser) {
 
-	$result = Admin::c()->uploadImg($req->params());
+	$result = Admin::c()->uploadImg();
 
 	if (is_array($result)) {
 		return $res->json($result);
