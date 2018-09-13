@@ -20,6 +20,14 @@ class Admin extends Model {
 		return $this->db->query($query)->fetchAll();
 	}
 
+	public function deleteRow($opts = []) {
+
+		$query = '
+			DELETE FROM '.$this->db->escape($opts['table']).'
+			WHERE id = '.intval($opts['id']);
+		return $this->db->query($query)->fetchAll();
+	}
+
 	public function uploadImg() {
 			$file = $_FILES['userpic'];
 			$root = $_SERVER['DOCUMENT_ROOT'];
