@@ -1,21 +1,26 @@
 <template lang="pug">
 	.admin
 		.admin-head
-			.btn(v-for='i in sets' @click='curSet = i' :class='curSet && i.table == curSet.table ? "bg-grass snow" : "bg-dust"') {{i.name}}
+			.slide(v-for='i in sets' @click='curSet = i' :class='curSet && i.table == curSet.table ? "bg-grass snow" : "bg-dust"') {{i.name}}
 		.admin-body(v-if='curSet && curSet.data')
+			.btn(@click='addNew')
 			table
 				thead
 					tr
+						th
 						th(v-for='v, k in curSet.data[0]') {{fields[k] || k}}
 				tbody
 					tr(v-for='item in curSet.data')
-						th(v-for='f, key in item')
+						td
+							i.fas.fa-times(@click='deleteRow(item.id)')
+						td(v-for='f, key in item')
 							template(v-if='key === "id" || key === "datetime"') {{f}}
 							template(v-else-if='key === "img"')
 								img(
 									:src='f' 
 									style='width: 50px; cursor: pointer'
-									@click='loadImg = item')
+									@click='loadImg = item'
+								)
 							template(v-else)
 								input(v-model='item[key]' @change='changeText(item, key)')
 		transition(name='appear')
@@ -65,9 +70,12 @@
 					color: 'Колір',
 					type: 'Тип',
 					height: 'Висота',
+					key: 'Ключ',
+					val: 'Значення'
 				},
 				curSet: null,
-				loadImg: false
+				loadImg: false,
+				newForm: null
 			}
 		},
 		methods: {
@@ -91,6 +99,17 @@
 						data
 					}
 				}))
+			},
+			async deleteRow(id) {
+				if (!confirm('Ви впевнені, що хочете видалити дані?')) return
+				let res = (await this.admin({
+					methodName: 'deleteRow',
+					opts: {
+						table: this.curSet.table,
+						id
+					}
+				}))
+				this.curSet.data = this.curSet.data.filter(e => e.id !== id)
 			},
 			async imgLoaded(url) {
 				let res = (await this.admin({
