@@ -1,6 +1,6 @@
 <template lang="pug">
 	.main
-		img.logo-mob(:src="require('@/img/brand/logo-big-blue.png')" alt='Blagobud-logo')
+		img.logo-mob(src='/img/logo-big-blue.png' alt='Blagobud-logo')
 		slider.slider(:items='formedSale' auto='0' interval='7000')
 		.inner-wrapper
 			.inf-icons
@@ -21,7 +21,7 @@
 				a.good-item(
 					v-for='item in goodsBannerItems'
 					:href='item.url'
-					:style='"background-image: url(" + require("@/img/plug/" + item.img + ".jpg") + ")"'
+					:style='"background-image: url(" + item.img + ")"'
 					) 
 					.good-item-inner {{item.title}}
 						.btn Детальніше
@@ -32,7 +32,7 @@
 					i.fas.fa-chevron-circle-left.left.arr(@click='slideVereteno(0)')
 					i.fas.fa-chevron-circle-right.right.arr(@click='slideVereteno(1)')
 					.item(v-for='item in cur')
-						img(:src='require("@/img" + goods[item].img)')
+						img(:src='goods[item].img')
 						.title {{goods[item].title}}
 						a.btn(:href='"/catalog/" + goods[item].category + "/" + goods[item].id') Детальніше
 		.news
@@ -42,24 +42,24 @@
 					.pos-wrap
 						.pos-left
 							router-link.item(
-									:key='item[0].img'
+									:key='item[0].img + item[0].title + 1'
 									:to='"/news/" + item[0].id'
-									:style='"background-image: url(" + require("@/img" + item[0].img) + ")"'
+									:style='"background-image: url(" + item[0].img + ")"'
 								)
 								.title {{item[0].title}}
 									.date {{item[0].datetime}}
 						.pos-right
 							router-link.item(
-									:key='item[1].img'
+									:key='item[1].img + item[1].title + 2'
 									:to='"/news/" + item[1].id'
-									:style='"background-image: url(" + require("@/img" + item[1].img) + ")"'
+									:style='"background-image: url(" + item[1].img + ")"'
 								)
 								.title {{item[1].title}}
 									.date {{item[1].datetime}}
 							router-link.item(
-									:key='item[2].img'
+									:key='item[2].img + item[2].title + 456'
 									:to='"/news/" + item[2].id'
-									:style='"background-image: url(" + require("@/img" + item[2].img) + ")"'
+									:style='"background-image: url(" + item[2].img + ")"'
 								)
 								.title {{item[2].title}}
 									.date {{item[2].datetime}}
@@ -77,17 +77,17 @@
 				goodsBannerItems: [
 					{
 						url: '/catalog/pave',
-						img: 'trot',
+						img: '/img/trot.jpg',
 						title: 'Тротуарна плитка'
 					},
 					{
 						url: '/catalog/road',
-						img: 'dor',
+						img: '/img/dor.jpg',
 						title: 'Дорожні елементи'
 					},
 					{
 						url: '/catalog/vert',
-						img: 'vert',
+						img: '/img/vert.jpg',
 						title: 'Вертикальні елементи'
 					}
 				],
@@ -102,7 +102,7 @@
 				return this.sale.map(e => {
 					return {
 						...e,
-						url: '/sale/' + e.id
+						url: e.id
 					}
 				})
 			}

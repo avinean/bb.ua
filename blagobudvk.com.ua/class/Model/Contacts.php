@@ -2,6 +2,7 @@
 
 namespace App\Model;
 use App\Core\Model;
+use App\Model\Mail;
 
 class Contacts extends Model {
 
@@ -27,7 +28,7 @@ class Contacts extends Model {
 				$msg";
 		}
 
-		return $this->fly($message);
+		return Mail::c()->send($message);
 	}
 	
 	public function sendMessage($opts = []) {
@@ -41,7 +42,7 @@ class Contacts extends Model {
 			телефон: $phone \n\n
 			$msg";
 
-		return $this->fly($message);
+		return Mail::c()->send($message);
 	}
 	
 	public function sendOrder($opts = []) {
@@ -62,7 +63,7 @@ class Contacts extends Model {
 			Виріб: ".$info['name']." \n\n
 			Колір: ".$info['color'];
 
-		return $this->fly($message);
+		return Mail::c()->send($message);
 	}
 
 	public function sendCallBack($opts = []) {
@@ -71,25 +72,7 @@ class Contacts extends Model {
 		$message = "З сайту blagobudvk.com.ua відправлено запит передзвонити \n\n
 		телефон: <i> $phone </i>";
 
-		return $this->fly($message);
+		return Mail::c()->send($message);
 
-	}
-
-	private function fly($message) {
-
-		$to ='avinean@gmail.com';
-		$subject = 'Запит';
-		$headers  = [
-			"Content-type" =>  "text/html; charset=utf-8",
-			"From" => "blagobudvk@gmail.com",
-			"Reply-To" => "blagobudvk@gmail.com"
-		];
-
-		return mail(
-			$to,
-			$subject,
-			$message,
-			$headers
-		);
 	}
 }

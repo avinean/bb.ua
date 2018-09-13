@@ -12,7 +12,7 @@
 			transition(:name='mode')
 				.slide-inner(v-show='i == cur')
 					.img
-						img(:src='require("@/img" + item.img)')
+						img(:src='item.img')
 					.text
 						.wrap
 							.title {{item.title}}

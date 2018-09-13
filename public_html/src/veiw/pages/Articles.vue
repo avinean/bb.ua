@@ -6,7 +6,7 @@
 					v-for='item in rows'
 					:key='item.img'
 				)
-				.image(:style='"background-image: url(" + require("@/img" + item.img) + ")"')
+				.image(style='background-image: url(/img" + item.img)')
 				.text
 					.title {{item.title}}
 					.date
@@ -17,7 +17,7 @@
 			.btn(@click='loadRows') Показати більше
 		router-link.banner(
 			:to='"/catalog/"'
-			:style='"background-image: url(" + require("@/img/plug/road.jpg") + ")"'
+			style='background-image: url(/img/plug/road.jpg)'
 			) 250 видів тротуарної плитки
 
 </template>

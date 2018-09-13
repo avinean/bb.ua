@@ -32,7 +32,7 @@
 					.clear-filter(v-if='curHeights.length || curColors.length' @click='curHeights = []; curColors = []') Очистити всі фільтри
 					.grid-items(v-if='curItem')
 						.grid-item(v-for='item in filteredGoods')
-							img(:src='require("@/img" + item.img)')
+							img(:src='item.img')
 							.title {{item.title}}
 							.price {{item.price}} грн
 							router-link.btn(:to='"/catalog/" + item.category + "/" + item.id') Детальніше
