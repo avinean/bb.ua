@@ -13,13 +13,13 @@
 							template(v-if='key === "id" || key === "datetime"') {{f}}
 							template(v-else-if='key === "img"')
 								img(
-									:src='require("@/img" + f)' 
+									:src='f' 
 									style='width: 50px; cursor: pointer'
 									@click='loadImg = item')
 							template(v-else)
 								input(v-model='item[key]' @change='changeText(item, key)')
 		transition(name='appear')
-			img-loader(v-if='loadImg')
+			img-loader(v-if='loadImg' @close='imgLoaded')
 
 </template>
 
@@ -67,7 +67,7 @@
 					height: 'Висота',
 				},
 				curSet: null,
-				loadImg: true
+				loadImg: false
 			}
 		},
 		methods: {
@@ -91,6 +91,18 @@
 						data
 					}
 				}))
+			},
+			async imgLoaded(url) {
+				let res = (await this.admin({
+					methodName: 'changeField',
+					opts: {
+						table: this.curSet.table,
+						key: 'img',
+						data: {...this.loadImg, img: url}
+					}
+				}))
+				this.loadImg.img = url
+				this.loadImg = null
 			}
 		},
 		watch: {

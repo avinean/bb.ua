@@ -1,5 +1,12 @@
 <template lang="pug">
 	.img-loader
+		i.close.fas.fa-times.main(@click='close')
+		.loaded-img(
+			v-if='uploadedPic' 
+			:style='"background-image: url(" + uploadedPic + ")"'
+			)
+			.btn.bg-lady.snow(@click='close') Відмінити
+			.btn.bg-grass.snow(@click='close(uploadedPic)') Прийняти
 		input(type='file' @change='onImgFileChanged')
 		.fik-div Для завантаження натисніть тут 
 			br
@@ -30,19 +37,17 @@
 
 				this.uploadedPic = '';
 				
-				let res = await this.admin(
-						{
-							methodName: 'uploadImg',
-							opts: {form}
-						}, 
-						{
-							'Content-Type': 'multipart/form-data'
-						}
+				let res = await this.axios.post(
+					'/secure/upload', 
+					this.picData, 
+					{headers: {'Content-Type': 'multipart/form-data'}}
 					)
-
-console.log(1);
-
+				this.uploadedPic = res.data;
 			},
+			close(url) {
+				url = url.toUpperCase ? url : null
+				this.$emit('close', url)
+			}
 		}
 	}
 </script>
@@ -58,6 +63,34 @@ console.log(1);
 		width: 80vw;
 		height: 80vh;
 		margin: auto;
+
+		.close {
+			position: absolute;
+			right: 10px;
+			top: 10px;
+			z-index: 3;
+			font-size: 20px;
+			cursor: pointer;
+		}
+
+		.loaded-img {
+			position: absolute;
+			z-index: 1;
+			width: 100%;
+			height: 100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			background-size: contain;
+			background-repeat: no-repeat;
+			background-position: center;
+
+			.btn {
+				padding: 10px 30px;
+				margin: 20px;
+				cursor: pointer;
+			}
+		}
 
 		input {
 			position: absolute;
