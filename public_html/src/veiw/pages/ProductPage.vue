@@ -4,7 +4,7 @@
 			.content-block(v-if='this.item') 
 				.card
 					.image
-						img(:src='require("@/img" + item.img)')
+						img(:src='item.img')
 					.short-info
 						.title {{item.title}}
 						hr.devider
@@ -14,7 +14,7 @@
 					.info-row(v-for='title, key in characs' v-if='item[key]')
 						strong.key {{title}}: 
 						.val {{item[key]}}
-		.contact-us(:style="'background-image: url(' + require('@/img/plug/trot.jpg') + ')'")
+		.contact-us(style='background-image: url(/img/plug/trot.jpg)')
 			.bgc
 				.title
 					h3 Виникли питання?
@@ -29,7 +29,7 @@
 					//- i.fas.fa-chevron-circle-left.left.arr(@click='slideVereteno(0)')
 					//- i.fas.fa-chevron-circle-right.right.arr(@click='slideVereteno(1)')
 					.item(v-for='item in cur')
-						img(:src='require("@/img" + goods[item].img)')
+						img(:src='goods[item].img')
 						.title {{goods[item].title}}
 						a.btn(:href='"/catalog/" + goods[item].category + "/" + goods[item].id') Детальніше
 		popup.popup(v-if='showPopup' @close='showPopup = null')
@@ -149,7 +149,7 @@
 				}
 
 				this.request(opts)
-
+				this.showPopup = null;
 				this.$parent.showMessage = `
 					Дякуємо! 
 					<br> Ваш запит відправлено

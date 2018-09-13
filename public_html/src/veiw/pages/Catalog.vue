@@ -7,13 +7,13 @@
 				router-link.good-item(
 					v-for='item in goodsBannerItems'
 					:to='item.url'
-					:style='"background-image: url(" + require("@/img/plug/" + item.img + ".jpg") + ")"'
+					:style='"background-image: url(" + item.img + ")"'
 					:key='item.url'
 					)
 					.good-item-inner {{item.title}}
 						.btn Детальніше
 				.good-item.info(
-					:style='"background-image: url(" + require("@/img/plug/dor.jpg") + ")"'
+					style='background-image: url(/img/plug/dor.jpg)'
 					)
 					span.title.info-title Корисна інформація
 					.links

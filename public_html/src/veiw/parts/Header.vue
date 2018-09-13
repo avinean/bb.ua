@@ -3,7 +3,7 @@
 		.upheader
 			router-link.logo(to='/')
 				img(
-					:src='require("@/img/brand/logo-big-blue.png")'
+					src='/img/logo-big-blue.png'
 					alt='Blagobud-logo'
 				)
 			.address
@@ -38,7 +38,7 @@
 			transition(name='live')
 				.nav-panel(v-show='show')
 					router-link.logo(to='/')
-						img(:src="require('@/img/brand/logo-big-blue.png')" alt='Blagobud-logo')
+						img(src="/img/logo-big-blue.png" alt='Blagobud-logo')
 					template( v-for='page in pages')
 						router-link.nav-item(:key='page.name' :to='page.url') {{page.name}}
 						router-link(v-if='page.children' v-for='child in page.children' :to='child.url' :key='child.url') {{child.name}}

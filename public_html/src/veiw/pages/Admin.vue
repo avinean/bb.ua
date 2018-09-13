@@ -101,7 +101,9 @@
 						data: {...this.loadImg, img: url}
 					}
 				}))
-				this.loadImg.img = url
+				if (url) {
+					this.loadImg.img = url
+				}
 				this.loadImg = null
 			}
 		},

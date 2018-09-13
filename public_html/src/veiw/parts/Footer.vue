@@ -2,7 +2,7 @@
 	.footer
 		.footer-body
 			.contacts.logo
-				img.logo(:src='require("@/img/brand/logo-white.png")' alt='Blagobud-logo')
+				img.logo(src='/img/logo-white.png' alt='Blagobud-logo')
 				.addr
 					span У НАС Є РІШЕННЯ САМЕ ДЛЯ ВАС!
 				br
@@ -17,7 +17,7 @@
 				p.header1 Наші партнери
 				.addr
 					a(href='http://www.promenad.ua' target='_blank')
-						img(:src="require('@/img/partners/promenad-logo.png')" alt='Promenad-logo')
+						img(src="/img/promenad-logo.png" alt='Promenad-logo')
 			.contacts.info
 				p.header1 Контакти
 				.addr
@@ -39,7 +39,7 @@
 				a(href='/store/confidence.pdf') Політика конфіденційності
 			div 
 				a.logo-brig(href='https://avinean.github.io')
-					img(src='@/img/plug/brig.png')
+					img(src='/img/brig.png')
 					.title BRIG Studio
 </template>
 
