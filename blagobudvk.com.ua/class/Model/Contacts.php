@@ -79,8 +79,11 @@ class Contacts extends Model {
 
 		$to ='avinean@gmail.com';
 		$subject = 'Запит';
-		$headers  = "Content-type: text/html; charset=utf-8 \r\n"; 
-		$headers .= "From: blagobudvk.com.ua <admin@blagobudvk.com.ua>\r\n";
+		$headers  = [
+			"Content-type" =>  "text/html; charset=utf-8",
+			"From" => "blagobudvk@gmail.com",
+			"Reply-To" => "blagobudvk@gmail.com"
+		];
 
 		return mail(
 			$to,
