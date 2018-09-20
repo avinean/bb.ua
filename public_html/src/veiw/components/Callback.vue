@@ -1,7 +1,7 @@
 <template lang="pug">
 	div
 		template(v-if='simple')
-			.simple-btn(@click='show = 1') Замовити консультацію
+			.bb-btn.brand.wide(@click='show = 1') Замовити консультацію
 		template(v-else)
 			.callback(@mouseenter='stop' @mouseleave='start' @click='show = phone' :style='"bottom: " + bottom + "px"')
 				i.fas(:class="phone ? 'fa-phone' : 'fa-envelope'")
@@ -20,7 +20,7 @@
 					input.input-field(v-model='showPopup.watsapp' placeholder='Вкажіть Ваш watsapp')
 					textarea.input-field(v-model='showPopup.msg')
 			div(slot='foot')
-				.btn(@click='send(show)') Відправити
+				.bb-btn.cherry(@click='send(show)') Відправити
 </template>
 
 <script>

@@ -121,5 +121,35 @@
             margin: 20px auto;
         }
 
+        .bb-btn {
+            display: block;
+            border: 2px solid;
+            width: 150px;
+            height: 40px;
+            margin: 20px auto;
+            text-align: center;
+            line-height: 37px;
+            cursor: pointer;
+            text-decoration: none;
+
+            &.mid {
+                width: 175px;
+            }
+
+            &.wide {
+                width: 225px;
+            }
+
+            &:hover {
+                background-color: #f0f0e9;
+            }
+
+            &:active {
+                position: relative;
+                top: 1px;
+                left: 1px;
+            }
+        }
+
     }
 }

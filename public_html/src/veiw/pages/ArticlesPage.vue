@@ -28,7 +28,7 @@
 					img(src='/img/plug/ukladannya.png')
 					.subs Технології укладання бруківки
 		.banner
-			router-link.new(v-for='item in news' :key='item.img' :to='"/news/" + item.id')
+			router-link.new(v-for='item in news' :key='item.img' :to='item.id')
 				img.image(src='item.img')
 				.text
 					.title {{item.title}}

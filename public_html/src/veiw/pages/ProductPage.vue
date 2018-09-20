@@ -9,7 +9,7 @@
 						.title {{item.title}}
 						hr.devider
 						.hz Виняткова універсальність
-						.btn(@click='showPopup = {}') Оформити замовлення
+						.bb-btn.wide.brand(@click='showPopup = {}') Оформити замовлення
 				.full-info
 					.info-row(v-for='title, key in characs' v-if='item[key]')
 						strong.key {{title}}: 
@@ -31,7 +31,7 @@
 					.item(v-for='item in cur')
 						img(:src='goods[item].img')
 						.title {{goods[item].title}}
-						a.btn(:href='"/catalog/" + goods[item].category + "/" + goods[item].id') Детальніше
+						a.bb-btn.cherry(:href='"/catalog/" + goods[item].category + "/" + goods[item].id') Детальніше
 		popup.popup(v-if='showPopup' @close='showPopup = null')
 			template(slot='head') Ми зателефонуємо Вам на протязі 15 хвилин
 			.form(slot='body')
@@ -39,7 +39,7 @@
 					input.input-field(v-model='showPopup.phone' placeholder='Вкажіть номер Вашого телефону')
 					input.input-field(v-model='showPopup.cnt' placeholder='Вкажіть кількість')
 			div(slot='foot')
-				.btn(@click='send(1)') Відправити
+				.bb-btn.brand(@click='send(1)') Відправити
 </template>
 
 <script>

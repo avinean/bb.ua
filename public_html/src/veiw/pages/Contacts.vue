@@ -9,7 +9,7 @@
 						p.cen: input(v-model='phone' placeholder='Ваш телефон')
 						p: input(v-model='email' placeholder='Ваш email')
 					p: textarea(v-model='msg' placeholder='Ваше повідомлення')
-					.btn(@click='send') Відправити
+					.bb-btn.brand(@click='send') Відправити
 		iframe.map(
 			src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2543.5173033518304!2d30.23982171572933!3d50.394196179467684!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40d4cb932c18e567%3A0x63292aa8267936d0!2z0KLQntCSICLQktCaICLQkdCb0JDQk9Ce0JHQo9CUIg!5e0!3m2!1sen!2sua!4v1534780179207" 
 			height="450" 
