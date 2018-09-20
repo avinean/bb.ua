@@ -24,6 +24,8 @@ route('/gallery');
 route('/price');
 route('/quality');
 route('/contacts');
+route('/payment');
+route('/arrival');
 route('/dillers');
 route('/info');
 route('/info/[:id]');

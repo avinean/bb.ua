@@ -20,6 +20,23 @@ class Admin extends Model {
 		return $this->db->query($query)->fetchAll();
 	}
 
+	public function addRow($opts = []) {
+
+		$keys = [];
+		$vals = [];
+
+		foreach ($opts['data'] as $k => $v) {
+			$keys[] = $this->db->escape($k);
+			$vals[] = $this->db->quote($v);
+		}
+
+		$query = '
+			INSERT INTO '.$this->db->escape($opts['table']).'
+			('.implode(",", $keys).')
+			VALUES ('.implode(",", $vals).')';
+		return $this->db->query($query);
+	}
+
 	public function deleteRow($opts = []) {
 
 		$query = '

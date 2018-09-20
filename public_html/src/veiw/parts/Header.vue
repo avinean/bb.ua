@@ -14,6 +14,10 @@
 				i.fas.fa-clock
 				span Графік роботи:
 					|<br> Пн-Cб з 8.00 до 18.00
+			.access
+				i.fas.fa-at
+				span Приймання замовлень онлайн:
+					|<br> Цілодобово
 			.phone
 				i.fab.fa-viber.brand
 				i.fab.fa-whatsapp.grass

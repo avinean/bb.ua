@@ -115,7 +115,7 @@ export default new Vuex.Store({
 			},
 		],
 		contacts: {
-			street: 'вул. Будівельна, 13',
+			street: 'вул.Будівельна, 13',
 			city: 'с. Білогородка',
 			region: 'Київська область',
 			district: 'Києво-Святошинський р-н',

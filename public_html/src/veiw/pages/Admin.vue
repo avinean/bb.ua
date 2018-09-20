@@ -29,8 +29,20 @@
 			.new-form(v-if='newForm')
 				table
 					tr(v-for='v, k in newForm')
-						td {{fields[k] || k}}
-						td {{v}}
+						template(v-if='k == "id"')
+						template(v-else-if='k == "img"')
+							td {{fields[k] || k}}
+							td 
+								img(
+									:src='v || "x.jpg"' 
+									style='width: 50px; cursor: pointer'
+									@click='loadImg = newForm'
+								)
+						template(v-else)
+							td {{fields[k] || k}}
+							td 
+								input(v-model='newForm[k]')
+				.bb-btn.brand(@click='addRow(newForm)') Зберегти
 
 </template>
 
@@ -64,6 +76,11 @@
 					{
 						name: "Акції",
 						table: "sales",
+						data: null
+					},
+					{
+						name: "Партнери",
+						table: "partners",
 						data: null
 					}
 				],
@@ -133,6 +150,19 @@
 					this.loadImg.img = url
 				}
 				this.loadImg = null
+			},
+			async addRow(data) {
+				let res = (await this.admin({
+					methodName: 'addRow',
+					opts: {
+						table: this.curSet.table,
+						data
+					}
+				}))
+				if (res) {
+					this.curSet.data.push(data)
+					this.newForm = null
+				}
 			},
 			showForm() {
 				this.newForm = {}
