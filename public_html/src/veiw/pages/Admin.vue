@@ -3,7 +3,7 @@
 		.admin-head
 			.slide(v-for='i in sets' @click='curSet = i' :class='curSet && i.table == curSet.table ? "bg-grass snow" : "bg-dust"') {{i.name}}
 		.admin-body(v-if='curSet && curSet.data')
-			.btn(@click='addNew')
+			.btn(@click='showForm') Додати
 			table
 				thead
 					tr
@@ -25,6 +25,12 @@
 								input(v-model='item[key]' @change='changeText(item, key)')
 		transition(name='appear')
 			img-loader(v-if='loadImg' @close='imgLoaded')
+		transition(name='appear')
+			.new-form(v-if='newForm')
+				table
+					tr(v-for='v, k in newForm')
+						td {{fields[k] || k}}
+						td {{v}}
 
 </template>
 
@@ -71,7 +77,8 @@
 					type: 'Тип',
 					height: 'Висота',
 					key: 'Ключ',
-					val: 'Значення'
+					val: 'Значення',
+					datetime: 'Дата'
 				},
 				curSet: null,
 				loadImg: false,
@@ -109,7 +116,9 @@
 						id
 					}
 				}))
-				this.curSet.data = this.curSet.data.filter(e => e.id !== id)
+				this.curSet.data = this.curSet.data.filter(e => {
+					return e.id != id
+				})
 			},
 			async imgLoaded(url) {
 				let res = (await this.admin({
@@ -124,6 +133,13 @@
 					this.loadImg.img = url
 				}
 				this.loadImg = null
+			},
+			showForm() {
+				this.newForm = {}
+				let i = this.curSet.data[0]
+				for (let key in i) {
+					this.newForm[key] = '';
+				}
 			}
 		},
 		watch: {
