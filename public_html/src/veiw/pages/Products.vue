@@ -35,8 +35,7 @@
 							img(:src='item.img')
 							.title {{item.title}}
 							.price {{item.price}} грн
-							router-link.btn(:to='"/catalog/" + item.category + "/" + item.id') Детальніше
-							//- .btn(@click='') Оформити замовлення
+							router-link.bb-btn.brand(:to='"/catalog/" + item.category + "/" + item.id') Детальніше
 </template>
 
 <script>

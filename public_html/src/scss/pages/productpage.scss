@@ -32,20 +32,6 @@
                 padding: 10px;
                 font-size: 14px;
             }
-            .btn {
-                display: block;
-                text-decoration: none;
-                text-align: center;
-                color: $brand;
-                border: 2px solid;
-                height: 40px;
-                line-height: 37px;
-                font-weight: bold;
-                margin-bottom: 10px;
-                font-size: 15px;
-                width: 195px;
-                margin: 20px auto;
-            }
 
             @media screen and (max-width: 750px){
                 padding: 0;
@@ -108,15 +94,6 @@
                     padding: 10px;
                     font-style: italic;
                 }
-                .btn {
-                    background: $brand;
-                    color: $snow;
-                    line-height: 50px;
-                    text-align: center;
-                    font-size: 16px;
-                    width: 50%;
-                    cursor: pointer;
-                }
 
                 @media screen and (max-width: 750px){
                     flex-direction: column;
@@ -171,21 +148,6 @@
                 img {
                     height: 150px;
                 }
-
-                .btn {
-                    position: absolute;
-                    display: block;
-                    text-decoration: none;
-                    background: $cherry;
-                    height: 40px;
-                    width: 200px;
-                    margin: auto;
-                    line-height: 40px;
-                    color: $snow;
-                    bottom: 18px;
-                    left: 0;
-                    right: 0;
-                }
             }
         }
     }
@@ -197,18 +159,6 @@
             margin: 20px auto;
             padding: 10px;
             font-style: italic;
-        }
-        
-        
-        .btn {
-            background: $cherry;
-            height: 40px;
-            width: 200px;
-            margin: 10px auto;
-            line-height: 40px;
-            color: $snow;
-            text-align: center;
-            cursor: pointer;
         }
     }
 }
