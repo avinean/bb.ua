@@ -22,5 +22,28 @@
                 background: $dust;
             }
         }
+
+        .btn {
+            width: 115px;
+            height: 40px;
+            margin: 20px auto;
+            background: $brand;
+            color: $snow;
+            text-align: center;
+            line-height: 40px;
+            cursor: pointer;
+        }
+    }
+
+    .new-form {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        margin: auto;
+        padding: 20px;
+        width: 500px;
+        background: white;
     }
 }
