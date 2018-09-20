@@ -34,7 +34,7 @@
 					.item(v-for='item in cur')
 						img(:src='goods[item].img')
 						.title {{goods[item].title}}
-						a.btn(:href='"/catalog/" + goods[item].category + "/" + goods[item].id') Детальніше
+						a.bb-btn.cherry(:href='"/catalog/" + goods[item].category + "/" + goods[item].id') Детальніше
 		.news
 			h3 Новини
 			.inner-wrapper
@@ -63,7 +63,7 @@
 								)
 								.title {{item[2].title}}
 									.date {{item[2].datetime}}
-			.btn(@click='loadNewsList') Показати більше
+			.bb-btn.mid.cherry(@click='loadNewsList') Показати більше
 
 </template>
 

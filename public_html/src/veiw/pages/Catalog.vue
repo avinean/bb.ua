@@ -13,7 +13,7 @@
 					.good-item-inner {{item.title}}
 						.btn Детальніше
 				.good-item.info(
-					style='background-image: url(/img/dor.jpg)'
+					style='background-image: url(/img/catalog/dor.jpg)'
 					)
 					span.title.info-title Корисна інформація
 					.links
@@ -35,17 +35,17 @@
 				goodsBannerItems: [
 					{
 						url: '/catalog/pave',
-						img: '/img/trot.jpg',
+						img: '/img/catalog/trot.jpg',
 						title: 'Тротуарна плитка'
 					},
 					{
 						url: '/catalog/road',
-						img: '/img/road.jpg',
+						img: '/img/catalog/road.jpg',
 						title: 'Дорожні елементи'
 					},
 					{
 						url: '/catalog/vert',
-						img: '/img/vert.jpg',
+						img: '/img/catalog/vert.jpg',
 						title: 'Вертикальні елементи'
 					}
 				],

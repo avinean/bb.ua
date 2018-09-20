@@ -16,21 +16,23 @@
     align-items: center;
     background-color: $snow;
 
-    .logo, .address, .time, .phone {
-        width: 25%;
+    .logo, .address, .time, .access, .phone {
+        width: 20%;
     }
 
     .logo {
+        text-align: center;
         img {
             height: 70px;
         }
     }
 
-    .address, .time {
+    .address, .time, .access {
         display: flex;
         align-items: center;
         position: relative;
         padding-left: 30px;
+        padding-right: 3px;
 
         &>i {
             color: $brand;
@@ -57,9 +59,16 @@
         width: 100vw;
     }
 
-    @media screen and (max-width: 960px) {
-        .address, .time {
+    @media screen and (max-width: 1197px) {
+        .address, .time, .access {
             font-size: 15px;
+        }
+
+        .logo {
+            img {
+                height: auto;
+                width: 90%;
+            }
         }
 
         .phone {
