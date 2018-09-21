@@ -43,7 +43,7 @@
 		name: 'page-products',
 		data() {
 			return {
-				colors: [],
+				colorsMap: [],
 				curColors: [],
 				curHeights: [],
 				curItem: '',
@@ -89,6 +89,9 @@
 					return h.filter((a,b,c) => b === c.indexOf(a)).sort()
 				}
 			},
+			colors() {
+				return this.colorsMap;
+			},
 			filteredGoods() {
 				if (this.goods) {
 					let temp = this.goods;
@@ -130,7 +133,7 @@
 				})).data;
 			},
 			async loadColors() {
-				this.colors = (await this.request({
+				this.colorsMap = (await this.request({
 					method: 'get',
 					className: 'Catalog',
 					methodName: 'getColors'
