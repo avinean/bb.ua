@@ -16,8 +16,8 @@
 					a.fab.fa-facebook(href='https://www.facebook.com/vkblagobud' target='_blank')
 				p.header1 Наші партнери
 				.addr
-					a(href='http://www.promenad.ua' target='_blank')
-						img(src="/img/promenad-logo.png" alt='Promenad-logo')
+					a(v-for='p in partners' :href='p.url' target='_blank')
+						img(:src="p.img" :alt='p.img')
 			.contacts.info
 				p.header1 Контакти
 				.addr
@@ -49,11 +49,21 @@
 		name: 'page-footer',
 		data() {
 			return {
-				children: null
+				partners: [
+					{img: '/img/partners/barberry.jpg', url: '/'},
+					{img: '/img/partners/budtemp.png', url: '/'},
+					{img: '/img/partners/kanbyd.png', url: '/'},
+					{img: '/img/partners/kirpicj.jpg', url: '/'},
+					{img: '/img/partners/metalbud.jpg', url: '/'},
+					{img: '/img/partners/planeta.png', url: '/'},
+					{img: '/img/partners/prombud.png', url: '/'},
+					{img: '/img/partners/promenad.png', url: '/'},
+					{img: '/img/partners/smile.png', url: '/'},
+				]
 			}
 		},
 		computed: {
-			...mapState(['pages', 'contacts'])
+			...mapState(['contacts'])
 		},
 	}
 </script>

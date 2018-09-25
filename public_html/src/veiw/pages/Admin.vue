@@ -15,6 +15,12 @@
 							i.fas.fa-times(@click='deleteRow(item.id)')
 						td(v-for='f, key in item')
 							template(v-if='key === "id" || key === "datetime"') {{f}}
+							template(v-else-if='key === "category"')
+								select(v-model='item[key]' @change='changeText(item, key)')
+									option(v-for='category, key in categories' :value='key') {{category}}
+							template(v-else-if='key === "type"')
+								select(v-model='item[key]' @change='changeText(item, key)')
+									option(v-for='good, key in goods' :value='key') {{good}}
 							template(v-else-if='key === "img"')
 								img(
 									:src='f' 
@@ -56,6 +62,17 @@
 					isFooter: 0,
 					isCallback: 0,
 					isUp: 0
+				},
+				categories: {
+					vert: "Вертикальні елементи",
+					pave: "Тротуарна плитка",
+					road: "Дорожні елементи"
+				},
+				goods: {
+					wall: "Блок стіновий",
+					brik: "Блок перегородковий",
+					bort: "Борт дорожній",
+					bord: "Бордюр дорожній"
 				},
 				sets: [
 					{
