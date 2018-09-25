@@ -1,4 +1,4 @@
-.jpg<template lang="pug">
+<template lang="pug">
 	.catalog
 		.inner-wrapper
 			.content-block

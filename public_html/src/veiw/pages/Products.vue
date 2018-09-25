@@ -60,19 +60,15 @@
 					'road': {
 						title: 'Дорожні елементи',
 						list: {
-							bruk: 'Бруківка',
-							square: 'Квадрат',
-							old: 'Старе місто',
-							t: 'Подвійна Т'
+							bort: 'Борт дорожній',
+							bord: 'Бордюр дорожній',
 						}
 					},
 					'vert': {
 						title: 'Вертикальні елементи',
 						list: {
-							bruk: 'Бруківка',
-							square: 'Квадрат',
-							old: 'Старе місто',
-							t: 'Подвійна Т'
+							wall: 'Блок стіновий',
+							brik: 'Блок перегородковий',
 						}
 					}
 				},
@@ -141,10 +137,10 @@
 					this.curItem = 'bruk'
 				}
 				else if (this.category === 'road') {
-					this.curItem = 'bruk'
+					this.curItem = 'bort'
 				}
 				else if (this.category === 'vert') {
-					this.curItem = 'bruk'
+					this.curItem = 'wall'
 				}
 			},
 			remove(arr, el) {
