@@ -96,10 +96,15 @@
 						data: null
 					},
 					{
-						name: "Партнери",
-						table: "partners",
+						name: "Кольори",
+						table: "colors",
 						data: null
-					}
+					},
+					// {
+					// 	name: "Партнери",
+					// 	table: "partners",
+					// 	data: null
+					// }
 				],
 				fields: {
 					category: 'Категорія',

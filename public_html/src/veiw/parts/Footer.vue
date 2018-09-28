@@ -16,8 +16,8 @@
 					a.fab.fa-facebook(href='https://www.facebook.com/vkblagobud' target='_blank')
 				p.header1 Наші партнери
 				.addr
-					a(v-for='p in partners' :href='p.url' target='_blank')
-						img(:src="p.img" :alt='p.img')
+					a.partner(v-for='p in partners' :href='p.url' target='_blank')
+						img(:src="p.img" :alt='p.img' :style='p.h')
 			.contacts.info
 				p.header1 Контакти
 				.addr
@@ -50,15 +50,15 @@
 		data() {
 			return {
 				partners: [
-					{img: '/img/partners/barberry.jpg', url: '/'},
-					{img: '/img/partners/budtemp.png', url: '/'},
-					{img: '/img/partners/kanbyd.png', url: '/'},
-					{img: '/img/partners/kirpicj.jpg', url: '/'},
-					{img: '/img/partners/metalbud.jpg', url: '/'},
-					{img: '/img/partners/planeta.png', url: '/'},
-					{img: '/img/partners/prombud.png', url: '/'},
-					{img: '/img/partners/promenad.png', url: '/'},
-					{img: '/img/partners/smile.png', url: '/'},
+					{img: '/img/partners/metalbud.jpg', url: '/', h: 'height: 30px'},
+					{img: '/img/partners/planeta.png', url: '/', h: 'height: 30px'},
+					{img: '/img/partners/prombud.png', url: '/', h: 'height: 30px'},
+					{img: '/img/partners/promenad.png', url: '/', h: 'height: 30px'},
+					{img: '/img/partners/smile.png', url: '/', h: 'height: 30px'},
+					{img: '/img/partners/budtemp.png', url: '/', h: 'height: 50px'},
+					{img: '/img/partners/barberry.jpg', url: '/', h: 'height: 50px'},
+					{img: '/img/partners/kanbud.png', url: '/', h: 'height: 50px'},
+					{img: '/img/partners/kirpich.jpg', url: '/', h: 'height: 50px'},
 				]
 			}
 		},
