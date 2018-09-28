@@ -47,12 +47,17 @@
                 a:hover {
                     color: #cd3c3c;
                 }
+
+                .partner>img {
+                    height: 50px;
+                    margin-right: 10px;
+                }
             }
         }
 
         .header1 {
             color: $snow;
-            margin: 35px 0 5px;
+            margin: 25px 0 5px;
             font-size: 20px;
         }
 

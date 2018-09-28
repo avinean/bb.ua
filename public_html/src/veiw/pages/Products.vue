@@ -81,8 +81,8 @@
 			},
 			heights() {
 				if (this.goods) {
-					let h = this.goods.map(e => e.height)
-					return h.filter((a,b,c) => b === c.indexOf(a)).sort()
+					return this.goods.map(e => e.type === this.curItem ? e.height : null).filter(e=>e)
+					// return h.filter((a,b,c) => b === c.indexOf(a)).sort()
 				}
 			},
 			colors() {
