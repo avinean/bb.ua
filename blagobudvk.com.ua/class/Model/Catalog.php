@@ -17,7 +17,12 @@ class Catalog extends Model {
 	}
 	
 	public function getColors() {
-		return $this->db->query('SELECT * FROM colors')->fetchAll();
+		$response = $this->db->query('SELECT * FROM colors')->fetchAll();
+		$res = [];
+		foreach($response as $val) {
+			$res[$val['id']] = $val['title'];
+		}
+		return $res;
 	}
 	
 	public function getProduct($opts = []) {

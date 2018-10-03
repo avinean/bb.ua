@@ -31,8 +31,8 @@ $app->respond('POST', '/secure/admin', function($req, $res, $ser) {
 });
 
 $app->respond('POST', '/secure/upload', function($req, $res, $ser) {
-
-	$result = Admin::c()->uploadImg();
+	
+	$result = Admin::c()->uploadImg($req->params()['folder']);
 
 	if (is_array($result)) {
 		return $res->json($result);
