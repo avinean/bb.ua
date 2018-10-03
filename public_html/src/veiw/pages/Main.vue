@@ -1,7 +1,7 @@
 <template lang="pug">
 	.main
 		img.logo-mob(src='/img/logo-big-blue.png' alt='Blagobud-logo')
-		slider.slider(:items='formedSale' auto='0' interval='7000')
+		slider.slider(v-if="formedSale.length" :items='formedSale' auto='0' interval='7000')
 		.inner-wrapper
 			.inf-icons
 				.inf-ico

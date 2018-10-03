@@ -14,40 +14,45 @@
 						td
 							i.fas.fa-times(@click='deleteRow(item.id)')
 						td(v-for='f, key in item')
-							template(v-if='key === "id" || key === "datetime"') {{f}}
+							template(v-if='key === "id" || key === "datetime" || key == "folder"') {{f}}
 							template(v-else-if='key === "category"')
 								select(v-model='item[key]' @change='changeText(item, key)')
 									option(v-for='category, key in categories' :value='key') {{category}}
 							template(v-else-if='key === "type"')
 								select(v-model='item[key]' @change='changeText(item, key)')
 									option(v-for='good, key in goods' :value='key') {{good}}
+							template(v-else-if='key === "color"')
+								select(v-model='item[key]' @change='changeText(item, key)')
+									option(v-for='color, key in colors' :value='color.id') {{color.title}}
 							template(v-else-if='key === "img"')
 								img(
-									:src='f' 
+									:src='f || "example.jpg"' 
 									style='width: 50px; cursor: pointer'
-									@click='loadImg = item'
+									@click='loadImg = item; loadImg["folder"] = curSet.table'
 								)
 							template(v-else)
 								input(v-model='item[key]' @change='changeText(item, key)')
 		transition(name='appear')
-			img-loader(v-if='loadImg' @close='imgLoaded')
+			img-loader(v-if='loadImg' @close='imgLoaded' :data='loadImg')
 		transition(name='appear')
 			.new-form(v-if='newForm')
+				i.close.fas.fa-times(@click='newForm = null')
 				table
-					tr(v-for='v, k in newForm')
-						template(v-if='k == "id"')
-						template(v-else-if='k == "img"')
-							td {{fields[k] || k}}
-							td 
-								img(
-									:src='v || "x.jpg"' 
-									style='width: 50px; cursor: pointer'
-									@click='loadImg = newForm'
-								)
-						template(v-else)
-							td {{fields[k] || k}}
-							td 
-								input(v-model='newForm[k]')
+					tbody
+						tr(v-for='v, k in newForm')
+							template(v-if='k == "id" || k == "datetime" || k == "folder"')
+							template(v-else-if='k == "img"')
+								td {{fields[k] || k}}
+								td 
+									img(
+										:src='v || "example.jpg"' 
+										style='width: 50px; cursor: pointer'
+										@click='loadImg = newForm; loadImg["folder"] = curSet.table'
+									)
+							template(v-else)
+								td {{fields[k] || k}}
+								td 
+									input(v-model='newForm[k]')
 				.bb-btn.brand(@click='addRow(newForm)') Зберегти
 
 </template>
@@ -57,6 +62,7 @@
 		name: 'page-admin',
 		data() {
 			return {
+				colors: [],
 				viewOpts: {
 					isHeader: 0,
 					isFooter: 0,
@@ -72,7 +78,8 @@
 					wall: "Блок стіновий",
 					brik: "Блок перегородковий",
 					bort: "Борт дорожній",
-					bord: "Бордюр дорожній"
+					bord: "Бордюр дорожній",
+					bruk: "Бруківка"
 				},
 				sets: [
 					{
@@ -160,15 +167,15 @@
 				})
 			},
 			async imgLoaded(url) {
-				let res = (await this.admin({
-					methodName: 'changeField',
-					opts: {
-						table: this.curSet.table,
-						key: 'img',
-						data: {...this.loadImg, img: url}
-					}
-				}))
 				if (url) {
+					let res = (await this.admin({
+						methodName: 'changeField',
+						opts: {
+							table: this.curSet.table,
+							key: 'img',
+							data: {...this.loadImg, img: url}
+						}
+					}))
 					this.loadImg.img = url
 				}
 				this.loadImg = null
@@ -186,18 +193,36 @@
 					this.newForm = null
 				}
 			},
-			showForm() {
-				this.newForm = {}
-				let i = this.curSet.data[0]
-				for (let key in i) {
-					this.newForm[key] = '';
-				}
+			async showForm() {
+				let form = {}
+				let i = (await this.admin({
+					methodName: 'getFields',
+					opts: {
+						table: this.curSet.table
+					}
+				})).data
+				i.forEach(e => {
+					if (e == 'id' || e == 'datetime') {}
+					else {
+						form[e] = null;
+					}
+				})
+				this.newForm = form
+			},
+			async getColors() {
+				this.colors = (await this.admin({
+					methodName: 'getColors',
+					opts: {}
+				})).data
 			}
 		},
 		watch: {
 			curSet() {
 				this.load()
 			}
+		},
+		async mounted() {
+			await this.getColors();
 		}
 	}
 </script>

@@ -10,6 +10,7 @@
             text-align: center;
             padding: 10px 20px;
             margin-right: 2px;
+            cursor: pointer;
         }
     }
 
@@ -45,5 +46,12 @@
         padding: 20px;
         width: 500px;
         background: white;
+
+        .close {
+            position: absolute;
+            right: 15px;
+            top: 15px;
+            cursor: pointer;
+        }
     }
 }

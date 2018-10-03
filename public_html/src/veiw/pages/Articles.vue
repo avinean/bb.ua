@@ -7,7 +7,7 @@
 						v-for='item in rows'
 						:key='item.img'
 					)
-					.image(style='background-image: url(/img" + item.img)')
+					.image(:style='"background-image: url(" + item.img + ")"')
 					.text
 						.title {{item.title}}
 						.date

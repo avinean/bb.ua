@@ -18,6 +18,7 @@
 <script>
 	export default {
 		name: 'img-loader',
+		props: ['data'],
 		data() {
 			return {
 				file: null,
@@ -33,6 +34,7 @@
 			async uploadPhoto(file) {
 				let form = new FormData;
 				form.append('userpic', file);
+				form.append('folder', this.data.folder);
 				this.picData = form;
 
 				this.uploadedPic = '';
