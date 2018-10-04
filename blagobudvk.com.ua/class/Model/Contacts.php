@@ -6,6 +6,10 @@ use App\Model\Mail;
 
 class Contacts extends Model {
 
+	public function getContacts() {
+		// return $this->db->query('SELECT * FRO')
+	}
+
 	public function sendRequest($opts = []) {
 
 		if ($opts['type']) {

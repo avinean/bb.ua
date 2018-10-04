@@ -35,7 +35,7 @@ class Admin extends Model {
 			INSERT INTO '.$this->db->escape($opts['table']).'
 			('.implode(",", $keys).')
 			VALUES ('.implode(",", $vals).')';
-		return $this->db->query($query);
+		return $this->db->query($query)->ID();
 	}
 
 	public function deleteRow($opts = []) {
