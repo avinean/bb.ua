@@ -21,7 +21,17 @@
 				isFooter: 1,
 				isCallback: 1,
 				isUp: 1,
-				styles: ''
+				styles: '',
+				contacts: {}
+			}
+		},
+		methods: {
+			async loadContacts() {
+				this.contacts = (await this.request({
+					method: 'get',
+					className: 'Contacts',
+					methodName: 'getContacts'
+				})).data
 			}
 		},
 		mounted() {
