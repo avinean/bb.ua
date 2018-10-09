@@ -1,7 +1,11 @@
 <template lang="pug">
 	.admin
 		.admin-head
-			.slide(v-for='i in sets' @click='curSet = i' :class='curSet && i.table == curSet.table ? "bg-grass snow" : "bg-dust"') {{i.name}}
+			.slide(
+				v-for='i in sets'
+				@click='curSet = i'
+				:class='curSet && i.table == curSet.table ? "bg-grass snow active" : "bg-dust"'
+				) {{i.name}}
 		.admin-body(v-if='curSet && curSet.data')
 			.btn(@click='showForm') Додати
 			table
@@ -79,7 +83,10 @@
 					brik: "Блок перегородковий",
 					bort: "Борт дорожній",
 					bord: "Бордюр дорожній",
-					bruk: "Бруківка"
+					bruk: "Бруківка",
+					old: "Старе місто",
+					t: "Подвійне Т",
+					square: "Квадрат"
 				},
 				sets: [
 					{
@@ -105,6 +112,11 @@
 					{
 						name: "Кольори",
 						table: "colors",
+						data: null
+					},
+					{
+						name: "Сторінки",
+						table: "pages",
 						data: null
 					},
 					// {
@@ -143,7 +155,6 @@
 				}
 			},
 			async changeText(data, key) {
-				if (!confirm('Ви впевнені, що хочете змінити дані?')) return
 				let res = (await this.admin({
 					methodName: 'changeField',
 					opts: {
@@ -154,7 +165,6 @@
 				}))
 			},
 			async deleteRow(id) {
-				if (!confirm('Ви впевнені, що хочете видалити дані?')) return
 				let res = (await this.admin({
 					methodName: 'deleteRow',
 					opts: {

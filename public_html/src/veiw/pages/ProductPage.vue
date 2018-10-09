@@ -3,8 +3,8 @@
 		.inner-wrapper
 			.content-block(v-if='this.item') 
 				.card
-					.image
-						img(:src='item.img')
+					.image(:style='"background-image: url(" + item.img + ")"')
+						<!--img(:src='item.img')-->
 					.short-info
 						.title {{item.title}}
 						hr.devider
