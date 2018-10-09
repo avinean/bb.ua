@@ -3,17 +3,17 @@
 use App\Model\Admin;
 
 $app->respond(['GET', 'POST'], '/admin', function($req, $res, $ser) {
-    // if (
-    //     !isset($_POST['user']) ||
-    //     !isset($_POST['pass']) || 
-    //     @$_POST['user'] !== "admin" ||
-    //     @$_POST['pass'] !== "Coba1953"
-    // ) {
-	// 	$ser->render('admin.html');
-    // }
-    // else  {
+    if (
+        !isset($_POST['user']) ||
+        !isset($_POST['pass']) || 
+        @$_POST['user'] !== "admin" ||
+        @$_POST['pass'] !== "admin2018"
+    ) {
+		$ser->render('admin.html');
+    }
+    else  {
         $ser->render('index.html');
-    // }
+    }
 });
 
 $app->respond('POST', '/secure/admin', function($req, $res, $ser) {

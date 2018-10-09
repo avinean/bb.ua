@@ -2,32 +2,60 @@
 @import "../fonts";
 
 .admin {
+    display: flex;
     .admin-head {
-        display: flex;
-        justify-content: center;
+        position: fixed;
+        height: 100vh;
+        min-width: 200px;
+        padding: 20px 0;
+        background: #f4f4f5;
+        box-shadow: 0 0 15px 0 black;
 
         .slide {
+            height: 35px;
             text-align: center;
-            padding: 10px 20px;
-            margin-right: 2px;
+            padding: 6px;
+            margin-bottom: 2px;
             cursor: pointer;
+        }
+
+        .active {
+            position: relative;
+            &::after {
+                content: '';
+                position: absolute;
+                display: block;
+                width: 24px;
+                height: 24px;
+                transform: rotate(45deg);
+                background-color: $grass;
+                top: 5px;
+                right: -12px;
+                z-index: -1;
+            }
         }
     }
 
     .admin-body {
-        padding: 20px;
+        padding: 0 20px;
+        margin-left: 220px;
+
         table {
             margin: auto;
 
             tr:nth-child(even) {
                 background: $dust;
             }
+
+            td {
+                height: 60px;
+            }
         }
 
         .btn {
             width: 115px;
             height: 40px;
-            margin: 20px auto;
+            margin: 20px;
             background: $brand;
             color: $snow;
             text-align: center;
