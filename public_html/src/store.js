@@ -6,56 +6,56 @@ Vue.use(Vuex)
 export default new Vuex.Store({
 	state: {
 		popup: null,
-		goods: {
-			pave: {
-				1: {
-					img: "1.jpg",
-					title: 'Some title',
-					desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
-					id: 1
-				},
-				2: {
-					img: "2.jpg",
-					title: 'Some title',
-					desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
-					id: 2
-				},
-				3: {
-					img: "4.jpg",
-					title: 'Some title',
-					desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
-					id: 3
-				},
-			},
-			road: {
-				4: {
-					img: "3.jpg",
-					title: 'Some title',
-					desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
-					id: 4
-				},
-				5: {
-					img: "5.jpg",
-					title: 'Some title',
-					desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
-					id: 5
-				},
-			},
-			vert: {
-				6: {
-					img: "6.jpg",
-					title: 'Some title',
-					desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
-					id: 6
-				},
-				7: {
-					img: "7.jpg",
-					title: 'Some title',
-					desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
-					id: 7
-				}
-			}
-		},
+		// goods: {
+		// 	pave: {
+		// 		1: {
+		// 			img: "1.jpg",
+		// 			title: 'Some title',
+		// 			desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
+		// 			id: 1
+		// 		},
+		// 		2: {
+		// 			img: "2.jpg",
+		// 			title: 'Some title',
+		// 			desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
+		// 			id: 2
+		// 		},
+		// 		3: {
+		// 			img: "4.jpg",
+		// 			title: 'Some title',
+		// 			desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
+		// 			id: 3
+		// 		},
+		// 	},
+		// 	road: {
+		// 		4: {
+		// 			img: "3.jpg",
+		// 			title: 'Some title',
+		// 			desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
+		// 			id: 4
+		// 		},
+		// 		5: {
+		// 			img: "5.jpg",
+		// 			title: 'Some title',
+		// 			desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
+		// 			id: 5
+		// 		},
+		// 	},
+		// 	vert: {
+		// 		6: {
+		// 			img: "6.jpg",
+		// 			title: 'Some title',
+		// 			desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
+		// 			id: 6
+		// 		},
+		// 		7: {
+		// 			img: "7.jpg",
+		// 			title: 'Some title',
+		// 			desc: 'Some descriptioncSome descriptionSome descriptionSome descriptionSome description',
+		// 			id: 7
+		// 		}
+		// 	}
+		// },
 		pages: [
 			{
 				name: 'Каталог продукції',
