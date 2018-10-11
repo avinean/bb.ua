@@ -3,12 +3,10 @@ import Router from 'vue-router'
 import Main from '@/veiw/pages/Main'
 import Contacts from '@/veiw/pages/Contacts'
 import About from '@/veiw/pages/About'
-import Dillers from '@/veiw/pages/Dillers'
+import InfoPage from '@/veiw/pages/InfoPage'
 import Articles from '@/veiw/pages/Articles'
 import ArticlesPage from '@/veiw/pages/ArticlesPage'
 import Quality from '@/veiw/pages/Quality'
-import Arrival from '@/veiw/pages/Arrival'
-import Payment from '@/veiw/pages/Payment'
 import Catalog from '@/veiw/pages/Catalog'
 import Products from '@/veiw/pages/Products'
 import ProductPage from '@/veiw/pages/ProductPage'
@@ -40,11 +38,6 @@ export default new Router({
 			component: About
 		},
 		{
-			path: '/dillers',
-			name: 'Dillers',
-			component: Dillers
-		},
-		{
 			path: '/news',
 			name: 'Articles-news',
 			component: Articles
@@ -72,12 +65,17 @@ export default new Router({
 		{
 			path: '/payment',
 			name: 'Payment',
-			component: Payment
+			component: InfoPage
 		},
 		{
 			path: '/arrival',
 			name: 'Arrival',
-			component: Arrival
+			component: InfoPage
+		},
+		{
+			path: '/dillers',
+			name: 'Dillers',
+			component: InfoPage
 		},
 		{
 			path: '/sale',
