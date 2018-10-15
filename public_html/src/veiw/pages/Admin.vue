@@ -6,36 +6,44 @@
 				@click='curSet = i'
 				:class='curSet && i.table == curSet.table ? "bg-grass snow active" : "bg-dust"'
 				) {{i.name}}
-		.admin-body(v-if='curSet && curSet.data')
-			.btn(@click='showForm') Додати
-			table
-				thead
-					tr
-						th
-						th(v-for='v, k in curSet.data[0]') {{fields[k] || k}}
-				tbody
-					tr(v-for='item in curSet.data')
-						td
-							i.fas.fa-times(@click='deleteRow(item.id)')
-						td(v-for='f, key in item')
-							template(v-if='key === "id" || key === "datetime" || key == "folder"') {{f}}
-							template(v-else-if='key === "category"')
-								select(v-model='item[key]' @change='changeText(item, key)')
-									option(v-for='category, key in categories' :value='key') {{category}}
-							template(v-else-if='key === "type"')
-								select(v-model='item[key]' @change='changeText(item, key)')
-									option(v-for='good, key in goods' :value='key') {{good}}
-							template(v-else-if='key === "color"')
-								select(v-model='item[key]' @change='changeText(item, key)')
-									option(v-for='color, key in colors' :value='color.id') {{color.title}}
-							template(v-else-if='key === "img"')
-								img(
-									:src='f || "example.jpg"' 
-									style='width: 50px; cursor: pointer'
-									@click='loadImg = item; loadImg["folder"] = curSet.table'
-								)
-							template(v-else)
-								input(v-model='item[key]' @change='changeText(item, key)')
+		.admin-body(
+			v-if='curSet && curSet.data'
+			:class='curSet.table == "pages" ? "flexbox" : ""'
+		)
+			template(v-if='curSet.table == "pages"')
+				div.page-esc(v-for='page in curSet.data' @click='curPage = page')
+					.title {{page.title}}
+					.text(v-html='page.template')
+			template(v-else)
+				.btn(@click='showForm') Додати
+				table
+					thead
+						tr
+							th
+							th(v-for='v, k in curSet.data[0]') {{fields[k] || k}}
+					tbody
+						tr(v-for='item in curSet.data')
+							td
+								i.fas.fa-times(@click='deleteRow(item.id)')
+							td(v-for='f, key in item')
+								template(v-if='key === "id" || key === "datetime" || key == "folder"') {{f}}
+								template(v-else-if='key === "category"')
+									select(v-model='item[key]' @change='changeText(item, key)')
+										option(v-for='category, key in categories' :value='key') {{category}}
+								template(v-else-if='key === "type"')
+									select(v-model='item[key]' @change='changeText(item, key)')
+										option(v-for='good, key in goods' :value='key') {{good}}
+								template(v-else-if='key === "color"')
+									select(v-model='item[key]' @change='changeText(item, key)')
+										option(v-for='color, key in colors' :value='color.id') {{color.title}}
+								template(v-else-if='key === "img"')
+									img(
+										:src='f || "example.jpg"' 
+										style='width: 50px; cursor: pointer'
+										@click='loadImg = item; loadImg["folder"] = curSet.table'
+									)
+								template(v-else)
+									input(v-model='item[key]' @change='changeText(item, key)')
 		transition(name='appear')
 			img-loader(v-if='loadImg' @close='imgLoaded' :data='loadImg')
 		transition(name='appear')
@@ -58,6 +66,10 @@
 								td 
 									input(v-model='newForm[k]')
 				.bb-btn.brand(@click='addRow(newForm)') Зберегти
+		transition(name='appear')
+			.transpiler(v-if='curPage')
+				.panel
+				.screen(v-html='curPage.template')
 
 </template>
 
@@ -73,6 +85,10 @@
 					isCallback: 0,
 					isUp: 0
 				},
+				curSet: null,
+				loadImg: false,
+				newForm: null,
+				curPage: null,
 				categories: {
 					vert: "Вертикальні елементи",
 					pave: "Тротуарна плитка",
@@ -115,20 +131,15 @@
 						data: null
 					},
 					{
-						name: "Сторінки",
-						table: "pages",
-						data: null
-					},
-					{
 						name: "Контакти",
 						table: "contacts",
 						data: null
 					},
-					// {
-					// 	name: "Партнери",
-					// 	table: "partners",
-					// 	data: null
-					// }
+					{
+						name: "Сторінки",
+						table: "pages",
+						data: null
+					},
 				],
 				fields: {
 					category: 'Категорія',
@@ -173,10 +184,13 @@
 					complectation: "Комплектація",
 					mark_strength: "Марка за міцностю",
 					mark_frost: "Марка за морозостійкістю",
-				},
-				curSet: null,
-				loadImg: false,
-				newForm: null
+				}
+			}
+		},
+		computed: {
+			resTemplate() {
+				let newTemplate = this.curPage.template;
+				return newTemplate;
 			}
 		},
 		methods: {

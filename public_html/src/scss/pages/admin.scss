@@ -66,6 +66,35 @@
             line-height: 40px;
             cursor: pointer;
         }
+
+        .page-esc {
+            width: 200px;
+            height: 250px;
+            margin: 20px;
+            border: 3px solid $brand;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 2px 2px 5px 0;
+            position: relative;
+            top: 0;
+            left: 0;
+            transition: all ease .2s;
+
+            .title {
+                font-size: 14px;
+                padding: 8px;
+                color: $brand;
+            }
+            .text {
+                font-size: 10px;
+            }
+
+            &:hover {
+               box-shadow: 5px 5px 5px 0;
+               top: -2px;
+               left: -2px;
+            }
+        }
     }
 
     .new-form {
@@ -84,6 +113,24 @@
             right: 15px;
             top: 15px;
             cursor: pointer;
+        }
+    }
+
+    .transpiler {
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+
+        .panel {
+            height: 30px;
+            background: #ece7e7;
+            box-shadow: 0 0 7px 0;
+        }
+
+        .screen {
+            background: white;
+            height: 100vh;
+            padding: 20px;
         }
     }
 }

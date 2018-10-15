@@ -3,13 +3,13 @@
 		.inner-wrapper
 			.content-block
 				.divide-head {{title}}
-				div {{content}}
+				div(v-html='content')
 			callback(simple='1' key='123')
 </template>
 
 <script>
 	export default {
-		name: 'page-payment',
+		name: 'info-page',
 		data() {
 			return {
 				title: '',
@@ -36,8 +36,8 @@
 					}
 				})
 
-				this.title = res.title
-				this.content = res.template
+				this.title = res.data.title
+				this.content = res.data.template
 			}
 		},
 		watch: {
