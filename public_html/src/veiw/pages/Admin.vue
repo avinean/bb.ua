@@ -67,9 +67,7 @@
 									input(v-model='newForm[k]')
 				.bb-btn.brand(@click='addRow(newForm)') Зберегти
 		transition(name='appear')
-			.transpiler(v-if='curPage')
-				.panel
-				.screen(v-html='curPage.template')
+			text-editor(v-if='curPage' :value='curPage.template')
 
 </template>
 
@@ -88,7 +86,20 @@
 				curSet: null,
 				loadImg: false,
 				newForm: null,
-				curPage: null,
+				curPage: {template: "\n" +
+					"Виробнича компанія «Благобуд» розвиває систему офіційної дистрибуції. \n" +
+					"МИ ПРОПОНУЄМО: \n" +
+					"• особливі умови співпраці, \n" +
+					"• продукцію, виготовлену відповідно до державних стандартів якості, \n" +
+					"• забезпечення рекламними матеріалами і демонстраційними зразками, \n" +
+					"• своєчасне інформування про нові товари, рекламні акції, участь на виставках, форумах. \n" +
+					"\n" +
+					"З питань співпраці, просимо вас звертатись за контактними даними: \n" +
+					"\n" +
+					"Олександр Ткач \n" +
+					"(068) 630-00-07 \n" +
+					"sale.blagobud@ukr.net"},
+				// curPage: null,
 				categories: {
 					vert: "Вертикальні елементи",
 					pave: "Тротуарна плитка",

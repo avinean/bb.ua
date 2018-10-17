@@ -5,6 +5,7 @@ import Slider from './veiw/components/Slider'
 import Popup from './veiw/components/Popup'
 import Up from './veiw/components/Up'
 import ImgLoader from './veiw/components/ImgLoader'
+import TextEditor from './veiw/components/TextEditor'
 
 export default [
 	{name: 'page-header', comp: Header},
@@ -14,4 +15,5 @@ export default [
 	{name: 'popup', comp: Popup},
 	{name: 'up', comp: Up},
 	{name: 'img-loader', comp: ImgLoader},
+	{name: 'text-editor', comp: TextEditor},
 ]

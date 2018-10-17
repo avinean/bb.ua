@@ -115,22 +115,4 @@
             cursor: pointer;
         }
     }
-
-    .transpiler {
-        width: 100vw;
-        height: 100vh;
-        position: fixed;
-
-        .panel {
-            height: 30px;
-            background: #ece7e7;
-            box-shadow: 0 0 7px 0;
-        }
-
-        .screen {
-            background: white;
-            height: 100vh;
-            padding: 20px;
-        }
-    }
 }
