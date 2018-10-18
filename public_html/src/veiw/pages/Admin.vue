@@ -128,11 +128,11 @@
 						table: "colors",
 						data: null
 					},
-					{
-						name: "Контакти",
-						table: "contacts",
-						data: null
-					},
+					// {
+					// 	name: "Контакти",
+					// 	table: "contacts",
+					// 	data: null
+					// },
 					{
 						name: "Сторінки",
 						table: "pages",

@@ -3,11 +3,12 @@
 use App\Model\Admin;
 
 $app->respond(['GET', 'POST'], '/admin', function($req, $res, $ser) {
+	$config = require_once($_SERVER['DOCUMENT_ROOT'].'/../blagobudvk.com.ua/config/config.php');
     if (
         !isset($_POST['user']) ||
         !isset($_POST['pass']) || 
-        @$_POST['user'] !== "admin" ||
-        @$_POST['pass'] !== "admin2018"
+        @$_POST['user'] !== $config['admin']['login'] ||
+        @$_POST['pass'] !== $config['admin']['pass']
     ) {
 		$ser->render('admin.html');
     }
