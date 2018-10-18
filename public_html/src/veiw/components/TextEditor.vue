@@ -1,38 +1,48 @@
 <template lang="pug">
 	.text-editor
 		.panel
-		<!--general formatting h1, h2, h3-->
-			select(v-model='format' @change="formatDoc('formatblock', format)")
-				option(selected) Форматування
-				option(v-for='v,k in formats' :value='k') {{v}}
-		<!--Font style-->
-			select(v-model='font' @change="formatDoc('fontname', font)")
-				option(selected) Шрифт
-				option(v-for='v,k in fonts' :value='v') {{v}}
-		<!--Font size-->
-			select(v-model='fontsize' @change="formatDoc('fontsize', fontsize)")
-				option(selected) Розмір шрифта
-				option(v-for='v,k in fontsizes' :value='k') {{v}}
-		<!--Font color-->
-			select(v-model='forecolor' @change="formatDoc('forecolor', forecolor)")
-				option(selected) Колір тексту
-				option(v-for='v,k in forecolors' :value='k') {{v}}
-		<!--Background color-->
-			select(v-model='backcolor' @change="formatDoc('backcolor', backcolor)")
-				option(selected) Фон тексту
-				option(v-for='v,k in backcolors' :value='k') {{v}}
-			i.fas.fa-undo(@click="formatDoc('undo')")
-			i.fas.fa-redo(@click="formatDoc('redo')")
-			i.fas.fa-eraser(@click="formatDoc('removeFormat')")
-			i.fas.fa-bold(@click="formatDoc('bold')")
-			i.fas.fa-italic(@click="formatDoc('italic')")
-			i.fas.fa-underline(@click="formatDoc('underline')")
-			i.fas.fa-align-left(@click="formatDoc('justifyleft')")
-			i.fas.fa-align-center(@click="formatDoc('justifycenter')")
-			i.fas.fa-align-right(@click="formatDoc('justifyright')")
-
-		.screen(contenteditable='true')
-			p(v-html='value')
+			.toolbar
+				<!--select(v-model='format' @change="formatDoc('formatblock', format)")-->
+					<!--option(selected) Форматування-->
+					<!--option(v-for='v,k in formats' :value='k') {{v}}-->
+				<!--select(v-model='font' @change="formatDoc('fontname', font)")-->
+					<!--option(selected) Шрифт-->
+					<!--option(v-for='v,k in fonts' :value='v') {{v}}-->
+				select(v-model='fontsize' @change="formatDoc('fontsize', fontsize)")
+					option(selected) Розмір шрифта
+					option(v-for='v,k in fontsizes' :value='k') {{v}}
+				<!--select(v-model='forecolor' @change="formatDoc('forecolor', forecolor)")-->
+					<!--option(selected) Колір тексту-->
+					<!--option(v-for='v,k in forecolors' :value='k') {{v}}-->
+				<!--select(v-model='backcolor' @change="formatDoc('backcolor', backcolor)")-->
+					<!--option(selected) Фон тексту-->
+					<!--option(v-for='v,k in backcolors' :value='k') {{v}}-->
+				<!--button.fas.fa-undo(@click.prevent="formatDoc('undo')")-->
+				<!--button.fas.fa-redo(@click.prevent="formatDoc('redo')")-->
+				button.fas.fa-eraser(@click.prevent="formatDoc('removeFormat')")
+				button.fas.fa-bold(@click.prevent="formatDoc('bold')")
+				button.fas.fa-italic(@click.prevent="formatDoc('italic')")
+				button.fas.fa-underline(@click.prevent="formatDoc('underline')")
+				button.fas.fa-align-left(@click.prevent="formatDoc('justifyleft')")
+				button.fas.fa-align-center(@click.prevent="formatDoc('justifycenter')")
+				button.fas.fa-align-right(@click.prevent="formatDoc('justifyright')")
+				button.fas.fa-list-ol(@click.prevent="formatDoc('insertorderedlist')")
+				button.fas.fa-list-ul(@click.prevent="formatDoc('insertunorderedlist')")
+				<!--button.fas.fa-quote-right(@click.prevent="formatDoc('formatblock','blockquote')")-->
+				button.fas.fa-outdent(@click.prevent="formatDoc('outdent')")
+				button.fas.fa-indent(@click.prevent="formatDoc('indent')")
+				button.fas.fa-link(@click.prevent="createLink()")
+				<!--button.fas.fa-cut(@click.prevent="formatDoc('cut')")-->
+				<!--button.fas.fa-copy(@click.prevent="formatDoc('copy')")-->
+				<!--button.fas.fa-paste(@click.prevent="formatDoc('paste')")-->
+			.closebar
+				button(@click='close(1)')
+					i.far.fa-save.brand
+					| &#32;&#32;&#32;&#32;Зберегти
+				button(@click='close(0)')
+					i.far.fa-slose.brand
+					| &#32;&#32;&#32;&#32;Закрити без збереження
+		div.screen(ref='editor' contenteditable v-html='value')
 </template>
 
 <script>
@@ -41,7 +51,6 @@
 		props: ['value'],
 		data() {
 			return {
-				test: '',
 				format: '',
 				formats: {
 					h1: 'Заголовок 1 <h1>',
@@ -62,13 +71,13 @@
 				],
 				fontsize: '',
 				fontsizes: {
-					1: 'Very small',
-					2: 'A bit small',
-					3: 'Normal',
-					4: 'Medium-large',
-					5: 'Big',
-					6: 'Very big',
-					7: 'Maximum',
+					1: 'Мінімальний',
+					2: 'Маленький',
+					3: 'Менший',
+					4: 'Середній',
+					5: 'Більший',
+					6: 'Великий',
+					7: 'Максимальний',
 				},
 				forecolor: '',
 				forecolors: {
@@ -87,28 +96,50 @@
 		},
 		methods: {
 			formatDoc(cmd, val) {
-				console.log(cmd);
-				console.log(val);
-				let a = document.execCommand(cmd, false, val);
-				console.log(a);
+				let a = window.document.execCommand(cmd, false, val)
+			},
+			createLink() {
+				let link = prompt('Write the URL here','http:\/\/')
+
+				if(link && link != '' && link != 'http://'){
+					this.formatDoc('createlink', link)
+				}
+			},
+			close(mode) {
+				let html = this.$refs.editor.innerHTML;
+				this.$emit('close', mode ? {html} : null)
 			}
-		},
-		mounted() {
-			this.text = this.value;
 		}
 	}
 </script>
 
 <style lang="scss" scoped>
+	@import "@/scss/var.scss";
+
 	.text-editor {
 		width: 100vw;
 		height: 100vh;
 		position: fixed;
 
 		.panel {
-			height: 30px;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			height: 50px;
+			padding: 0 20px;
 			background: #ece7e7;
-			box-shadow: 0 0 7px 0;
+			box-shadow: inset 0 0 17px -6px;
+
+			button {
+				padding: 6px 8px;
+				color: $brand;
+			}
+
+			select {
+				height: 26px;
+				width: 150px;
+				font-size: 17px;
+			}
 		}
 
 		.screen {

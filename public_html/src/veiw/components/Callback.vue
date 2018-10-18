@@ -1,5 +1,5 @@
 <template lang="pug">
-	div
+	div.callback
 		template(v-if='simple')
 			.bb-btn.brand.wide(@click='show = 1') Замовити консультацію
 		template(v-else)

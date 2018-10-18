@@ -8,7 +8,7 @@
 				) {{i.name}}
 		.admin-body(
 			v-if='curSet && curSet.data'
-			:class='curSet.table == "pages" ? "flexbox" : ""'
+			:class='curSet.table == "pages" ? "flexbox flex-wrap" : ""'
 		)
 			template(v-if='curSet.table == "pages"')
 				div.page-esc(v-for='page in curSet.data' @click='curPage = page')
@@ -67,7 +67,7 @@
 									input(v-model='newForm[k]')
 				.bb-btn.brand(@click='addRow(newForm)') Зберегти
 		transition(name='appear')
-			text-editor(v-if='curPage' :value='curPage.template')
+			text-editor(v-if='curPage' :value='curPage.template' @close='changePageData')
 
 </template>
 
@@ -86,20 +86,7 @@
 				curSet: null,
 				loadImg: false,
 				newForm: null,
-				curPage: {template: "\n" +
-					"Виробнича компанія «Благобуд» розвиває систему офіційної дистрибуції. \n" +
-					"МИ ПРОПОНУЄМО: \n" +
-					"• особливі умови співпраці, \n" +
-					"• продукцію, виготовлену відповідно до державних стандартів якості, \n" +
-					"• забезпечення рекламними матеріалами і демонстраційними зразками, \n" +
-					"• своєчасне інформування про нові товари, рекламні акції, участь на виставках, форумах. \n" +
-					"\n" +
-					"З питань співпраці, просимо вас звертатись за контактними даними: \n" +
-					"\n" +
-					"Олександр Ткач \n" +
-					"(068) 630-00-07 \n" +
-					"sale.blagobud@ukr.net"},
-				// curPage: null,
+				curPage: null,
 				categories: {
 					vert: "Вертикальні елементи",
 					pave: "Тротуарна плитка",
@@ -198,12 +185,6 @@
 				}
 			}
 		},
-		computed: {
-			resTemplate() {
-				let newTemplate = this.curPage.template;
-				return newTemplate;
-			}
-		},
 		methods: {
 			async load() {
 				if (!this.curSet.data) {
@@ -224,6 +205,19 @@
 						data
 					}
 				}))
+			},
+			async changePageData(data) {
+				if (data) {
+					this.curPage.template = data.html;
+					let res = (await this.admin({
+						methodName: 'changePageData',
+						opts: {
+							table: this.curSet.table,
+							data: this.curPage
+						}
+					}))
+				}
+				this.curPage = null;
 			},
 			async deleteRow(id) {
 				let res = (await this.admin({
