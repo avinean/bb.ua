@@ -8,7 +8,7 @@
 				) {{i.name}}
 		.admin-body(
 			v-if='curSet && curSet.data'
-			:class='curSet.table == "pages" ? "flexbox" : ""'
+			:class='curSet.table == "pages" ? "flexbox flex-wrap" : ""'
 		)
 			template(v-if='curSet.table == "pages"')
 				div.page-esc(v-for='page in curSet.data' @click='curPage = page')
@@ -67,9 +67,7 @@
 									input(v-model='newForm[k]')
 				.bb-btn.brand(@click='addRow(newForm)') Зберегти
 		transition(name='appear')
-			.transpiler(v-if='curPage')
-				.panel
-				.screen(v-html='curPage.template')
+			text-editor(v-if='curPage' :value='curPage.template' @close='changePageData')
 
 </template>
 
@@ -130,11 +128,11 @@
 						table: "colors",
 						data: null
 					},
-					{
-						name: "Контакти",
-						table: "contacts",
-						data: null
-					},
+					// {
+					// 	name: "Контакти",
+					// 	table: "contacts",
+					// 	data: null
+					// },
 					{
 						name: "Сторінки",
 						table: "pages",
@@ -187,93 +185,66 @@
 				}
 			}
 		},
-		computed: {
-			resTemplate() {
-				let newTemplate = this.curPage.template;
-				return newTemplate;
-			}
-		},
 		methods: {
 			async load() {
 				if (!this.curSet.data) {
-					this.curSet.data = (await this.admin({
-						methodName: 'getRows',
-						opts: {
-							table: this.curSet.table
-						}
-					})).data
+					let table = this.curSet.table;
+					this.curSet.data = (await this.admin('getRows', {table})).data;
 				}
 			},
-			async changeText(data, key) {
-				let res = (await this.admin({
-					methodName: 'changeField',
-					opts: {
-						table: this.curSet.table,
-						key,
-						data
-					}
-				}))
+			changeText(data, key) {
+				let table = this.curSet.table;
+				this.admin('changeField',{table,key,data});
+			},
+			async changePageData(data) {
+				if (data) {
+					console.log(data);
+					this.curPage.template = data.html;
+					let table = this.curSet.table;
+					let data = this.curPage;
+					let res = await this.admin('changePageData', {table, data});
+				}
+				this.curPage = null;
 			},
 			async deleteRow(id) {
-				let res = (await this.admin({
-					methodName: 'deleteRow',
-					opts: {
-						table: this.curSet.table,
-						id
-					}
-				}))
+				let table = this.curSet.table;
+				await this.admin('deleteRow', {table,id});
 				this.curSet.data = this.curSet.data.filter(e => {
 					return e.id != id
 				})
 			},
 			async imgLoaded(url) {
 				if (url) {
-					let res = (await this.admin({
-						methodName: 'changeField',
-						opts: {
-							table: this.curSet.table,
-							key: 'img',
-							data: {...this.loadImg, img: url}
-						}
-					}))
+					let table = this.curSet.table;
+					let key = 'img';
+					let data = {...this.loadImg, img: url};
+					await this.admin('changeField',{table,key,data});
 					this.loadImg.img = url
 				}
 				this.loadImg = null
 			},
 			async addRow(data) {
-				let res = (await this.admin({
-					methodName: 'addRow',
-					opts: {
-						table: this.curSet.table,
-						data
-					}
-				}))
+				let table = this.curSet.table;
+				await this.admin('addRow',{table, data});
 				if (res) {
 					this.curSet.data.push(data)
 					this.newForm = null
 				}
 			},
 			async showForm() {
-				let form = {}
-				let i = (await this.admin({
-					methodName: 'getFields',
-					opts: {
-						table: this.curSet.table
-					}
-				})).data
+				let table = this.curSet.table;
+				let form = {};
+				let i = (await this.admin('getFields', {table})).data;
 				i.forEach(e => {
 					if (e == 'id' || e == 'datetime') {}
 					else {
 						form[e] = null;
 					}
-				})
+				});
 				this.newForm = form
 			},
 			async getColors() {
-				this.colors = (await this.admin({
-					methodName: 'getColors',
-					opts: {}
-				})).data
+				this.colors = (await this.admin('getColors')).data;
 			}
 		},
 		watch: {

@@ -1,12 +1,12 @@
 <template lang="pug">
-	div
+	div.callback-wrap
 		template(v-if='simple')
 			.bb-btn.brand.wide(@click='show = 1') Замовити консультацію
 		template(v-else)
 			.callback(@mouseenter='stop' @mouseleave='start' @click='show = phone' :style='"bottom: " + bottom + "px"')
 				i.fas(:class="phone ? 'fa-phone' : 'fa-envelope'")
 				| {{phone ? 'Замовте дзвінок' : 'Напишіть, що вас цікавить'}}
-			.clearfix
+			<!--.clearfix-->
 		popup(v-if='show !== null' @close='show = null')
 			template(slot='head') {{ show ? 'Ми зателефонуємо Вам на протязі 15 хвилин' : 'Напишіть, що Вас цікавить?'}}
 			.form(slot='body')

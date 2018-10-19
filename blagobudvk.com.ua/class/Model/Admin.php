@@ -20,6 +20,22 @@ class Admin extends Model {
 		return $this->db->query($query)->fetchAll();
 	}
 
+	public function changePageData($opts = []) {
+
+		$set = [];
+
+		foreach ($opts['data'] as $key => $val) {
+			$set[] = $this->db->escape($key).' = '.$this->db->quote($val);
+		}
+
+		$query = '
+			UPDATE '.$this->db->escape($opts['table']).'
+			SET '.implode(',', $set).'
+			WHERE id = '.intval($opts['data']['id']);
+
+		return $this->db->query($query)->fetchAll();
+	}
+
 	public function addRow($opts = []) {
 
 		$keys = [];

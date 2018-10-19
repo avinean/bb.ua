@@ -1,5 +1,7 @@
 <?php
 
+use App\Model\Admin;
+
 function route($path) {
 	global $app;
 
@@ -16,8 +18,6 @@ function route($path) {
 	});
 
 }
-
-route('/test');
 
 route('/');
 route('/gallery');
@@ -38,5 +38,38 @@ route('/catalog');
 route('/catalog/[:action]');
 route('/catalog/[:action]/[:id]');
 
-require_once ROOT . '/router/router.php';
-require_once ROOT . '/router/admin.php';
+$app->respond(['GET', 'POST'], '/api/request', function($req, $res, $ser) {
+	$params = $req->params();
+	$className = 'App\\Model\\' . $params['className'];
+	$methodName = $params['methodName'];
+	$ins = new $className();
+	$opts = @$params['opts'] ?: '[]';
+
+	$result = $ins->$methodName(json_decode($opts, 1));
+	return is_array($result) ? $res->json($result) : $result;
+});
+
+//admin
+
+$app->respond(['GET', 'POST'], '/admin', function($req, $res, $ser) {
+	$config = require_once($_SERVER['DOCUMENT_ROOT'].'/../blagobudvk.com.ua/config/config.php');
+	if (
+		!isset($_POST['user']) ||
+		!isset($_POST['pass']) ||
+		@$_POST['user'] !== $config['admin']['login'] ||
+		@$_POST['pass'] !== $config['admin']['pass']
+	) $ser->render('admin.html');
+	else $ser->render('index.html');
+});
+
+$app->respond('POST', '/secure/admin', function($req, $res, $ser) {
+	$params = $req->params();
+	$methodName = $params['methodName'];
+	$result = Admin::c()->$methodName(json_decode($params['opts'], 1));
+	return is_array($result) ? $res->json($result) : $result;
+});
+
+$app->respond('POST', '/secure/upload', function($req, $res, $ser) {
+	$result = Admin::c()->uploadImg($req->params()['folder']);
+	return is_array($result) ? $res->json($result) : $result;
+});

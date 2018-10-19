@@ -2,6 +2,10 @@
 /public_html/node_modules/
 /blagobudvk.com.ua/vendor/
 /blagobudvk.com.ua/composer.phar
+<<<<<<< HEAD
+=======
+/blagobudvk.com.ua/config/
+>>>>>>> 43b2b86f614ba16ff35117851af48462ea24bd4f
 /public_html/main.js
 
 
