@@ -15,4 +15,5 @@ class Model extends Singleton {
     public function json($arr = []) {
         return json_encode($arr);
     }
+
 }
