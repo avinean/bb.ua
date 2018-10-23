@@ -47,8 +47,6 @@
 					i.far.fa-slose.brand
 					| &#32;&#32;&#32;&#32;Закрити без збереження
 		div.screen(ref='editor' contenteditable v-html='value')
-		transition(name='appear')
-			img-loader(v-if='loadImg' @close='imgLoaded' :data='loadImg')
 </template>
 
 <script>
@@ -115,25 +113,12 @@
 				this.fontsize = '';
 				this.lineheight = '';
 			},
-			formatLineHeight() {
-				console.log(window.getSelection());
-
-				this.fontsize = '';
-				this.lineheight = '';
-			},
 			createLink() {
 				let link = prompt('Write the URL here','http:\/\/')
 
 				if(link && link != '' && link != 'http://'){
 					this.formatDoc('createlink', link)
 				}
-			},
-			imgLoaded(e) {
-				if (e) {
-					let link = e.replace(/\/\.\//, '/');
-					this.formatDoc('insertImage', link);
-				}
-				this.loadImg = null
 			},
 			close(mode) {
 				let html = this.$refs.editor.innerHTML;
