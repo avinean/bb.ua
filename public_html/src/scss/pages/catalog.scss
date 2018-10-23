@@ -8,7 +8,8 @@
         justify-content: center;
         .good-item {
             position: relative;
-            width: 400px;
+            width: calc(50% - 60px);
+            min-width: 400px;
             height: 400px;
             margin: 30px;
             text-decoration: none;
@@ -36,7 +37,7 @@
                 transition: all ease .5s;
 
                 .btn {
-                    background: blue;
+                    background: $brand;
                     color: white;
                     width: 150px;
                     height: 45px;

@@ -13,9 +13,9 @@
 						.date
 							i.fas.fa-calendar-alt
 							|   {{item.datetime}}
-						.description {{item.description.slice(0, 100) + ' ...'}}
+						.description(v-html="item.description.slice(0, 100) + ' ...'")
 						router-link.link(:to='"/" + page + "/" + item.id') Читати далі >
-				.bb-btn.mid.cherry(@click='loadRows') Показати більше
+				.bb-btn.mid.brand(@click='loadRows') Показати більше
 			template(v-else) На даний період {{classes[this.page].title.toLowerCase()}} відсутні.
 		router-link.banner(
 			:to='"/catalog/"'
@@ -86,4 +86,4 @@
 	}
 </script>
 
-<style lang="scss" scoped src="@/scss/pages/withbanner-page.scss"></style>
+<style lang="scss" scoped src="@/scss/pages/articles.scss"></style>

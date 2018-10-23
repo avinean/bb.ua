@@ -16,7 +16,7 @@
 					.text
 						.wrap
 							.title {{item.title}}
-							.desc {{item.description}}
+							.desc(v-html='item.description')
 </template>
 
 <script>

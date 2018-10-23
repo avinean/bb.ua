@@ -9,6 +9,7 @@ class Mail extends Model {
 
 	private function getMailer() {
 		$mail = new PHPMailer();
+		$mail->CharSet = "utf-8";
 		$mail->SMTPDebug = 2;                                 // Enable verbose debug output
 		$mail->isSMTP();                                      // Set mailer to use SMTP
 		$mail->Host = 'uashared12.twinservers.net';  // Specify main and backup SMTP servers
@@ -34,7 +35,7 @@ class Mail extends Model {
 
 	}
 
-	public function send($body = 'From blagobudvk.com.ua', $subj = 'blagobudvk.com.ua', $altBody) {
+	public function send($body = 'From blagobudvk.com.ua', $subj = 'blagobudvk.com.ua', $altBody = '') {
 		$altBody = $altBody ?: $body;
 		try {
 			$mail = $this->getMailer();

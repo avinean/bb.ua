@@ -11,6 +11,9 @@
 				select(v-model='fontsize' @change="formatDoc('fontsize', fontsize)")
 					option(selected) Розмір шрифта
 					option(v-for='v,k in fontsizes' :value='k') {{v}}
+				select(v-model='lineheight' @change="formatLineHeight")
+					option(selected) Висота строки
+					option(v-for='v,k in lineheights' :value='k') {{v}}
 				<!--select(v-model='forecolor' @change="formatDoc('forecolor', forecolor)")-->
 					<!--option(selected) Колір тексту-->
 					<!--option(v-for='v,k in forecolors' :value='k') {{v}}-->
@@ -32,6 +35,7 @@
 				button.fas.fa-outdent(@click.prevent="formatDoc('outdent')")
 				button.fas.fa-indent(@click.prevent="formatDoc('indent')")
 				button.fas.fa-link(@click.prevent="createLink()")
+				<!--button.fas.fa-image(@click.prevent="loadImg = {folder:'.'}")-->
 				<!--button.fas.fa-cut(@click.prevent="formatDoc('cut')")-->
 				<!--button.fas.fa-copy(@click.prevent="formatDoc('copy')")-->
 				<!--button.fas.fa-paste(@click.prevent="formatDoc('paste')")-->
@@ -62,6 +66,14 @@
 					p: 'Параграф <p>',
 					pre: 'Неформатований текст <pre>',
 				},
+				lineheight: '',
+				lineheights: {
+					'100%': 100,
+					'150%': 150,
+					'200%': 200,
+					'250%': 250,
+					'300%': 300,
+				},
 				font: '',
 				fonts: [
 					'Arial',
@@ -91,12 +103,15 @@
 					red: 'Red',
 					green: 'Green',
 					black: 'Black',
-				}
+				},
+				loadImg: null
 			}
 		},
 		methods: {
 			formatDoc(cmd, val) {
-				let a = window.document.execCommand(cmd, false, val)
+				window.document.execCommand(cmd, false, val);
+				this.fontsize = '';
+				this.lineheight = '';
 			},
 			createLink() {
 				let link = prompt('Write the URL here','http:\/\/')
@@ -109,6 +124,9 @@
 				let html = this.$refs.editor.innerHTML;
 				this.$emit('close', mode ? {html} : null)
 			}
+		},
+		mounted() {
+			// window.document.execCommand('styleWithCSS', true);
 		}
 	}
 </script>
@@ -128,16 +146,16 @@
 			height: 50px;
 			padding: 0 20px;
 			background: #ece7e7;
-			box-shadow: inset 0 0 17px -6px;
+				box-shadow: inset 0 0 17px -6px;
 
-			button {
-				padding: 6px 8px;
-				color: $brand;
-			}
+				button {
+					padding: 6px 8px;
+					color: $brand;
+				}
 
-			select {
-				height: 26px;
-				width: 150px;
+				select {
+					height: 26px;
+					width: 150px;
 				font-size: 17px;
 			}
 		}
@@ -148,6 +166,7 @@
 			height: 100vh;
 			width: 100vw;
 			padding: 20px;
+			overflow-y: scroll;
 		}
 	}
 </style>

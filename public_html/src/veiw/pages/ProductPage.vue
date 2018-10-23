@@ -4,24 +4,24 @@
 			.content-block(v-if='this.item') 
 				.card
 					.image(:style='"background-image: url(" + item.img + ")"')
-						<!--img(:src='item.img')-->
+						span {{item.price}} грн
 					.short-info
 						.title {{item.title}}
 						hr.devider
-						.hz Виняткова універсальність
-						.bb-btn.wide.brand(@click='showPopup = {}') Оформити замовлення
+						.hz  {{item.description}}
+						.bb-btn.wide.cherry(@click='showPopup = {}') Оформити замовлення
 				.full-info
 					.info-row(v-for='title, key in characs' v-if='item[key]')
 						strong.key {{title}}: 
 						.val {{item[key]}}
-		.contact-us(style='background-image: url(/img/plug/trot.jpg)')
+		.contact-us
 			.bgc
 				.title
 					h3 Виникли питання?
 					p Заповніть номер телефону та отримайте безкоштовну консультаці від наших менеджерів
 				.form
 					input(v-model='phone' placeholder='Ваш номер телефону')
-					.btn(@click='send(0)') Замовити консультацію
+					.snow.btn(@click='send(0)') Замовити консультацію
 		.inner-wrapper
 			.vereteno
 				h3 Супутні товари
@@ -37,9 +37,9 @@
 			.form(slot='body')
 					input.input-field(v-model='showPopup.name' placeholder="Вкажіть Ваше ім'я")
 					input.input-field(v-model='showPopup.phone' placeholder='Вкажіть номер Вашого телефону')
-					input.input-field(v-model='showPopup.cnt' placeholder='Вкажіть кількість')
+					input.input-field(v-model='showPopup.cnt' placeholder='Вкажіть кількість, м2')
 			div(slot='foot')
-				.bb-btn.brand(@click='send(1)') Відправити
+				.bb-btn.cherry(@click='send(1)') Відправити
 </template>
 
 <script>

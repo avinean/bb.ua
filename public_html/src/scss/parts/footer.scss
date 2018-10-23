@@ -3,17 +3,16 @@
 
 .footer {
     position: relative;
-    padding: 20px 0;
-    min-height: 300px;
+    display: flex;
+    flex-direction: column;
     width: 100vw;
-    background: #282828;
-
+    background: $footer;
 
     .footer-body {
-
         width: 100%;
         display: flex;
         flex-wrap: wrap;
+        flex: auto;
 
         .contacts {
             flex: 1;
@@ -24,21 +23,21 @@
 
             .logo {
                 display: block;
-                width: 250px;
+                height: 70px;
                 margin: 20px auto;
             }
 
             .addr {
-                margin: 5px 0;
+                margin: 10px 0;
                 i {
                     color: $brand;
-                    margin: 0 10px 0 0;
+                    margin: 0 15px 0 0;
                 }
                 span, a {
                     color: $snow;
-                    font-size: 16px;
+                    font-size: 15px;
                     &.fa-facebook {
-                        font-size: 35px;
+                        font-size: 34px;
                     }
                     &>img {
                         height: 35px;
@@ -47,9 +46,12 @@
                 a:hover {
                     color: #cd3c3c;
                 }
+                a.fa-facebook:hover {
+                    color: $facebook;
+                }
 
                 .partner>img {
-                    height: 50px;
+                    height: 40px;
                     margin-right: 10px;
                 }
             }
@@ -81,8 +83,8 @@
         }
     }
     .footer-foot {
-        position: absolute;
-        bottom: 0;
+        position: relative;
+        flex-basis: 60px;
         width: 100%;
         margin: auto;
         padding: 10px 0;
@@ -91,6 +93,7 @@
         align-items: center;
         text-align: center;
         font-size: 14px;
+        background: $footer2;
 
         &>div {
             flex: 1;
@@ -109,6 +112,15 @@
                 width: 50px;
             }
         }
+    }
+
+    .admin-gate {
+        display: block;
+        position: absolute;
+        bottom: 15px;
+        right: 35px;
+        color: $brand;
+        font-size: 29px;
     }
 
     @media screen and (max-width: 760px) {

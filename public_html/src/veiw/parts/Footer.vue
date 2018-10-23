@@ -14,12 +14,12 @@
 				p.header1 Приєднуйтесь до нас в соціальних мережах
 				.addr
 					a.fab.fa-facebook(href='https://www.facebook.com/vkblagobud' target='_blank')
-				p.header1 Виробнича компанія "Благобуд" входить до групи компаній Променад
+				p.header1 Виробнича компанія "Благобуд" входить до групи компаній
 				.addr
 					a.partner(href='http://www.promenad.ua/' target='_blank')
 						img(src='/img/partners/promenad.png' alt='promenad')
 			.contacts.info
-				p.header1 Контакти
+				p.header1 КОНТАКТИ
 				.addr
 					i.fas.fa-map-marker-alt
 					span.title Адреса: {{contacts.region}}, <br>{{contacts.district}}
@@ -41,6 +41,7 @@
 				a.logo-brig(href='https://avinean.github.io')
 					img(src='/img/brig.png')
 					.title BRIG Studio
+		a.fas.fa-door-open.admin-gate(href='/admin')
 </template>
 
 <script>

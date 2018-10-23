@@ -2,68 +2,72 @@
 	.main
 		img.logo-mob(src='/img/logo-big-blue.png' alt='Blagobud-logo')
 		slider.slider(v-if="formedSale.length" :items='formedSale' auto='0' interval='7000')
-		.inner-wrapper
-			.inf-icons
-				.inf-ico
-					i.ico.fas.fa-at
-					.lable Онлайн замовлення
-				.inf-ico
-					i.ico.fas.fa-thumbs-up
-					.lable Актуальні ціни
-				.inf-ico
-					i.ico.fas.fa-award
-					.lable Якісна продукція
-				.inf-ico
-					i.ico.fas.fa-shipping-fast
-					.lable Оперативна доставка
-		.inner-wrapper
-			.goods-banner
-				a.good-item(
-					v-for='item in goodsBannerItems'
-					:href='item.url'
-					:style='"background-image: url(" + item.img + ")"'
-					) 
-					.good-item-inner {{item.title}}
-						.btn Детальніше
-		.inner-wrapper
-			.vereteno
-				h3 Популярні товари
-				.vereteno-inner(v-if='goods')
-					i.fas.fa-chevron-circle-left.left.arr(@click='slideVereteno(0)')
-					i.fas.fa-chevron-circle-right.right.arr(@click='slideVereteno(1)')
-					.item(v-for='item in cur')
-						img(:src='goods[item].img')
-						.title {{goods[item].title}}
-						a.bb-btn.cherry(:href='"/catalog/" + goods[item].category + "/" + goods[item].id') Детальніше
-		.news
-			h3 Новини
-			.inner-wrapper
-				template(v-for='item in news')
-					.pos-wrap
-						.pos-left
-							router-link.item(
-									:key='item[0].img + item[0].title + 1'
-									:to='"/news/" + item[0].id'
-									:style='"background-image: url(" + item[0].img + ")"'
-								)
-								.title {{item[0].title}}
-									.date {{item[0].datetime}}
-						.pos-right
-							router-link.item(
-									:key='item[1].img + item[1].title + 2'
-									:to='"/news/" + item[1].id'
-									:style='"background-image: url(" + item[1].img + ")"'
-								)
-								.title {{item[1].title}}
-									.date {{item[1].datetime}}
-							router-link.item(
-									:key='item[2].img + item[2].title + 456'
-									:to='"/news/" + item[2].id'
-									:style='"background-image: url(" + item[2].img + ")"'
-								)
-								.title {{item[2].title}}
-									.date {{item[2].datetime}}
-			.bb-btn.mid.cherry(@click='loadNewsList') Показати більше
+		.inf-icons.inner-wrapper
+			.inf-ico
+				i.ico.fas.fa-at
+				.lable Онлайн замовлення
+			.inf-ico
+				i.ico.fas.fa-thumbs-up
+				.lable Актуальні ціни
+			.inf-ico
+				i.ico.fas.fa-award
+				.lable Якісна продукція
+			.inf-ico
+				i.ico.fas.fa-shipping-fast
+				.lable Оперативна доставка
+		.goods-banner.inner-wrapper
+			a.good-item(
+				v-for='item in goodsBannerItems'
+				:href='item.url'
+				:style='"background-image: url(" + item.img + ")"'
+				)
+				.good-item-inner {{item.title}}
+					.btn Детальніше
+		.vereteno.inner-wrapper
+			h2 Популярні товари
+				.decor
+					span.line
+					span.romb
+					span.line
+			.vereteno-inner(v-if='goods')
+				i.fas.fa-chevron-circle-left.left.arr(@click='slideVereteno(0)')
+				i.fas.fa-chevron-circle-right.right.arr(@click='slideVereteno(1)')
+				.item(v-for='item in cur')
+					img(:src='goods[item].img')
+					.title {{goods[item].title}}
+					a.bb-btn.cherry(:href='"/catalog/" + goods[item].category + "/" + goods[item].id') Детальніше
+		.news.inner-wrapper
+			h2 Новини
+				.decor
+					span.line
+					span.romb
+					span.line
+			template(v-for='item in news')
+				.pos-wrap
+					.pos-left
+						router-link.item(
+								:key='item[0].img + item[0].title + 1'
+								:to='"/news/" + item[0].id'
+								:style='"background-image: url(" + item[0].img + ")"'
+							)
+							.title {{item[0].title}}
+								.date {{item[0].datetime}}
+					.pos-right
+						router-link.item(
+								:key='item[1].img + item[1].title + 2'
+								:to='"/news/" + item[1].id'
+								:style='"background-image: url(" + item[1].img + ")"'
+							)
+							.title {{item[1].title}}
+								.date {{item[1].datetime}}
+						router-link.item(
+								:key='item[2].img + item[2].title + 456'
+								:to='"/news/" + item[2].id'
+								:style='"background-image: url(" + item[2].img + ")"'
+							)
+							.title {{item[2].title}}
+								.date {{item[2].datetime}}
+			.bb-btn.mid.brand(@click='loadNewsList') Показати більше
 
 </template>
 

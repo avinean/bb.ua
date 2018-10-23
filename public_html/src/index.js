@@ -19,13 +19,24 @@ Vue.mixin(Mixins)
 import Components from './components'
 Components.forEach(e => Vue.component(e.name, e.comp))
 
+Vue.config.productionTip = false;
 
-Vue.config.productionTip = false
+new Vue().request({
+		method: 'get',
+		className: 'Info',
+		methodName: 'getFinder'
+	})
+	.then(res => {
+		Vue.prototype.finders = res.data;
+	})
+	.then(_ => {
+		let app = new Vue({
+			el: '#app',
+			router,
+			store,
+			render: e => e(App)
+		});
+	});
 
 
-new Vue({
-	el: '#app',
-	router,
-	store,
-	render: e => e(App)
-})
+

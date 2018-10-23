@@ -7,7 +7,7 @@
 					.contacts-list
 						p: input(v-model='name' placeholder="Ваше ім'я")
 						p.cen: input(v-model='phone' placeholder='Ваш телефон')
-						p: input(v-model='email' placeholder='Ваш email')
+						p: input(v-model='email' placeholder='Ваш e-mail')
 					p: textarea(v-model='msg' placeholder='Ваше повідомлення')
 					.bb-btn.brand(@click='send') Відправити
 		iframe.map(
@@ -37,8 +37,8 @@
 		methods: {
 			async send() {
 				if (!this.name || !this.email || !this.msg || !this.phone) {
-					alert('Будь-ласка, заповніть всі поля!')
-					return
+					alert('Будь-ласка, заповніть всі поля!');
+					return;
 				}
 
 				let res = await this.request({
@@ -51,14 +51,19 @@
 						phone: this.phone,
 						name: this.name,
 					}
-				})
+				});
+
+				this.email = '';
+				this.msg = '';
+				this.phone = '';
+				this.name = '';
 
 				this.$parent.showMessage = `
 					Дякуємо! 
-					<br> Звернення передано до Вашого персонального менеджера. 
+					<br> Звернення передано до Вашого персонального менеджера.
 					<br> На протязі 15 хвилин з Вами зв’яжуться
 				`
-				setTimeout(e => this.$parent.showMessage = null, 4000)
+				setTimeout(e => this.$parent.showMessage = null, 5000)
 			}
 		},
 		mounted() {

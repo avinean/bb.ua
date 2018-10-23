@@ -9,6 +9,7 @@ import Catalog from '@/veiw/pages/Catalog'
 import Products from '@/veiw/pages/Products'
 import ProductPage from '@/veiw/pages/ProductPage'
 import Admin from '@/veiw/pages/Admin'
+import Search from '@/veiw/pages/Search'
 
 Vue.use(Router)
 
@@ -99,6 +100,11 @@ export default new Router({
 			path: '/catalog/:category/:id',
 			name: 'ProductPage',
 			component: ProductPage
+		},
+		{
+			path: '/search',
+			name: 'Search',
+			component: Search
 		}
 	]
 })

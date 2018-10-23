@@ -8,15 +8,18 @@
 				)
 			.address
 				i.fas.fa-map-marked-alt
-				span Адреса:<br>
-					| {{contacts.city}}, {{contacts.street}}
+				span
+					strong Адреса:<br>
+					| {{contacts.city}}, <br>{{contacts.street}}
 			.time
 				i.fas.fa-clock
-				span Графік роботи:
+				span
+					strong Графік роботи:
 					|<br> Пн-Cб з 8.00 до 18.00
 			.access
 				i.fas.fa-at
-				span Приймання замовлень онлайн:
+				span
+					strong Приймання замовлень онлайн:
 					|<br> Цілодобово
 			.phone
 				i.fab.fa-viber.brand
@@ -31,6 +34,7 @@
 							:to='page.url'
 						) {{page.name}}
 							.after
+					finder
 			.nav-list(v-show='children' :style='"left: " + listPos + "px"')
 				.arr
 				.nav-item(v-for='child in children')

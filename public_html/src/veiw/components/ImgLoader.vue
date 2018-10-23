@@ -43,11 +43,11 @@
 					'/secure/upload', 
 					this.picData, 
 					{headers: {'Content-Type': 'multipart/form-data'}}
-					)
+					);
 				this.uploadedPic = res.data;
 			},
 			close(url) {
-				url = url.toUpperCase ? url : null
+				url = url.toUpperCase ? url : null;
 				this.$emit('close', url)
 			}
 		}

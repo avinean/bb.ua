@@ -13,18 +13,51 @@
     #app {
         display: flex;
         flex-direction: column;
-        padding-top: 130px;
+        padding-top: 161px;
         overflow: hidden;
         font-size: 18px;
 
         .main-block {
-            padding-top: 50px;
+            min-height: 60vh;
+            padding: 32px 0;
         }
 
         .inner-wrapper, .withbanner-page {
             width: 80%;
             min-width: 1024px;
             margin: 0 auto;
+
+            h2 {
+                font-size: 30px;
+                font-weight: bold;
+                text-align: center;
+                text-transform: uppercase;
+                padding: 20px;
+                color: #5d5c5c;
+
+                .decor {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    .line, .romb {
+                        display: inline-block;
+                        background: #5d5c5c;
+                    }
+
+                    .line {
+                        width: 98px;
+                        height: 1px;
+                    }
+
+                    .romb {
+                        width: 11px;
+                        height: 11px;
+                        transform: rotate(45deg);
+                        margin: 5px 10px;
+                    }
+                }
+            }
 
             @media screen and (max-width: 1024px) {
                 width: 100%;
@@ -41,6 +74,7 @@
                 flex-basis: 750px;
                 flex-grow: 1;
                 margin-right: 50px;
+                padding: 50px 0;
             }
 
             .banner {
@@ -105,6 +139,13 @@
             padding: 10px;
             background: rgba(0, 72, 197, .9);
             transition: all ease .5s;
+        }
+
+        .message {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
         }
 
         .clearfix {

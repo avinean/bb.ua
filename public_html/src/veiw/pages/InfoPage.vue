@@ -37,7 +37,7 @@
 				})
 
 				this.title = res.data.title
-				this.content = res.data.template
+				this.content = res.data.description
 			}
 		},
 		watch: {
