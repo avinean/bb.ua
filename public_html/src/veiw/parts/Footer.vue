@@ -41,6 +41,7 @@
 				a.logo-brig(href='https://avinean.github.io')
 					img(src='/img/brig.png')
 					.title BRIG Studio
+		a.fas.fa-door-open.admin-gate(href='/admin')
 </template>
 
 <script>
