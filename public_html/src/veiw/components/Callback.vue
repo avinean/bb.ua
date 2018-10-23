@@ -3,8 +3,8 @@
 		template(v-if='simple')
 			.bb-btn.brand.wide(@click='show = 1') Замовити консультацію
 		template(v-else)
-			.callback(@mouseenter='stop' @mouseleave='start' @click='show = phone' :style='"bottom: " + bottom + "px"')
-				i.fas(:class="phone ? 'fa-phone' : 'fa-envelope'")
+			.callback.bg-brand(@mouseenter='stop' @mouseleave='start' @click='show = phone' :style='"bottom: " + bottom + "px"')
+				i.cherry.fas(:class="phone ? 'fa-phone' : 'fa-envelope'")
 				| {{phone ? 'Замовте дзвінок' : 'Напишіть, що вас цікавить'}}
 			<!--.clearfix-->
 		popup(v-if='show !== null' @close='show = null')
@@ -15,9 +15,8 @@
 					input.input-field(v-model='showPopup.phone' placeholder='Вкажіть номер Вашого телефону')
 				template(v-else)
 					input.input-field(v-model='showPopup.name' placeholder="Вкажіть Ваше ім'я")
-					input.input-field(v-model='showPopup.email' placeholder='Вкажіть Ваш email')
-					input.input-field(v-model='showPopup.viber' placeholder='Вкажіть Ваш viber')
-					input.input-field(v-model='showPopup.watsapp' placeholder='Вкажіть Ваш watsapp')
+					input.input-field(v-model='showPopup.email' placeholder='Вкажіть Ваш e-mail')
+					input.input-field(v-model='showPopup.viber' placeholder='Вкажіть Ваш viber\watsapp')
 					textarea.input-field(v-model='showPopup.msg')
 			div(slot='foot')
 				.bb-btn.cherry(@click='send(show)') Відправити
@@ -58,12 +57,12 @@
 				let opts = this.showPopup;
 				opts.type = opt;
 
-				if (opt && !this.showPopup.phone) {
-					alert('Введіть будь-ласка Ваш номер телефону');
+				if (opt && !this.showPopup.phone && !this.showPopup.name) {
+					alert('Будь-ласка, заповніть всі поля!');
 					return
 				}
-				if (!opt && !this.showPopup.email) {
-					alert('Вкажіть будь-ласка Ваш email');
+				if (!opt && !this.showPopup.email && !this.showPopup.name) {
+					alert('Будь-ласка, заповніть всі поля!');
 					return
 				}
 
@@ -94,4 +93,36 @@
 	}
 </script>
 
-<style lang="scss" scoped src="@/scss/components/callback.scss"></style>
+<style lang="scss" scoped>
+	.callback {
+		width: 350px;
+		float: right;
+		padding: 10px;
+		cursor: pointer;
+		color: white;
+		position: fixed;
+		bottom: 0;
+		right: 0;
+		z-index: 1;
+
+		&>i {
+			background: white;
+			padding: 10px;
+			border-radius: 100%;
+			margin: 0 10px;
+		}
+
+		@media screen and (max-width: 760px) {
+			display: none;
+		}
+	}
+
+	.input-field {
+		display: block;
+		width: 80%;
+		height: 200px;
+		margin: 20px auto;
+		padding: 10px;
+		font-style: italic;
+	}
+</style>

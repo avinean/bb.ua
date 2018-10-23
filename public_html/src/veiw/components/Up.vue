@@ -1,6 +1,6 @@
 <template lang="pug">
 	.up(@click='up')
-		i.fas.fa-chevron-circle-up
+		i.dust.fas.fa-chevron-circle-up
 </template>
 
 <script>

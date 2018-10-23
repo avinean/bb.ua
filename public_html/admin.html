@@ -1,10 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+		  content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+<body>
+
+<a href="/" class="arrow">
+	<img src="/img/arrow.png" alt="">
+	<p>Повернутися до сайту</p>
+</a>
 <form method="post" action="/admin">
-	<p>User <br><input type="text" name="user"></p>
-	<p>Password <br><input type="text" name="pass"></p>
-	<input type="submit" value="Enter">
+	<img src="/img/logo-big-blue.png" alt="Blagobud-logo">
+	<p>User <input type="text" name="user"></p>
+	<p>Password <input type="password" name="pass"></p>
+	<input class="bb-btn mid" type="submit" value="Enter">
 </form>
 
 <style>
+
+	.arrow {
+		width: 120px;
+		display: block;
+		text-align: center;
+		text-decoration: none;
+		color: #004d85;
+	}
+	.arrow>img {width: 50%;}
+	.arrow>p {font-size: 10px;}
+
 	form {
 		width: 300px;
 		height: 250px;
@@ -14,15 +41,24 @@
 		bottom: 0;
 		left: 0;
 		margin: auto;
-		box-shadow: 0 0 30px -11px;
-		border-radius: 32px;
+		color: #004d85;
+		border: 3px solid;
+		box-shadow: 0 0 12px 0;
 	}
 
-	p {
-		text-align: center;
+	form>img {
+		display: block;
+		width: 170px;
+		margin: 7px auto;
+	}
+
+	form>p {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
 		padding: 5px;
-		font-size: 16px;
-		font-style: italic;
+		font-size: 18px;
+		font-weight: bold;
 	}
 
 	p>input {
@@ -31,14 +67,29 @@
 		width: 200px;
 	}
 
-	form>input {
-		width: 150px;
-		height: 50px;
+	.bb-btn {
 		display: block;
-		margin: auto;
-		border: none;
-		outline: none;
-		font-size: 30px;
+		border: 2px solid;
+		width: 175px;
+		height: 40px;
+		margin: 20px auto;
+		text-align: center;
+		line-height: 37px;
+		font-size: 23px;
 		cursor: pointer;
+		text-decoration: none;
+		color: #004d85;
+	}
+
+	.bb-btn:hover {
+		background-color: #f0f0e9;
+	}
+
+	.bb-btn:active {
+		position: relative;
+		top: 1px;
+		left: 1px;
 	}
 </style>
+</body>
+</html>

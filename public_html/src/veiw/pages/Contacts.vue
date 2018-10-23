@@ -7,7 +7,7 @@
 					.contacts-list
 						p: input(v-model='name' placeholder="Ваше ім'я")
 						p.cen: input(v-model='phone' placeholder='Ваш телефон')
-						p: input(v-model='email' placeholder='Ваш email')
+						p: input(v-model='email' placeholder='Ваш e-mail')
 					p: textarea(v-model='msg' placeholder='Ваше повідомлення')
 					.bb-btn.brand(@click='send') Відправити
 		iframe.map(
@@ -17,6 +17,9 @@
 			style="border:0; width: 100%" 
 			allowfullscreen
 			)
+		transition(name='appear')
+			popup(v-if='showMessage !== null' @close='showMessage = null')
+				.message(slot='body' v-html='showMessage')
 </template>
 
 <script>
@@ -28,7 +31,8 @@
 				email: '',
 				msg: '',
 				name: '',
-				phone: ''
+				phone: '',
+				showMessage: null
 			}
 		},
 		computed: {
@@ -37,8 +41,8 @@
 		methods: {
 			async send() {
 				if (!this.name || !this.email || !this.msg || !this.phone) {
-					alert('Будь-ласка, заповніть всі поля!')
-					return
+					alert('Будь-ласка, заповніть всі поля!');
+					return;
 				}
 
 				let res = await this.request({
@@ -51,14 +55,19 @@
 						phone: this.phone,
 						name: this.name,
 					}
-				})
+				});
 
-				this.$parent.showMessage = `
+				this.email = '';
+				this.msg = '';
+				this.phone = '';
+				this.name = '';
+
+				this.showMessage = `
 					Дякуємо! 
-					<br> Звернення передано до Вашого персонального менеджера. 
+					<br> Звернення передано до Вашого персонального менеджера.
 					<br> На протязі 15 хвилин з Вами зв’яжуться
 				`
-				setTimeout(e => this.$parent.showMessage = null, 4000)
+				setTimeout(e => this.showMessage = null, 5000)
 			}
 		},
 		mounted() {

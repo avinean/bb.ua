@@ -55,4 +55,11 @@
             height: 150px;
         }
     }
+
+    .message {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
 }

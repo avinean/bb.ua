@@ -5,17 +5,24 @@
     .card {
         display: flex;
         height: 300px;
-        .image {
-            width: 50%;
-            overflow: hidden;
-            &>img {
-                width: 100%;
-            }
+        margin-bottom: 75px;
 
+        .image {
+            position: relative;
+            width: 50%;
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
+            text-align: center;
+
+            &>span  {
+                position: absolute;
+                bottom: -40px;
+                font-size: 20px;
+                color: $cherry;
+            }
         }
+
         .short-info {
             width: 50%;
             padding: 80px;
@@ -56,13 +63,15 @@
                 width: 50%;
                 padding: 0 10px;
                 text-align: right;
-                background-color: $dust;
             }
         }
     }
 
     .contact-us {
         height: 250px;
+        background-image: url('/img/plug/fon_tel.jpg');
+        background-repeat: no-repeat;
+        background-position: center center;
         background-size: cover;
         position: relative;
 
@@ -78,10 +87,12 @@
 
             .title {
                 width: 420px;
-                font-size: 33px;
+                margin-right: 50px;
                 h3 {
                     color: $snow;
-                    padding: 20px 0;
+                    font-size: 25px;
+                    padding: 18px 0;
+                    text-transform: uppercase;
                 }
                 p {
                     font-size: 16px;
@@ -89,14 +100,28 @@
                 }
             }
             .form {
-                width: 420px;
+                width: 472px;
+                height: 46px;
                 display: flex;
 
                 input {
-                    height: 50px;
+                    height: 46px;
                     width: 50%;
                     padding: 10px;
                     font-style: italic;
+                }
+
+                .btn {
+                    border: 2px solid;
+                    text-align: center;
+                    line-height: 46px;
+                    font-size: 16px;
+                    padding: 0 14px;
+                    cursor: pointer;
+
+                    &:hover {
+                        background: rgba(255,255,255,.1);
+                    }
                 }
 
                 @media screen and (max-width: 750px){
@@ -112,7 +137,7 @@
         h3 {
             padding: 20px;
             width: 90%;
-            border-bottom: 1px solid;
+            border-bottom: 1px solid #cacaca;
             margin: 0 auto;
         }
         .vereteno-inner {

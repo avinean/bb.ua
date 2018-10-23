@@ -1,13 +1,15 @@
 @import "../var";
 @import "../mixin";
 
+$hei: 91px;
+
 .upheader {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 9999;
-    height: 80px;
+    height: $hei;
     padding: 2px;
     margin: auto;
     display: flex;
@@ -43,10 +45,15 @@
 
         span {
             font-size: 16px;
+
+            &>strong {
+                font-size: 14px;
+            }
         }
     }
 
     .phone {
+        font-weight: bold;
         text-align: center;
         font-size: 25px;
 
@@ -83,9 +90,9 @@
 
 .header {
     position: fixed;
-    top: 80px;
+    top: $hei;
     z-index: 999;
-    height: 50px;
+    height: 70px;
     font-size: 20px;
     background-color: $dust;
 
@@ -93,7 +100,7 @@
         width: 100vw;
 
         .items-row {
-            height: 50px;
+            height: 70px;
             display: flex;
             align-items: center;
 
@@ -117,8 +124,8 @@
             }
 
             .nav-item {
-                height: 50px;
-                line-height: 50px;
+                height: 70px;
+                line-height: 70px;
                 display: block;
                 padding: 0 30px;
                 color: $main;

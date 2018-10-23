@@ -14,7 +14,7 @@
 				p.header1 Приєднуйтесь до нас в соціальних мережах
 				.addr
 					a.fab.fa-facebook(href='https://www.facebook.com/vkblagobud' target='_blank')
-				p.header1 Виробнича компанія "Благобуд" входить до групи компаній Променад
+				p.header1 Виробнича компанія "Благобуд" входить до групи компаній
 				.addr
 					a.partner(href='http://www.promenad.ua/' target='_blank')
 						img(src='/img/partners/promenad.png' alt='promenad')

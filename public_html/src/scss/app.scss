@@ -18,13 +18,45 @@
         font-size: 18px;
 
         .main-block {
-            padding-top: 50px;
+            padding-top: 32px;
         }
 
         .inner-wrapper, .withbanner-page {
             width: 80%;
             min-width: 1024px;
             margin: 0 auto;
+
+            h2 {
+                font-size: 30px;
+                font-weight: bold;
+                text-align: center;
+                text-transform: uppercase;
+                padding: 20px;
+                color: #5d5c5c;
+
+                .decor {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    .line, .romb {
+                        display: inline-block;
+                        background: #5d5c5c;
+                    }
+
+                    .line {
+                        width: 98px;
+                        height: 1px;
+                    }
+
+                    .romb {
+                        width: 11px;
+                        height: 11px;
+                        transform: rotate(45deg);
+                        margin: 5px 10px;
+                    }
+                }
+            }
 
             @media screen and (max-width: 1024px) {
                 width: 100%;
@@ -41,6 +73,7 @@
                 flex-basis: 750px;
                 flex-grow: 1;
                 margin-right: 50px;
+                padding: 50px 0;
             }
 
             .banner {

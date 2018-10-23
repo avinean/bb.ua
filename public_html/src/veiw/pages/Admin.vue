@@ -13,7 +13,7 @@
 			template(v-if='curSet.table == "pages"')
 				div.page-esc(v-for='page in curSet.data' @click='curPage = page')
 					.title {{page.title}}
-					.text(v-html='page.template')
+					.text(v-html='page.description')
 			template(v-else)
 				.btn(@click='showForm') Додати
 				table
@@ -42,6 +42,9 @@
 										style='width: 50px; cursor: pointer'
 										@click='loadImg = item; loadImg["folder"] = curSet.table'
 									)
+								template(v-else-if='key === "description"')
+									div.page-esc( style='height: 100px' @click='curPage = item')
+										.text(v-html='f')
 								template(v-else)
 									input(v-model='item[key]' @change='changeText(item, key)')
 		transition(name='appear')
@@ -67,7 +70,7 @@
 									input(v-model='newForm[k]')
 				.bb-btn.brand(@click='addRow(newForm)') Зберегти
 		transition(name='appear')
-			text-editor(v-if='curPage' :value='curPage.template' @close='changePageData')
+			text-editor(v-if='curPage' :value='curPage.description' @close='changePageData')
 
 </template>
 
@@ -145,9 +148,7 @@
 					title: 'Заголовок',
 					description: 'Опис',
 					price: 'Ціна',
-					color: 'Колір',
 					type: 'Тип',
-					height: 'Висота',
 					key: 'Ключ',
 					name: 'Найменування',
 					val: 'Значення',
@@ -196,13 +197,17 @@
 				let table = this.curSet.table;
 				this.admin('changeField',{table,key,data});
 			},
-			async changePageData(data) {
-				if (data) {
-					console.log(data);
-					this.curPage.template = data.html;
+			async changePageData(pageData) {
+				if (pageData) {
 					let table = this.curSet.table;
+					this.curPage.description = pageData.html;
 					let data = this.curPage;
-					let res = await this.admin('changePageData', {table, data});
+					if (this.curSet.table == 'pages') {
+						let res = await this.admin('changePageData', {table, data});
+					}
+					else {
+						let res = await this.changeText(data, 'description');
+					}
 				}
 				this.curPage = null;
 			},
@@ -225,7 +230,7 @@
 			},
 			async addRow(data) {
 				let table = this.curSet.table;
-				await this.admin('addRow',{table, data});
+				let res = await this.admin('addRow',{table, data});
 				if (res) {
 					this.curSet.data.push(data)
 					this.newForm = null
@@ -236,7 +241,7 @@
 				let form = {};
 				let i = (await this.admin('getFields', {table})).data;
 				i.forEach(e => {
-					if (e == 'id' || e == 'datetime') {}
+					if (e == 'datetime') {}
 					else {
 						form[e] = null;
 					}

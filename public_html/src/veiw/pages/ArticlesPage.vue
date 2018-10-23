@@ -8,7 +8,7 @@
 				.date
 					i.fas.fa-calendar-alt
 					|   {{row.datetime}}
-				.desc {{row.description}}
+				.desc(v-html='row.description')
 			hr.devider
 			.share-block
 				a.zmdi.zmdi-facebook.bg-facebook.share-link(:href='"http://www.facebook.com/sharer.php?u=" + linkUrl')
@@ -19,13 +19,13 @@
 			hr.devider
 			.use-info
 				router-link.info-item(to='/info/1')
-					img(src='/img/plug/vybir.png')
+					<!--img(src='/img/plug/vybir.png')-->
 					.subs Вибір тротуарної плитки
 				router-link.info-item(to='/info/2')
-					img(src='/img/plug/osnova.png')
+					<!--img(src='/img/plug/osnova.png')-->
 					.subs Рекомендації з улаштування основи під тротуарну плитку
 				router-link.info-item(to='/info/3')
-					img(src='/img/plug/ukladannya.png')
+					<!--img(src='/img/plug/ukladannya.png')-->
 					.subs Технології укладання бруківки
 		.banner
 			router-link.new(v-for='item in news' :key='item.img' :to='item.id')
@@ -105,4 +105,4 @@
 	}
 </script>
 
-<style lang="scss" scoped src="@/scss/pages/withbanner-page.scss"></style>
+<style lang="scss" scoped src="@/scss/pages/articles.scss"></style>

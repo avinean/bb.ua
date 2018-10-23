@@ -148,6 +148,7 @@
 			height: 100vh;
 			width: 100vw;
 			padding: 20px;
+			overflow-y: scroll;
 		}
 	}
 </style>
