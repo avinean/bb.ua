@@ -14,14 +14,14 @@ $h: calc(50vh - 80px);
     }
 
     .slider {
-        height: $h;
+        min-height: $h;
     }
 
     .inf-icons {
         display: flex;
         justify-content: space-around;
         align-items: center;
-        height: $h;
+        min-height: $h;
         padding: 50px 0;
 
         .inf-ico {
@@ -62,7 +62,7 @@ $h: calc(50vh - 80px);
         display: flex;
         justify-content: space-around;
         align-items: center;
-        height: $h;
+        min-height: $h;
         padding: 30px 0;
         .good-item {
             position: relative;
@@ -125,7 +125,7 @@ $h: calc(50vh - 80px);
     }
 
     .vereteno {
-        height: $h;
+        min-height: $h;
         padding: 20px 0;
         h3 {
             text-align: center;     
@@ -173,7 +173,7 @@ $h: calc(50vh - 80px);
     }
 
     .news {
-        height: calc(100vh - 161px);
+        min-height: calc(100vh - 161px);
         padding: 20px 0;
 
         $newh: 600px;

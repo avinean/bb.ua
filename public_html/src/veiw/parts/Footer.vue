@@ -19,7 +19,7 @@
 					a.partner(href='http://www.promenad.ua/' target='_blank')
 						img(src='/img/partners/promenad.png' alt='promenad')
 			.contacts.info
-				p.header1 Контакти
+				p.header1 КОНТАКТИ
 				.addr
 					i.fas.fa-map-marker-alt
 					span.title Адреса: {{contacts.region}}, <br>{{contacts.district}}

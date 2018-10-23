@@ -6,6 +6,7 @@ import Popup from './veiw/components/Popup'
 import Up from './veiw/components/Up'
 import ImgLoader from './veiw/components/ImgLoader'
 import TextEditor from './veiw/components/TextEditor'
+import Finder from './veiw/components/Finder'
 
 export default [
 	{name: 'page-header', comp: Header},
@@ -16,4 +17,5 @@ export default [
 	{name: 'up', comp: Up},
 	{name: 'img-loader', comp: ImgLoader},
 	{name: 'text-editor', comp: TextEditor},
+	{name: 'finder', comp: Finder},
 ]

@@ -12,11 +12,17 @@
         box-shadow: 0 0 15px 0 black;
 
         .slide {
+            display: block;
             height: 35px;
-            text-align: center;
             padding: 6px;
             margin-bottom: 2px;
             cursor: pointer;
+            text-decoration: none;
+
+            i {
+                min-width: 20px;
+                margin: 0 3px 0 0;
+            }
         }
 
         .active {

@@ -13,12 +13,13 @@
     #app {
         display: flex;
         flex-direction: column;
-        padding-top: 130px;
+        padding-top: 161px;
         overflow: hidden;
         font-size: 18px;
 
         .main-block {
-            padding-top: 32px;
+            min-height: 60vh;
+            padding: 32px 0;
         }
 
         .inner-wrapper, .withbanner-page {
@@ -138,6 +139,13 @@
             padding: 10px;
             background: rgba(0, 72, 197, .9);
             transition: all ease .5s;
+        }
+
+        .message {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
         }
 
         .clearfix {

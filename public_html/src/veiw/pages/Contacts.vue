@@ -17,9 +17,6 @@
 			style="border:0; width: 100%" 
 			allowfullscreen
 			)
-		transition(name='appear')
-			popup(v-if='showMessage !== null' @close='showMessage = null')
-				.message(slot='body' v-html='showMessage')
 </template>
 
 <script>
@@ -31,8 +28,7 @@
 				email: '',
 				msg: '',
 				name: '',
-				phone: '',
-				showMessage: null
+				phone: ''
 			}
 		},
 		computed: {
@@ -62,12 +58,12 @@
 				this.phone = '';
 				this.name = '';
 
-				this.showMessage = `
+				this.$parent.showMessage = `
 					Дякуємо! 
 					<br> Звернення передано до Вашого персонального менеджера.
 					<br> На протязі 15 хвилин з Вами зв’яжуться
 				`
-				setTimeout(e => this.showMessage = null, 5000)
+				setTimeout(e => this.$parent.showMessage = null, 5000)
 			}
 		},
 		mounted() {

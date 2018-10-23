@@ -73,6 +73,8 @@
 					opts
 				})
 
+				this.show = null;
+
 				this.$parent.showMessage = `
 					Дякуємо! 
 					<br> Ваш запит відправлено
@@ -120,9 +122,13 @@
 	.input-field {
 		display: block;
 		width: 80%;
-		height: 200px;
+		height: 40px;
 		margin: 20px auto;
 		padding: 10px;
 		font-style: italic;
+	}
+
+	textarea.input-field {
+		height: 200px;
 	}
 </style>

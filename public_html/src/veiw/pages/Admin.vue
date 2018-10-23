@@ -1,11 +1,16 @@
 <template lang="pug">
 	.admin
 		.admin-head
+			a.slide.bg-brand.snow(href='/')
+				i.fas.fa-angle-double-left.snow
+				| На головну
 			.slide(
 				v-for='i in sets'
 				@click='curSet = i'
 				:class='curSet && i.table == curSet.table ? "bg-grass snow active" : "bg-dust"'
-				) {{i.name}}
+				)
+					i(:class='i.cls')
+					| {{i.name}}
 		.admin-body(
 			v-if='curSet && curSet.data'
 			:class='curSet.table == "pages" ? "flexbox flex-wrap" : ""'
@@ -109,27 +114,32 @@
 					{
 						name: "Товари",
 						table: "goods",
-						data: null
+						data: null,
+						cls: 'fas fa-shopping-cart'
 					},
 					{
 						name: "Новини",
 						table: "news",
-						data: null
+						data: null,
+						cls: 'far fa-newspaper'
 					},
 					{
 						name: "Корисна інформація",
 						table: "info",
-						data: null
+						data: null,
+						cls: 'fas fa-info'
 					},
 					{
 						name: "Акції",
 						table: "sales",
-						data: null
+						data: null,
+						cls: 'fas fa-tags'
 					},
 					{
 						name: "Кольори",
 						table: "colors",
-						data: null
+						data: null,
+						cls: 'fas fa-palette'
 					},
 					// {
 					// 	name: "Контакти",
@@ -139,7 +149,8 @@
 					{
 						name: "Сторінки",
 						table: "pages",
-						data: null
+						data: null,
+						cls: 'fas fa-file-alt'
 					},
 				],
 				fields: {

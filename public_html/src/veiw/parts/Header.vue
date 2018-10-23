@@ -34,6 +34,7 @@
 							:to='page.url'
 						) {{page.name}}
 							.after
+					finder
 			.nav-list(v-show='children' :style='"left: " + listPos + "px"')
 				.arr
 				.nav-item(v-for='child in children')

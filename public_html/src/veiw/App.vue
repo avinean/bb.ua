@@ -3,10 +3,11 @@
 		page-header(view='narrow' v-if='isHeader')
 		.main-block(:style='styles')
 			router-view
-		callback(v-if='isCallback')
-		up(v-if='isUp')
-		transition(name='appear')
-			.result-message(v-if='showMessage' v-html='showMessage')
+			callback(v-if='isCallback')
+			up(v-if='isUp')
+			transition(name='appear')
+				popup(v-if='showMessage !== null' @close='showMessage = null')
+					.message(slot='body' v-html='showMessage')
 		page-footer(v-if='isFooter')
 		
 </template>
@@ -22,7 +23,7 @@
 				isCallback: 1,
 				isUp: 1,
 				styles: '',
-				contacts: {}
+				contacts: {},
 			}
 		},
 		methods: {
@@ -34,7 +35,7 @@
 				})).data
 			}
 		},
-		mounted() {
+		async mounted() {
 			if (this.$route.name === 'Admin') {
 				this.styles = `
 					    position: absolute;
