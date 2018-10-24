@@ -11,9 +11,9 @@
 				select(v-model='fontsize' @change="formatDoc('fontsize', fontsize)")
 					option(selected) Розмір шрифта
 					option(v-for='v,k in fontsizes' :value='k') {{v}}
-				select(v-model='lineheight' @change="formatLineHeight")
-					option(selected) Висота строки
-					option(v-for='v,k in lineheights' :value='k') {{v}}
+				<!--select(v-model='lineheight' @change="formatLineHeight")-->
+					<!--option(selected) Висота строки-->
+					<!--option(v-for='v,k in lineheights' :value='k') {{v}}-->
 				<!--select(v-model='forecolor' @change="formatDoc('forecolor', forecolor)")-->
 					<!--option(selected) Колір тексту-->
 					<!--option(v-for='v,k in forecolors' :value='k') {{v}}-->
@@ -35,18 +35,34 @@
 				button.fas.fa-outdent(@click.prevent="formatDoc('outdent')")
 				button.fas.fa-indent(@click.prevent="formatDoc('indent')")
 				button.fas.fa-link(@click.prevent="createLink()")
-				<!--button.fas.fa-image(@click.prevent="loadImg = {folder:'.'}")-->
+				<!--button.fas.fa-image(@click.prevent="createImg")-->
+				<!--button.fas.fa-image(@click.prevent="insetImg")-->
 				<!--button.fas.fa-cut(@click.prevent="formatDoc('cut')")-->
 				<!--button.fas.fa-copy(@click.prevent="formatDoc('copy')")-->
 				<!--button.fas.fa-paste(@click.prevent="formatDoc('paste')")-->
 			.closebar
-				button(@click='close(1)')
+				button.snow.bg-grass(@click='close(1)')
 					i.far.fa-save.brand
 					| &#32;&#32;&#32;&#32;Зберегти
-				button(@click='close(0)')
+				button.snow.bg-lady(@click='close(0)')
 					i.far.fa-slose.brand
 					| &#32;&#32;&#32;&#32;Закрити без збереження
-		div.screen(ref='editor' contenteditable v-html='value')
+					transition(name='appear')
+		.sub-panel(v-if='curImg')
+			.toolbar Висота картинки
+				input.heigt(type='number' v-model='curImg.height' @keypress.enter="curImg.customResolve")
+			.closebar
+				button.snow.bg-grass(@click="curImg.customResolve")
+					i.far.fa-save.brand
+					| &#32;&#32;&#32;&#32;Зберегти
+				button.snow.bg-lady(@click='curImg = null')
+					i.far.fa-slose.brand
+					| &#32;&#32;&#32;&#32;Закрити без збереження
+		div.screen
+			.inner-wrapper(ref='editor' contenteditable v-html='value' @click='cursorClick')
+		transition(name='appear')
+			img-loader(v-if='imgData.action' @close='imgData.action' :data='imgData')
+
 </template>
 
 <script>
@@ -55,6 +71,11 @@
 		props: ['value'],
 		data() {
 			return {
+				curImg: null,
+				imgData: {
+					folder: '.',
+					action: null
+				},
 				format: '',
 				formats: {
 					h1: 'Заголовок 1 <h1>',
@@ -103,8 +124,7 @@
 					red: 'Red',
 					green: 'Green',
 					black: 'Black',
-				},
-				loadImg: null
+				}
 			}
 		},
 		methods: {
@@ -120,6 +140,35 @@
 					this.formatDoc('createlink', link)
 				}
 			},
+			insetImg() {
+				let link = prompt('Write the URL here','http:\/\/')
+
+				if(link && link != '' && link != 'http://'){
+					window.document.execCommand('insertImage', true, link);
+				}
+			},
+			async createImg() {
+				let selection = document.getSelection();
+				let url = await new Promise((resolve, reject) => {
+					this.imgData.action = resolve;
+				})
+
+				if (url) {
+					console.log(selection);
+					console.log(url);
+				}
+
+				this.imgData.action = null;
+			},
+			async cursorClick(e) {
+				if (e.target.tagName === 'IMG') {
+					this.curImg = e.target;
+					await new Promise((res, rej) => {
+						this.curImg.customResolve = res;
+					});
+					this.curImg = null;
+				}
+			},
 			close(mode) {
 				let html = this.$refs.editor.innerHTML;
 				this.$emit('close', mode ? {html} : null)
@@ -127,6 +176,7 @@
 		},
 		mounted() {
 			// window.document.execCommand('styleWithCSS', true);
+			window.document.execCommand('enableObjectResizing', true, true);
 		}
 	}
 </script>
@@ -139,24 +189,43 @@
 		height: 100vh;
 		position: fixed;
 
-		.panel {
+		.panel, .sub-panel {
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
 			height: 50px;
 			padding: 0 20px;
 			background: #ece7e7;
-				box-shadow: inset 0 0 17px -6px;
+			box-shadow: inset 0 0 17px -6px;
 
-				button {
-					padding: 6px 8px;
-					color: $brand;
-				}
+			button {
+				padding: 6px 8px;
+				color: $brand;
+				cursor: pointer;
+			}
 
-				select {
-					height: 26px;
-					width: 150px;
+			select {
+				height: 26px;
+				width: 150px;
 				font-size: 17px;
+			}
+
+			.closebar {
+				&>button {
+					border: none;
+					&>i {
+						color: $snow;
+					}
+				}
+			}
+		}
+
+		.sub-panel {
+			height: 30px;
+
+			button {
+				padding: 2px 6px;
+				color: $cherry;
 			}
 		}
 
@@ -167,6 +236,13 @@
 			width: 100vw;
 			padding: 20px;
 			overflow-y: scroll;
+		}
+
+		.image-editor {
+			background: white;
+			box-shadow: 0 0 10px 0;
+			padding: 20px;
+			text-align: center;
 		}
 	}
 </style>

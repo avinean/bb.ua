@@ -3,8 +3,9 @@
 		.inner-wrapper
 			.content-block(v-if='this.item') 
 				.card
-					.image(:style='"background-image: url(" + item.img + ")"')
-						span {{item.price}} грн
+					.image
+						img(:src="item.img")
+						p {{item.price}} грн
 					.short-info
 						.title {{item.title}}
 						hr.devider
