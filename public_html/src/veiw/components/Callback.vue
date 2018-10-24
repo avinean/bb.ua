@@ -4,8 +4,10 @@
 			.bb-btn.brand.wide(@click='show = 1') Замовити консультацію
 		template(v-else)
 			.callback.bg-brand(@mouseenter='stop' @mouseleave='start' @click='show = phone' :style='"bottom: " + bottom + "px"')
-				i.cherry.fas(:class="phone ? 'fa-phone' : 'fa-envelope'")
-				| {{phone ? 'Замовте дзвінок' : 'Напишіть, що вас цікавить'}}
+				transition(name='fade')
+					p.cherry.fas.fa-phone(v-if='phone')
+					p.cherry.fas.fa-envelope(v-else)
+				p.title {{phone ? 'Замовте дзвінок' : 'Напишіть, що вас цікавить'}}
 			<!--.clearfix-->
 		popup(v-if='show !== null' @close='show = null')
 			template(slot='head') {{ show ? 'Ми зателефонуємо Вам на протязі 15 хвилин' : 'Напишіть, що Вас цікавить?'}}
@@ -96,8 +98,14 @@
 </script>
 
 <style lang="scss" scoped>
+	@import "@/scss/var.scss";
+
 	.callback {
-		width: 350px;
+		width: 334px;
+		height: 68px;
+		border-radius: 10px;
+		display: flex;
+		align-items: center;
 		float: right;
 		padding: 10px;
 		cursor: pointer;
@@ -107,11 +115,18 @@
 		right: 0;
 		z-index: 1;
 
-		&>i {
+		.fas {
+			font-size: 28px;
 			background: white;
 			padding: 10px;
 			border-radius: 100%;
 			margin: 0 10px;
+			transition: all ease .5s;
+		}
+
+		.title {
+			font-size: 15px;
+			color: $snow;
 		}
 
 		@media screen and (max-width: 760px) {
