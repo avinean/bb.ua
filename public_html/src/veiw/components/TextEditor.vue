@@ -35,7 +35,7 @@
 				button.fas.fa-outdent(@click.prevent="formatDoc('outdent')")
 				button.fas.fa-indent(@click.prevent="formatDoc('indent')")
 				button.fas.fa-link(@click.prevent="createLink()")
-				<!--button.fas.fa-image(@click.prevent="createImg")-->
+				button.fas.fa-image(@click.prevent="createImg")
 				<!--button.fas.fa-image(@click.prevent="insetImg")-->
 				<!--button.fas.fa-cut(@click.prevent="formatDoc('cut')")-->
 				<!--button.fas.fa-copy(@click.prevent="formatDoc('copy')")-->
@@ -49,13 +49,18 @@
 					| &#32;&#32;&#32;&#32;Закрити без збереження
 					transition(name='appear')
 		.sub-panel(v-if='curImg')
-			.toolbar Висота картинки
-				input.heigt(type='number' v-model='curImg.height' @keypress.enter="curImg.customResolve")
+			.toolbar 
+				span 
+					label Висота:
+					input.heigt(type='number' v-model='curImg.height' @keypress.enter="curImg.customResolve")
+				span 
+					label Ширина:
+					input.width(type='number' v-model='curImg.width' @keypress.enter="curImg.customResolve")
 			.closebar
 				button.snow.bg-grass(@click="curImg.customResolve")
 					i.far.fa-save.brand
 					| &#32;&#32;&#32;&#32;Зберегти
-				button.snow.bg-lady(@click='curImg = null')
+				button.snow.bg-lady(@click='curImg.customReject')
 					i.far.fa-slose.brand
 					| &#32;&#32;&#32;&#32;Закрити без збереження
 		div.screen
@@ -140,43 +145,45 @@
 					this.formatDoc('createlink', link)
 				}
 			},
-			insetImg() {
-				let link = prompt('Write the URL here','http:\/\/')
-
-				if(link && link != '' && link != 'http://'){
-					window.document.execCommand('insertImage', true, link);
-				}
-			},
 			async createImg() {
-				let selection = document.getSelection();
+				window.document.execCommand('insertImage', true, 'tmp.jpg');
+
 				let url = await new Promise((resolve, reject) => {
 					this.imgData.action = resolve;
 				})
 
 				if (url) {
-					console.log(selection);
-					console.log(url);
+					this.$refs.editor.innerHTML = this.$refs.editor.innerHTML.replace(`<img src="tmp.jpg">`, `<img src="${url}">`);
+				}
+				else {
+					this.$refs.editor.innerHTML = this.$refs.editor.innerHTML.replace(`<img src="tmp.jpg">`, '');
 				}
 
 				this.imgData.action = null;
 			},
 			async cursorClick(e) {
 				if (e.target.tagName === 'IMG') {
+					// e.target.style.border = "2px dashed grey";
 					this.curImg = e.target;
 					await new Promise((res, rej) => {
 						this.curImg.customResolve = res;
-					});
-					this.curImg = null;
+						this.curImg.customReject = rej;
+						// this.curImg.onblur = () => {
+						// 	this.curImg.style.border = "none";
+						// 	this.curImg = null;
+						// }
+					})
+					.then(_ => {
+						this.curImg = null;
+					}).catch(_ => {
+						this.curImg = null;
+					})
 				}
 			},
 			close(mode) {
 				let html = this.$refs.editor.innerHTML;
 				this.$emit('close', mode ? {html} : null)
 			}
-		},
-		mounted() {
-			// window.document.execCommand('styleWithCSS', true);
-			window.document.execCommand('enableObjectResizing', true, true);
 		}
 	}
 </script>
@@ -226,6 +233,11 @@
 			button {
 				padding: 2px 6px;
 				color: $cherry;
+			}
+
+			input {
+				width: 100px;
+    			margin: 0 20px;
 			}
 		}
 
