@@ -77,6 +77,11 @@ export default new Router({
 			component: InfoPage
 		},
 		{
+			path: '/policy',
+			name: 'Privacy-policy',
+			component: InfoPage
+		},
+		{
 			path: '/sale',
 			name: 'Articles-sale',
 			component: Articles

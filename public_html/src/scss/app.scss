@@ -9,6 +9,7 @@
     box-sizing: border-box;
     font-family: RobotoRegular, Arial, "Helvetica Neue", Helvetica, sans-serif;
     color: $main;
+    @include scrollbar();
 
     #app {
         display: flex;
@@ -146,6 +147,7 @@
             align-items: center;
             justify-content: center;
             text-align: center;
+            font-size: 15px;
         }
 
         .clearfix {

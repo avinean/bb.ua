@@ -5,6 +5,7 @@
 			router-view
 			callback(v-if='isCallback')
 			up(v-if='isUp')
+			div(ref="validTitle") {{ validTitle }}
 			transition(name='appear')
 				popup(v-if='showMessage !== null' @close='showMessage = null')
 					.message(slot='body' v-html='showMessage')
@@ -24,6 +25,7 @@
 				isUp: 1,
 				styles: '',
 				contacts: {},
+				validTitle: ''
 			}
 		},
 		methods: {

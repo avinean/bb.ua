@@ -1,30 +1,31 @@
 <template lang="pug">
 	div
 		.upheader
-			router-link.logo(to='/')
-				img(
-					src='/img/logo-big-blue.png'
-					alt='Blagobud-logo'
-				)
-			.address
-				i.fas.fa-map-marked-alt
-				span
-					strong Адреса:<br>
-					| {{contacts.city}}, <br>{{contacts.street}}
-			.time
-				i.fas.fa-clock
-				span
-					strong Графік роботи:
-					|<br> Пн-Cб з 8.00 до 18.00
-			.access
-				i.fas.fa-at
-				span
-					strong Приймання замовлень онлайн:
-					|<br> Цілодобово
-			.phone
-				i.fab.fa-viber.brand
-				i.fab.fa-whatsapp.grass
-				|{{contacts.phone}}
+			.inner-wrapper
+				router-link.logo(to='/')
+					img(
+						src='/img/logo-big-blue.png'
+						alt='Blagobud-logo'
+					)
+				.address
+					i.fas.fa-map-marked-alt
+					span
+						strong Адреса:<br>
+						| {{contacts.city}}, <br>{{contacts.street}}
+				.time
+					i.fas.fa-clock
+					span
+						strong Графік роботи:
+						|<br> Пн-Cб з 8.00 до 18.00
+				.access
+					i.fas.fa-at
+					span
+						strong Приймання замовлень онлайн:
+						|<br> Цілодобово
+				.phone
+					i.fab.fa-viber.brand
+					i.fab.fa-whatsapp.grass
+					|{{contacts.phone}}
 		.header(@mouseleave='children = null')
 			.nav-panel
 				.inner-wrapper.items-row

@@ -8,17 +8,24 @@
 					p.cherry.fas.fa-phone(v-if='phone')
 					p.cherry.fas.fa-envelope(v-else)
 				p.title {{phone ? 'Замовте дзвінок' : 'Напишіть, що вас цікавить'}}
-			<!--.clearfix-->
 		popup(v-if='show !== null' @close='show = null')
 			template(slot='head') {{ show ? 'Ми зателефонуємо Вам на протязі 15 хвилин' : 'Напишіть, що Вас цікавить?'}}
 			.form(slot='body')
 				template(v-if='show')
 					input.input-field(v-model='showPopup.name' placeholder="Вкажіть Ваше ім'я")
-					input.input-field(v-model='showPopup.phone' placeholder='Вкажіть номер Вашого телефону')
+					input.input-field(
+						v-model='showPopup.phone'
+						placeholder='Вкажіть номер Вашого телефону'
+						type='tel'
+					)
 				template(v-else)
 					input.input-field(v-model='showPopup.name' placeholder="Вкажіть Ваше ім'я")
-					input.input-field(v-model='showPopup.email' placeholder='Вкажіть Ваш e-mail')
-					input.input-field(v-model='showPopup.viber' placeholder='Вкажіть Ваш viber\watsapp')
+					input.input-field(
+						v-model='showPopup.email'
+						placeholder='Вкажіть Ваш e-mail'
+						type='email'
+					)
+					input.input-field(v-model='showPopup.viber' placeholder='Вкажіть Ваш Viber\\WhatsApp')
 					textarea.input-field(v-model='showPopup.msg')
 			div(slot='foot')
 				.bb-btn.cherry(@click='send(show)') Відправити
@@ -60,13 +67,19 @@
 				opts.type = opt;
 
 				if (opt && !this.showPopup.phone && !this.showPopup.name) {
-					alert('Будь-ласка, заповніть всі поля!');
-					return
+					return alert('Будь-ласка, заповніть всі поля!');
 				}
 				if (!opt && !this.showPopup.email && !this.showPopup.name) {
-					alert('Будь-ласка, заповніть всі поля!');
-					return
+					return alert('Будь-ласка, заповніть всі поля!');
 				}
+				if (opt && !this.isValidPhone(this.showPopup.phone)) {
+					return alert('Ви ввели недійсний номер телефону!');
+				}
+				if (!opt && !this.isValidEmail(this.showPopup.email)) {
+					return alert('Ви ввели недійсний e-mail!');
+				}
+
+
 
 				this.request({
 					method: 'get',

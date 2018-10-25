@@ -37,8 +37,15 @@
 		methods: {
 			async send() {
 				if (!this.name || !this.email || !this.msg || !this.phone) {
-					alert('Будь-ласка, заповніть всі поля!');
-					return;
+					return alert('Будь-ласка, заповніть всі поля!');
+				}
+
+				if (!this.isValidEmail(this.email)) {
+					return alert('Ви ввели недійсний e-mail!');
+				}
+
+				if (!this.isValidPhone(this.phone)) {
+					return alert('Ви ввели недійсний номер телефону!');
 				}
 
 				let res = await this.request({

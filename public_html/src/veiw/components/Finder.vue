@@ -8,11 +8,11 @@
 			@keypress.enter='goToPage'
 		)
 		i.fas.fa-search.brand.search(@click='find = !find; searchVal = ""')
-		.searchRes(v-show='searchVal && filteredFinders.length && find')
-			router-link.brand.item(v-for='res in filteredFinders' :key='res.url' :to='res.url')
-				p.title {{res.title}}
-				span.url {{res.url}}
-		.hider(v-if='searchVal && filteredFinders.length && find'  @click='hideAll')
+		<!--.searchRes(v-show='searchVal && filteredFinders.length && find')-->
+			<!--router-link.brand.item(v-for='res in filteredFinders' :key='res.url' :to='res.url')-->
+				<!--p.title {{res.title}}-->
+				<!--span.url {{res.url}}-->
+		<!--.hider(v-if='searchVal && filteredFinders.length && find'  @click='hideAll')-->
 
 </template>
 
@@ -37,7 +37,6 @@
 		},
 		methods: {
 			goToPage() {
-				console.log(1);
 				this.$router.push('/search?q=' + this.searchVal);
 				this.$nextTick(() => this.hideAll());
 			},

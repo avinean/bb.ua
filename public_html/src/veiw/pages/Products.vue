@@ -54,7 +54,6 @@
 		name: 'page-products',
 		data() {
 			return {
-				colorsMap: [],
 				curColors: [],
 				curHeights: [],
 				curSizes: [],
@@ -153,13 +152,6 @@
 					}
 				})).data;
 			},
-			async loadColors() {
-				this.colorsMap = (await this.request({
-					method: 'get',
-					className: 'Catalog',
-					methodName: 'getColors'
-				})).data;
-			},
 			defineCur() {
 				if (this.category === 'pave') {
 					this.curItem = 'bruk'
@@ -179,7 +171,6 @@
 		mounted() {
 			this.defineCur()
 			this.loadGoodsList()
-			this.loadColors()
 		},
 		watch: {
 			category() {

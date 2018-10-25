@@ -4,7 +4,7 @@
 		.popup-wrap
 			.head
 				.title
-					slot(name='head') Info
+					slot(name='head')
 				i.fas.fa-times.close(@click='close')
 			.body
 				slot(name='body')

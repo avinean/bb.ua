@@ -10,56 +10,55 @@ $hei: 91px;
     right: 0;
     z-index: 9999;
     height: $hei;
-    padding: 2px;
-    margin: auto;
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    align-items: center;
     background-color: $snow;
-
-    .logo, .address, .time, .access, .phone {
-        width: 20%;
-    }
-
-    .logo {
-        text-align: center;
-        img {
-            height: 70px;
-        }
-    }
-
-    .address, .time, .access {
+    .inner-wrapper {
+        height: $hei;
+        padding: 2px 0;
+        margin: auto;
         display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
         align-items: center;
-        position: relative;
-        padding-left: 30px;
-        padding-right: 3px;
 
-        &>i {
-            color: $brand;
-            position: absolute;
-            left: 0;
-            font-size: 20px;
+        .logo, .address, .time, .access, .phone {
+            width: 20%;
         }
 
-        span {
-            font-size: 16px;
+        .logo {
+            text-align: left;
+            img {
+                height: 70px;
+            }
+        }
 
-            &>strong {
+        .address, .time, .access {
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding-left: 30px;
+            padding-right: 3px;
+
+            & > i {
+                color: $brand;
+                position: absolute;
+                left: 0;
+                font-size: 20px;
+            }
+
+            span {
                 font-size: 14px;
             }
         }
-    }
 
-    .phone {
-        font-weight: bold;
-        text-align: center;
-        font-size: 25px;
+        .phone {
+            font-weight: bold;
+            text-align: right;
+            font-size: 25px;
 
-        i {
-            font-weight: normal;
-            margin: 5px;
+            i {
+                font-weight: normal;
+                margin: 5px;
+            }
         }
     }
 

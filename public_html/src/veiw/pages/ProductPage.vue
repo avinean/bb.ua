@@ -1,7 +1,7 @@
 <template lang="pug">
 	.productpage
 		.inner-wrapper
-			.content-block(v-if='this.item') 
+			.content-block(v-if='item')
 				.card
 					.image
 						img(:src="item.img")
@@ -14,7 +14,8 @@
 				.full-info
 					.info-row(v-for='title, key in characs' v-if='item[key]')
 						strong.key {{title}}: 
-						.val {{item[key]}}
+						.val(v-if="key == 'color'") {{colorsMap[item[key]]}}
+						.val(v-else) {{item[key]}}
 		.contact-us
 			.bgc
 				.title
@@ -38,7 +39,7 @@
 			.form(slot='body')
 					input.input-field(v-model='showPopup.name' placeholder="Вкажіть Ваше ім'я")
 					input.input-field(v-model='showPopup.phone' placeholder='Вкажіть номер Вашого телефону')
-					input.input-field(v-model='showPopup.cnt' placeholder='Вкажіть кількість, м2')
+					input.input-field(v-model='showPopup.cnt' :placeholder='placeholder')
 			div(slot='foot')
 				.bb-btn.cherry(@click='send(1)') Відправити
 </template>
@@ -87,6 +88,11 @@
 				}
 			}
 		},
+		computed: {
+			placeholder() {
+				return this.$route.params.category === 'pave' ? 'Вкажіть кількість, м2' : 'Вкажіть кількість, шт';
+			}
+		},
 		methods: {
 			slideVereteno(d) {
 
@@ -116,11 +122,14 @@
 			send(i) {
 				let opts
 				if (i) {
-					console.log(i);
 					
 					if (!this.showPopup.phone || !this.showPopup.name || !this.showPopup.cnt)  {
 						alert('Введіть будь-ласка повні дані');
 						return;
+					}
+
+					if (!this.isValidPhone(this.showPopup.phone)) {
+						return alert('Ви ввели недійсний номер телефону!');
 					}
 					opts = {
 						method: 'get',
@@ -138,6 +147,10 @@
 					if (!this.phone) {
 						alert('Введіть будь-ласка Ваш номер телефону');
 						return;
+					}
+
+					if (!this.isValidPhone(this.phone)) {
+						return alert('Ви ввели недійсний номер телефону!');
 					}
 					opts = {
 						method: 'get',

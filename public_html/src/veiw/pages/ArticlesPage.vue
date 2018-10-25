@@ -15,17 +15,17 @@
 				a.zmdi.zmdi-google-plus.bg-google.share-link(:href='"https://plus.google.com/share?url=" + linkUrl')
 				a.zmdi.zmdi-linkedin.bg-linkedin.share-link(:href='"https://www.linkedin.com/shareArticle?url=" + linkUrl')
 				//- .bg-instagram.share-link(href='http://www.facebook.com/sharer.php?u=')
-			.title Корисна інформація
+			.use-info-title Корисна інформація
 			hr.devider
 			.use-info
 				router-link.info-item(to='/info/1')
-					<!--img(src='/img/plug/vybir.png')-->
+					img(src='/img/plug/vybir.png')
 					.subs Вибір тротуарної плитки
 				router-link.info-item(to='/info/2')
-					<!--img(src='/img/plug/osnova.png')-->
+					img(src='/img/plug/osnova.png')
 					.subs Рекомендації з улаштування основи під тротуарну плитку
 				router-link.info-item(to='/info/3')
-					<!--img(src='/img/plug/ukladannya.png')-->
+					img(src='/img/plug/ukladannya.png')
 					.subs Технології укладання бруківки
 		.banner
 			router-link.new(v-for='item in news' :key='item.img' :to='item.id')

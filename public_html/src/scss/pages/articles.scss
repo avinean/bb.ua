@@ -83,14 +83,18 @@
             }
         }
 
+        .use-info-title {
+            text-transform: uppercase;
+        }
         .use-info {
             display: flex;
-            justify-content: space-around;
+            justify-content: center;
 
             .info-item {
-                width: 170px;
+                width: 166px;
                 height: 170px;
                 position: relative;
+                margin: 15px;
 
                 &>img {
                     width: 100%;
@@ -109,7 +113,8 @@
                     font-weight: bold;
                     text-transform: uppercase;
                     color: $snow;
-                    background: $brand;
+                    font-size: 14px;
+                    //background: $brand;
                 }
             }
         }

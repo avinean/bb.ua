@@ -38,6 +38,7 @@ route('/catalog');
 route('/catalog/[:action]');
 route('/catalog/[:action]/[:id]');
 route('/search');
+route('/policy');
 
 $app->respond(['GET', 'POST'], '/api/request', function($req, $res, $ser) {
 	$params = $req->params();

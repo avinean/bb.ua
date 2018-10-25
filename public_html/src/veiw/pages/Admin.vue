@@ -11,6 +11,8 @@
 				)
 					i(:class='i.cls')
 					| {{i.name}}
+			template(v-if='curSet && curSet.table !== "pages"')
+				.bb-btn.brand.add-new(@click='showForm') Додати
 		.admin-body(
 			v-if='curSet && curSet.data'
 			:class='curSet.table == "pages" ? "flexbox flex-wrap" : ""'
@@ -20,18 +22,16 @@
 					.title {{page.title}}
 					.text(v-html='page.description')
 			template(v-else)
-				.btn(@click='showForm') Додати
 				table
 					thead
 						tr
-							th
 							th(v-for='v, k in curSet.data[0]') {{fields[k] || k}}
 					tbody
 						tr(v-for='item in curSet.data')
-							td
-								i.fas.fa-times(@click='deleteRow(item.id)')
 							td(v-for='f, key in item')
-								template(v-if='key === "id" || key === "datetime" || key == "folder"') {{f}}
+								template(v-if='key === "datetime" || key == "folder"') {{f}}
+								template(v-else-if='key === "id"') {{f}}
+									a.lady(href='javascript:;' @click='deleteRow(item.id)') (видалити)
 								template(v-else-if='key === "category"')
 									select(v-model='item[key]' @change='changeText(item, key)')
 										option(v-for='category, key in categories' :value='key') {{category}}
@@ -48,7 +48,7 @@
 										@click='loadImg = item; loadImg["folder"] = curSet.table'
 									)
 								template(v-else-if='key === "description"')
-									div.page-esc( style='height: 100px' @click='curPage = item')
+									div.page-esc( style='height: 100px; width: 80%' @click='curPage = item')
 										.text(v-html='f')
 								template(v-else)
 									input(v-model='item[key]' @change='changeText(item, key)')
@@ -56,7 +56,6 @@
 			img-loader(v-if='loadImg' @close='imgLoaded' :data='loadImg')
 		transition(name='appear')
 			.new-form(v-if='newForm')
-				i.close.fas.fa-times(@click='newForm = null')
 				table
 					tbody
 						tr(v-for='v, k in newForm')
@@ -74,6 +73,7 @@
 								td 
 									input(v-model='newForm[k]')
 				.bb-btn.brand(@click='addRow(newForm)') Зберегти
+				.bb-btn.lady.wide(@click='newForm = null') Закрити без збереження
 		transition(name='appear')
 			text-editor(v-if='curPage' :value='curPage.description' @close='changePageData')
 
@@ -248,6 +248,7 @@
 				}
 			},
 			async showForm() {
+				console.log(1);
 				let table = this.curSet.table;
 				let form = {};
 				let i = (await this.admin('getFields', {table})).data;

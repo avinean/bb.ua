@@ -2,70 +2,75 @@
 
 .productpage {
 
-    .card {
-        display: flex;
-        height: 300px;
-        margin-bottom: 75px;
-
-        .image {
-            width: 50%;
-            overflow: hidden;
-            text-align: center;
-
-            &>img {
-                height: 80%;
-            }
-
-            &>p  {
-                font-size: 20px;
-                color: $cherry;
-            }
-        }
-
-        .short-info {
-            width: 50%;
-            padding: 80px;
-            text-align: center;
-
-            .title {
-                font-weight: bold;
-                padding: 10px;
-            }
-            .devider {
-                width: 50px;
-                margin: 0 auto;
-                background: $brand;
-                height: 2px;
-                border: none;
-            }
-            .hz {
-                padding: 10px;
-                font-size: 14px;
-            }
-
-            @media screen and (max-width: 750px){
-                padding: 0;
-            } 
-        }
-    }
-    .full-info {
-        .info-row {
+    .content-block {
+        max-width: 1000px;
+        margin: auto;
+        .card {
             display: flex;
-            height: 50px;
-            margin: 7px 0;
-            line-height: 50px;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            height: 300px;
+            margin-bottom: 75px;
 
-            .key {
-                width: 50%;
+            .image {
+                //width: 50%;
+                overflow: hidden;
+                text-align: center;
+
+                & > img {
+                    height: 250px;
+                }
+
+                & > p {
+                    font-size: 20px;
+                    color: $cherry;
+                }
             }
-            .val {
-                width: 50%;
-                padding: 0 10px;
-                text-align: right;
+
+            .short-info {
+                max-width: 50%;
+                padding: 80px 0;
+                text-align: center;
+
+                .title {
+                    font-weight: bold;
+                    padding: 10px;
+                }
+                .devider {
+                    width: 50px;
+                    margin: 0 auto;
+                    background: $brand;
+                    height: 2px;
+                    border: none;
+                }
+                .hz {
+                    padding: 10px;
+                    font-size: 14px;
+                }
+
+                @media screen and (max-width: 750px) {
+                    padding: 0;
+                }
+            }
+        }
+        .full-info {
+            .info-row {
+                display: flex;
+                height: 50px;
+                margin: 7px 0;
+                line-height: 50px;
+
+                .key {
+                    width: 50%;
+                }
+                .val {
+                    width: 50%;
+                    padding: 0 10px;
+                    text-align: right;
+                }
             }
         }
     }
-
     .contact-us {
         height: 250px;
         background-image: url('/img/plug/fon_tel.jpg');
@@ -138,6 +143,7 @@
             width: 90%;
             border-bottom: 1px solid #cacaca;
             margin: 0 auto;
+            text-transform: uppercase;
         }
         .vereteno-inner {
             position: relative;

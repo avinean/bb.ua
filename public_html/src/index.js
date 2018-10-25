@@ -21,22 +21,30 @@ Components.forEach(e => Vue.component(e.name, e.comp))
 
 Vue.config.productionTip = false;
 
-new Vue().request({
+async function init() {
+
+	let is = new Vue()
+
+	Vue.prototype.finders = (await is.request({
 		method: 'get',
 		className: 'Info',
 		methodName: 'getFinder'
-	})
-	.then(res => {
-		Vue.prototype.finders = res.data;
-	})
-	.then(_ => {
-		let app = new Vue({
-			el: '#app',
-			router,
-			store,
-			render: e => e(App)
-		});
-	});
+	})).data;
 
+	Vue.prototype.colorsMap = (await is.request({
+		method: 'get',
+		className: 'Catalog',
+		methodName: 'getColors'
+	})).data;
+
+	new Vue({
+		el: '#app',
+		router,
+		store,
+		render: e => e(App)
+	});
+}
+
+init();
 
 

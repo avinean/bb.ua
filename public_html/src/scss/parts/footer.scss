@@ -12,10 +12,11 @@
         width: 100%;
         display: flex;
         flex-wrap: wrap;
+        justify-content: space-between;
         flex: auto;
 
         .contacts {
-            flex: 1;
+            flex-basis: 350px;
             h2 {
                 padding: 10px 0;
                 color: $snow;
@@ -35,7 +36,7 @@
                 }
                 span, a {
                     color: $snow;
-                    font-size: 15px;
+                    font-size: 13px;
                     &.fa-facebook {
                         font-size: 34px;
                     }
@@ -60,7 +61,7 @@
         .header1 {
             color: $snow;
             margin: 25px 0 5px;
-            font-size: 20px;
+            font-size: 16px;
         }
 
         .links {
@@ -88,28 +89,31 @@
         width: 100%;
         margin: auto;
         padding: 10px 0;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        text-align: center;
-        font-size: 14px;
+
         background: $footer2;
 
-        &>div {
-            flex: 1;
-            color: $snow;
-        }
-
-        .logo-brig {
-            width: 100px;
+        .inner-wrapper {
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            margin: 0 auto;
-            &>img {
-                width: 50px;
+            text-align: center;
+            font-size: 14px;
+
+            & > div {
+                flex-basis: 350px;
+                color: $snow;
             }
-            .title {
-                width: 50px;
+
+            .logo-brig {
+                width: 100px;
+                display: flex;
+                align-items: center;
+                & > img {
+                    width: 50px;
+                }
+                .title {
+                    width: 50px;
+                }
             }
         }
     }
