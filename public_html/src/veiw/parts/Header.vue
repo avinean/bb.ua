@@ -11,12 +11,12 @@
 					i.fas.fa-map-marked-alt
 					span
 						strong Адреса:<br>
-						| {{contacts.city}}, <br>{{contacts.street}}
+						| {{meta.city}}, <br>{{meta.street}}
 				.time
 					i.fas.fa-clock
 					span
 						strong Графік роботи:
-						|<br> Пн-Cб з 8.00 до 18.00
+						|<br> {{meta.time}}
 				.access
 					i.fas.fa-at
 					span
@@ -25,7 +25,7 @@
 				.phone
 					i.fab.fa-viber.brand
 					i.fab.fa-whatsapp.grass
-					|{{contacts.phone}}
+					|{{meta.phone}}
 		.header(@mouseleave='children = null')
 			.nav-panel
 				.inner-wrapper.items-row
@@ -54,7 +54,7 @@
 					span
 						i.fab.fa-viber.brand
 						i.fab.fa-whatsapp.grass
-						|{{contacts.phone}}
+						|{{meta.phone}}
 </template>
 
 <script>
@@ -74,7 +74,7 @@
 			}
 		},
 		computed: {
-			...mapState(['pages', 'contacts'])
+			...mapState(['pages'])
 		},
 		methods: {
 			showList(ch, event) {

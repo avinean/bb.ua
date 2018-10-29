@@ -31,9 +31,6 @@
 				phone: ''
 			}
 		},
-		computed: {
-			...mapState(['contacts'])
-		},
 		methods: {
 			async send() {
 				if (!this.name || !this.email || !this.msg || !this.phone) {

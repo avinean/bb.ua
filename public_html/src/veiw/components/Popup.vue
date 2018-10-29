@@ -8,13 +8,14 @@
 				i.fas.fa-times.close(@click='close')
 			.body
 				slot(name='body')
-			.foot
+			.foot(v-if="!nofooter")
 				slot(name='foot')
 </template>
 
 <script>
 	export default {
 		name: 'popup',
+		props: ['nofooter'],
 		methods: {
 			close() {
 				this.$emit('close');

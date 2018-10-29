@@ -5,7 +5,7 @@
 			.category-block
 				.list
 					.item(v-for='v, k in categories[category].list' @click='curItem = k') {{v}}
-					a.price(href='/store/price.pdf')
+					a.price(:href='meta.price_url')
 						i.fas.fa-file-pdf
 						|Cкачати прайс
 				.grid

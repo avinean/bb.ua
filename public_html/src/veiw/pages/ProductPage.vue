@@ -9,7 +9,7 @@
 					.short-info
 						.title {{item.title}}
 						hr.devider
-						.hz  {{item.description}}
+						.hz(v-html='item.description')
 						.bb-btn.wide.cherry(@click='showPopup = {}') Оформити замовлення
 				.full-info
 					.info-row(v-for='title, key in characs' v-if='item[key]')

@@ -8,9 +8,9 @@
 						span У НАС Є РІШЕННЯ САМЕ ДЛЯ ВАС!
 					br
 					.addr
-						span ЄДРПОУ {{contacts.edrpou}}
+						span ЄДРПОУ {{meta.edrpou}}
 					.addr
-						span ІНН {{contacts.inn}}
+						span ІНН {{meta.inn}}
 				.contacts.links
 					p.header1 Приєднуйтесь до нас в соціальних мережах
 					.addr
@@ -23,14 +23,14 @@
 					p.header1 КОНТАКТИ
 					.addr
 						i.fas.fa-map-marker-alt
-						span.title Адреса: {{contacts.region}}, <br>{{contacts.district}}
-							|, {{contacts.city}}, <br> {{contacts.street}}
+						span.title Адреса: {{meta.region}}, <br>{{meta.district}}
+							|, {{meta.city}}, <br> {{meta.street}}
 					.addr
 						i.fas.fa-phone
-						span.title {{contacts.phone}}
+						span.title {{meta.phone}}
 					.addr
 						i.fas.fa-envelope
-						a.title(:href='"mailto:" + contacts.email') {{contacts.email}}
+						a.title(:href='"mailto:" + meta.email') {{meta.email}}
 					.addr
 						i.fas.fa-map-marked-alt
 						a.title(href='https://www.google.com/maps/dir//%D0%A2%D0%9E%D0%92+%22%D0%92%D0%9A+%22%D0%91%D0%9B%D0%90%D0%93%D0%9E%D0%91%D0%A3%D0%94%22/data=!4m8!4m7!1m0!1m5!1m1!1s0x40d4cb932c18e567:0x63292aa8267936d0!2m2!1d30.242010399999998!2d50.394196199999996') Прокласти маршрут
@@ -64,10 +64,7 @@
 					{img: '/img/partners/kirpich.jpg', url: '/', h: 'height: 50px'},
 				]
 			}
-		},
-		computed: {
-			...mapState(['contacts'])
-		},
+		}
 	}
 </script>
 

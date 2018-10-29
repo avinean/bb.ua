@@ -78,6 +78,9 @@
 				if (!opt && !this.isValidEmail(this.showPopup.email)) {
 					return alert('Ви ввели недійсний e-mail!');
 				}
+				if (!opt && !this.isValidPhone(this.showPopup.viber)) {
+					return alert('Ви ввели недійсний номер телефону!');
+				}
 
 
 

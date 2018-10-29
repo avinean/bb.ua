@@ -7,7 +7,7 @@
 			up(v-if='isUp')
 			div(ref="validTitle") {{ validTitle }}
 			transition(name='appear')
-				popup(v-if='showMessage !== null' @close='showMessage = null')
+				popup(v-if='showMessage !== null' @close='showMessage = null' nofooter="1")
 					.message(slot='body' v-html='showMessage')
 		page-footer(v-if='isFooter')
 		
@@ -26,15 +26,6 @@
 				styles: '',
 				contacts: {},
 				validTitle: ''
-			}
-		},
-		methods: {
-			async loadContacts() {
-				this.contacts = (await this.request({
-					method: 'get',
-					className: 'Contacts',
-					methodName: 'getContacts'
-				})).data
 			}
 		},
 		async mounted() {

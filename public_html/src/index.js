@@ -17,13 +17,19 @@ import Mixins from './mixins'
 Vue.mixin(Mixins)
 
 import Components from './components'
-Components.forEach(e => Vue.component(e.name, e.comp))
+Components.forEach(e => Vue.component(e.name, e.comp));
 
 Vue.config.productionTip = false;
 
 async function init() {
 
-	let is = new Vue()
+	let is = new Vue();
+
+	Vue.prototype.meta = (await is.request({
+		method: 'get',
+		className: 'Info',
+		methodName: 'getMeta'
+	})).data;
 
 	Vue.prototype.finders = (await is.request({
 		method: 'get',

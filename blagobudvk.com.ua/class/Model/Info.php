@@ -76,4 +76,8 @@ class Info extends Model {
 
 		return $finders;
 	}
+
+	public function getMeta() {
+		return $this->db->query('SELECT * FROM meta')->fetchAssoc();
+	}
 }

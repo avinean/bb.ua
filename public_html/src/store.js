@@ -63,18 +63,6 @@ export default new Vuex.Store({
 				name: 'Контакти',
 				url: '/contacts'
 			},
-		],
-		contacts: {
-			street: 'вул.Будівельна, 13',
-			city: 'с. Білогородка',
-			region: 'Київська область',
-			district: 'Києво-Святошинський р-н',
-			country: 'Україна',
-			index: '08140',
-			phone: '(068) 630 0007',
-			email: 'sale.blagobud@ukr.net',
-			edrpou: 41068374,
-			inn: 1234567890
-		},
+		]
 	}
 })

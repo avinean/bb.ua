@@ -21,6 +21,21 @@
 				div.page-esc(v-for='page in curSet.data' @click='curPage = page')
 					.title {{page.title}}
 					.text(v-html='page.description')
+			template(v-if='curSet.table == "meta"')
+				table
+					tbody
+						tr(v-for="val, key in curSet.data[0]")
+							td {{fields[key] || key}}
+							td
+								template(v-if="key == 'id'") {{val}}
+								template(v-else-if='key === "price_url"')
+									a.fas.fa-file-pdf(
+										href="javascript:;"
+										style='width: 50px; cursor: pointer'
+										@click='loadImg = curSet.data[0]; loadImg.folder = "../storage"'
+									)
+								template(v-else)
+									input(v-model='curSet.data[0][key]' @change='changeText(curSet.data[0], key)')
 			template(v-else)
 				table
 					thead
@@ -141,16 +156,17 @@
 						data: null,
 						cls: 'fas fa-palette'
 					},
-					// {
-					// 	name: "Контакти",
-					// 	table: "contacts",
-					// 	data: null
-					// },
 					{
 						name: "Сторінки",
 						table: "pages",
 						data: null,
 						cls: 'fas fa-file-alt'
+					},
+					{
+						name: "Мета дані",
+						table: "meta",
+						data: null,
+						cls: 'fas fa-cogs'
 					},
 				],
 				fields: {
@@ -194,6 +210,18 @@
 					complectation: "Комплектація",
 					mark_strength: "Марка за міцностю",
 					mark_frost: "Марка за морозостійкістю",
+					price_url: "Прайсинг",
+					street: "Адреса",
+					city: "Місто",
+					region: "Регіон",
+					district: "Район",
+					country: "Країна",
+					index: "Поштовий індекс",
+					phone: "Телефон",
+					email: "E-mail",
+					edrpou: "ЄДРПОУ",
+					inn: "ІНН",
+					time: "Час",
 				}
 			}
 		},
@@ -233,6 +261,9 @@
 				if (url) {
 					let table = this.curSet.table;
 					let key = 'img';
+					if (table == 'meta') {
+						key = 'price_url';
+					}
 					let data = {...this.loadImg, img: url};
 					await this.admin('changeField',{table,key,data});
 					this.loadImg.img = url
