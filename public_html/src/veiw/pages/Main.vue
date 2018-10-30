@@ -70,7 +70,7 @@
 							)
 							.title {{item[2].title}}
 								.date {{item[2].datetime}}
-			.bb-btn.mid.brand(@click='loadNewsList') Показати більше
+			router-link.bb-btn.mid.brand(to="/news") Показати більше
 
 </template>
 
@@ -101,12 +101,12 @@
 				goods: null,
 				news: [],
 				newsPortion: 1,
-				sale: []
+				sales: []
 			}
 		},
 		computed: {
 			formedSale() {
-				return this.sale.map(e => {
+				return this.sales.map(e => {
 					return {
 						...e,
 						url: e.id
@@ -161,9 +161,9 @@
 				this.news.push(res.data)
 			},
 			async loadSales() {
-				this.sale = (await this.request({
+				this.sales = (await this.request({
 					method: 'get',
-					className: 'Sale',
+					className: 'Sales',
 					methodName: 'getRows',
 				})).data
 			}

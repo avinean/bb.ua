@@ -82,12 +82,12 @@ export default new Router({
 			component: InfoPage
 		},
 		{
-			path: '/sale',
+			path: '/sales',
 			name: 'Articles-sale',
 			component: Articles
 		},
 		{
-			path: '/sale/:id',
+			path: '/sales/:id',
 			name: 'ArticlesPage-sale',
 			component: ArticlesPage
 		},
@@ -112,4 +112,4 @@ export default new Router({
 			component: Search
 		}
 	]
-})
+});

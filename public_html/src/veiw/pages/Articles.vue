@@ -13,7 +13,7 @@
 						.date
 							i.fas.fa-calendar-alt
 							|   {{item.datetime}}
-						.description(v-html="item.description.slice(0, 100) + ' ...'")
+						.description(v-html="item.description.slice(0, 400)")
 						router-link.link(:to='"/" + page + "/" + item.id') Читати далі >
 				.bb-btn.mid.brand(@click='loadRows') Показати більше
 			template(v-else) На даний період {{classes[this.page].title.toLowerCase()}} відсутні.
@@ -32,8 +32,8 @@
 				rows: [],
 				portion: 1,
 				classes: {
-					sale: {
-						className: 'Sale',
+					sales: {
+						className: 'Sales',
 						title: 'Акції'
 					},
 					news: {

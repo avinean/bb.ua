@@ -20,7 +20,7 @@ $hei: 91px;
         flex-wrap: wrap;
         align-items: center;
 
-        .logo, .address, .time, .access {
+        .logo, .address, .time, .access,{
             flex: 1;
         }
         .phone {
@@ -42,8 +42,8 @@ $hei: 91px;
             padding-right: 3px;
 
             & > i {
+                margin-right: 7px;
                 color: $brand;
-                margin-right: 10px;
                 font-size: 20px;
             }
 
@@ -62,27 +62,27 @@ $hei: 91px;
                 margin: 5px;
             }
         }
+
+        @media screen and (max-width: 1197px) {
+            .address, .time, .access {
+                font-size: 15px;
+            }
+
+            .logo {
+                img {
+                    height: auto;
+                    width: 90%;
+                }
+            }
+
+            .phone {
+                font-size: 17px;
+            }
+        }
     }
 
     @media screen and (max-width: 1024px) {
         width: 100vw;
-    }
-
-    @media screen and (max-width: 1197px) {
-        .address, .time, .access {
-            font-size: 15px;
-        }
-
-        .logo {
-            img {
-                height: auto;
-                width: 90%;
-            }
-        }
-
-        .phone {
-            font-size: 17px;
-        }
     }
 
     @media screen and (max-width: 860px) {

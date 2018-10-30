@@ -39,6 +39,9 @@
                     padding: 20px 0;
                     color: black;
                     word-break: break-all;
+                    max-height: 150px;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
                 }
                 .link {
                     display: block;
@@ -56,8 +59,8 @@
 
                 &>img {
                     height: 100%;
-		    display: block;
-		    margin: auto;
+                    margin: auto;
+                    display: block;
                 }
             }
             .title {

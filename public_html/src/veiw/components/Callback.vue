@@ -82,22 +82,30 @@
 					return alert('Ви ввели недійсний номер телефону!');
 				}
 
-
-
 				this.request({
 					method: 'get',
 					className: 'Contacts',
 					methodName: 'sendRequest',
 					opts
-				})
+				});
 
 				this.show = null;
 
 				this.$parent.showMessage = `
 					Дякуємо! 
 					<br> Ваш запит відправлено
-				`
-				setTimeout(e => this.$parent.showMessage = null, 4000)
+				`;
+
+				this.showPopup = {
+					name: '',
+					phone: '',
+					msg: '',
+					viber: '',
+					watsapp: '',
+					email: ''
+				};
+
+				setTimeout(e => this.$parent.showMessage = null, 4000);
 			},
 			scroll() {
 				let b = document.scrollingElement.offsetHeight - document.scrollingElement.scrollTop - document.scrollingElement.clientHeight;

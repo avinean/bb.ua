@@ -24,7 +24,40 @@ export default {
 			return /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/.test(email);
 		},
 		isValidPhone(phone) {
-			return /^[+]*\d*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/.test(phone);
+			return /^((8|\+38|38)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{10,10}$/.test(phone);
+		},
+		async loadFile(e) {
+			let file = e.target.files[0];
+			let form = new FormData;
+			form.append('file', file);
+			let res = await this.axios.post(
+				'/secure/uploadFile',
+				form,
+				{headers: {'Content-Type': 'multipart/form-data'}}
+			);
+			return res.data;
+		},
+		writeVisitStat(val) {
+			this.request({
+				method: 'get',
+				className: 'Stat',
+				methodName: 'writeVisitStat',
+				opts: {
+					fullPath: val.fullPath,
+					path: val.path,
+					page: val.path.split('/')[1],
+					category: val.params.category || 'none',
+					id: val.params.id || 'none',
+				}
+			});
+		},
+		writeContactStat(opts) {
+			this.request({
+				method: 'get',
+				className: 'Stat',
+				methodName: 'writeContactStat',
+				opts
+			});
 		}
     }
 }

@@ -5,8 +5,7 @@
 				.contacts.logo
 					img.logo(src='/img/logo-white.png' alt='Blagobud-logo')
 					.addr
-						span У НАС Є РІШЕННЯ САМЕ ДЛЯ ВАС!
-					br
+						span У НАС Є РІШЕННЯ САМЕ ДЛЯ ВАС
 					.addr
 						span ЄДРПОУ {{meta.edrpou}}
 					.addr

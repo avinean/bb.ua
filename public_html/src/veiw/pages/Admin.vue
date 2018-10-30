@@ -21,7 +21,7 @@
 				div.page-esc(v-for='page in curSet.data' @click='curPage = page')
 					.title {{page.title}}
 					.text(v-html='page.description')
-			template(v-if='curSet.table == "meta"')
+			template(v-else-if='curSet.table == "meta"')
 				table
 					tbody
 						tr(v-for="val, key in curSet.data[0]")
@@ -29,23 +29,39 @@
 							td
 								template(v-if="key == 'id'") {{val}}
 								template(v-else-if='key === "price_url"')
-									a.fas.fa-file-pdf(
-										href="javascript:;"
-										style='width: 50px; cursor: pointer'
-										@click='loadImg = curSet.data[0]; loadImg.folder = "../storage"'
+									label.fas.fa-file-pdf(
+										for='file'
 									)
+									input#file(type='file' style="display: none" @change='fileChoose')
 								template(v-else)
 									input(v-model='curSet.data[0][key]' @change='changeText(curSet.data[0], key)')
 			template(v-else)
+				.filters-row
+					p.filter-item
+						label id
+						input(type="nuber" v-model="filters.id")
+					p.filter-item(v-if="curSet.table == 'goods'")
+						label Категорія
+						select(v-model="filters.category")
+							option(v-for='category, key in categories' :value='key') {{category}}
+					p.filter-item(v-if="curSet.table == 'goods'")
+						label Тип
+						select(v-model="filters.type")
+							option(v-for='type, key in goods' :value='key') {{type}}
 				table
 					thead
 						tr
 							th(v-for='v, k in curSet.data[0]') {{fields[k] || k}}
 					tbody
-						tr(v-for='item in curSet.data')
+						tr(v-for='item in filteredData')
 							td(v-for='f, key in item')
 								template(v-if='key === "datetime" || key == "folder"') {{f}}
-								template(v-else-if='key === "id"') {{f}}
+								template(v-else-if='key === "id"')
+									template(v-if="curSet.table == 'goods'")
+										a(:href="'/catalog/' + item.category + '/' + f") {{f}}
+									template(v-else)
+										a(:href="'/' + curSet.table + '/' + f") {{f}}
+									br
 									a.lady(href='javascript:;' @click='deleteRow(item.id)') (видалити)
 								template(v-else-if='key === "category"')
 									select(v-model='item[key]' @change='changeText(item, key)')
@@ -106,6 +122,7 @@
 					isCallback: 0,
 					isUp: 0
 				},
+				filters: {},
 				curSet: null,
 				loadImg: false,
 				newForm: null,
@@ -225,7 +242,30 @@
 				}
 			}
 		},
+		computed: {
+			filteredData() {
+				let fil = this.curSet.data;
+				if (this.filters.id) {
+					fil = fil.filter(e => e.id == this.filters.id);
+				}
+				if (this.curSet.table == 'goods') {
+					if (this.filters.category) {
+						fil = fil.filter(e => e.category == this.filters.category);
+					}
+					if (this.filters.type) {
+						fil = fil.filter(e => e.type == this.filters.type);
+					}
+				}
+
+				return fil;
+			}
+		},
 		methods: {
+			async fileChoose(e) {
+				let price_url = await this.loadFile(e);
+				console.log(price_url);
+				await this.admin('changeField',{table: 'meta',key: 'price_url',data: {...this.curSet.data[0], price_url}});
+			},
 			async load() {
 				if (!this.curSet.data) {
 					let table = this.curSet.table;
@@ -261,9 +301,6 @@
 				if (url) {
 					let table = this.curSet.table;
 					let key = 'img';
-					if (table == 'meta') {
-						key = 'price_url';
-					}
 					let data = {...this.loadImg, img: url};
 					await this.admin('changeField',{table,key,data});
 					this.loadImg.img = url
