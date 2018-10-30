@@ -46,6 +46,7 @@
 				.pos-wrap
 					.pos-left
 						router-link.item(
+								v-if='item[0]'
 								:key='item[0].img + item[0].title + 1'
 								:to='"/news/" + item[0].id'
 								:style='"background-image: url(" + item[0].img + ")"'
@@ -54,6 +55,7 @@
 								.date {{item[0].datetime}}
 					.pos-right
 						router-link.item(
+								v-if='item[1]'
 								:key='item[1].img + item[1].title + 2'
 								:to='"/news/" + item[1].id'
 								:style='"background-image: url(" + item[1].img + ")"'
@@ -61,6 +63,7 @@
 							.title {{item[1].title}}
 								.date {{item[1].datetime}}
 						router-link.item(
+								v-if='item[2]'
 								:key='item[2].img + item[2].title + 456'
 								:to='"/news/" + item[2].id'
 								:style='"background-image: url(" + item[2].img + ")"'

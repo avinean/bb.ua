@@ -20,28 +20,30 @@ $hei: 91px;
         flex-wrap: wrap;
         align-items: center;
 
-        .logo, .address, .time, .access, .phone {
-            width: 20%;
+        .logo, .address, .time, .access {
+            flex: 1;
+        }
+        .phone {
+            flex-basis: 241px;
         }
 
         .logo {
             text-align: left;
             img {
-                height: 70px;
+                height: 100%;
+                max-height: 70px;
             }
         }
 
         .address, .time, .access {
             display: flex;
             align-items: center;
-            position: relative;
             padding-left: 30px;
             padding-right: 3px;
 
             & > i {
                 color: $brand;
-                position: absolute;
-                left: 0;
+                margin-right: 10px;
                 font-size: 20px;
             }
 
@@ -135,6 +137,10 @@ $hei: 91px;
                 &:hover {
                     color: $brand;
                     // color: $snow;
+                }
+
+                @media screen and (max-width: 1321px) {
+                    padding: 0 20px;
                 }
 
             }

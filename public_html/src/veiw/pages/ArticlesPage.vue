@@ -3,7 +3,7 @@
 		.content-block(v-if='row')
 			.single-article
 				.image
-					img(src='row.img')
+					img(:src='row.img')
 				.title {{row.title}}
 				.date
 					i.fas.fa-calendar-alt
@@ -29,7 +29,7 @@
 					.subs Технології укладання бруківки
 		.banner
 			router-link.new(v-for='item in news' :key='item.img' :to='item.id')
-				img.image(src='item.img')
+				img.image(:src='item.img')
 				.text
 					.title {{item.title}}
 					.date
