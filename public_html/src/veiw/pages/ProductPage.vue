@@ -28,8 +28,8 @@
 			.vereteno
 				h3 Супутні товари
 				.vereteno-inner(v-if='goods')
-					//- i.fas.fa-chevron-circle-left.left.arr(@click='slideVereteno(0)')
-					//- i.fas.fa-chevron-circle-right.right.arr(@click='slideVereteno(1)')
+					i.fas.fa-chevron-circle-left.left.arr(@click='slideVereteno(0)')
+					i.fas.fa-chevron-circle-right.right.arr(@click='slideVereteno(1)')
 					.item(v-for='item in cur')
 						img(:src='goods[item].img')
 						.title {{goods[item].title}}

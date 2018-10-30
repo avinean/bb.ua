@@ -47,6 +47,27 @@
         padding: 0 20px;
         margin-left: 220px;
 
+        .filters-row {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 20px;
+
+            .filter-item {
+                margin: 0 25px;
+
+                label {
+                    margin: 0 10px;
+                    text-transform: uppercase;
+                    font-weight: bold;
+                }
+
+                input, select {
+                    height: 25px;
+                    font-size: 16px;
+                }
+            }
+        }
+
         table {
             margin: auto;
             border-collapse: collapse;

@@ -3,7 +3,7 @@
 		.content-block(v-if='row')
 			.single-article
 				.image
-					img(src='row.img')
+					img(:src='row.img')
 				.title {{row.title}}
 				.date
 					i.fas.fa-calendar-alt
@@ -18,18 +18,18 @@
 			.use-info-title Корисна інформація
 			hr.devider
 			.use-info
-				router-link.info-item(to='/info/1')
+				router-link.info-item(to='/info/9')
 					img(src='/img/plug/vybir.png')
 					.subs Вибір тротуарної плитки
-				router-link.info-item(to='/info/2')
+				router-link.info-item(to='/info/10')
 					img(src='/img/plug/osnova.png')
 					.subs Рекомендації з улаштування основи під тротуарну плитку
-				router-link.info-item(to='/info/3')
+				router-link.info-item(to='/info/11')
 					img(src='/img/plug/ukladannya.png')
 					.subs Технології укладання бруківки
 		.banner
 			router-link.new(v-for='item in news' :key='item.img' :to='item.id')
-				img.image(src='item.img')
+				img.image(:src='item.img')
 				.text
 					.title {{item.title}}
 					.date
@@ -47,8 +47,8 @@
 				row: null,
 				portion: 1,
 				classes: {
-					sale: {
-						className: 'Sale',
+					sales: {
+						className: 'Sales',
 						title: 'Акції'
 					},
 					news: {

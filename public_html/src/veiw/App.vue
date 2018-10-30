@@ -29,6 +29,9 @@
 			}
 		},
 		async mounted() {
+
+			this.writeVisitStat(this.$route);
+
 			if (this.$route.name === 'Admin') {
 				this.styles = `
 					    position: absolute;
@@ -48,6 +51,12 @@
 					}
 				}
 			})
+		},
+		watch: {
+			"$route"(val) {
+				window.scrollTo({top: 0, behavior: 'smooth'});
+				this.writeVisitStat(val);
+			}
 		}
 	}
 </script>

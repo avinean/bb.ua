@@ -1,6 +1,6 @@
 'use strict'
-const path = require('path')
-const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const path = require('path');
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 module.exports = {
 	output: {
@@ -63,6 +63,14 @@ module.exports = {
 				options: {
 					limit: 10000,
 					name: 'fonts/[name].[ext]'
+				}
+			},
+			{
+				test: /\.(pdf)(\?.*)?$/,
+				loader: 'url-loader',
+				options: {
+					limit: 10000,
+					name: 'storage/[name].[ext]'
 				}
 			},
 			{
