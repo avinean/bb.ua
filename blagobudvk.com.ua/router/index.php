@@ -8,7 +8,7 @@ function route($path) {
 	$app->with($path, function() use ($app, $path) {
 
 		$app->respond('GET', '', function($request, $response, $service) {
-			$service->render('index.html');
+			$service->render('index.phtml');
 		});
 
 		$filename = ROOT.'/router/routes/'.$path.'.php';
@@ -60,8 +60,8 @@ $app->respond(['GET', 'POST'], '/admin', function($req, $res, $ser) {
 		!isset($_POST['pass']) ||
 		@$_POST['user'] !== $config['admin']['login'] ||
 		@$_POST['pass'] !== $config['admin']['pass']
-	) $ser->render('admin.html');
-	else $ser->render('index.html');
+	) $ser->render('admin.phtml');
+	else $ser->render('index.phtml', ["secure" => "someoneelse"]);
 });
 
 $app->respond('POST', '/secure/admin', function($req, $res, $ser) {

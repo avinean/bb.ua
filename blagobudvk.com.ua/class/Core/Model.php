@@ -77,19 +77,19 @@ class Model extends Singleton {
 	}
 
 	public function writeProductsOrderStat($opts) {
-		$phone = isset($opts['phone']) ? $this->db->quote($opts['phone']) : '""';
-		$viber = isset($opts['viber']) ? $this->db->quote($opts['viber']) : '""';
+		$cnt = isset($opts['cnt']) ? intval($opts['cnt']) : -1;
+		$id = isset($opts['id']) ? intval($opts['id']) : -1;
 
 		$this->db->query(
-			'INSERT INTO contact_stat 
+			'INSERT INTO order_stat 
 				(
-					phone,
-					viber
+					cnt,
+					prod_id
 				) 
 			VALUES 
 				(
-					'.$phone.',
-					'.$viber.'
+					'.$cnt.',
+					'.$id.'
 				)
 			'
 		);

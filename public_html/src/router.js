@@ -29,7 +29,15 @@ export default new Router({
 		{
 			path: '/admin',
 			name: 'Admin',
-			component: Admin
+			component: Admin,
+			beforeEnter: (to, from, next) => {
+				if (someoneelse) {
+					next();
+				}
+				else {
+					next('/');
+				}
+			}
 		},
 		{
 			path: '/news',
