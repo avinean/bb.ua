@@ -84,6 +84,28 @@ class Admin extends Model {
 		}
 	}
 
+	public function uploadFile() {
+		$file = $_FILES['file'];
+		$root = $_SERVER['DOCUMENT_ROOT'];
+		$tmp_name = $file['tmp_name'];
+		$file_name = 'price.pdf';
+		$name_parts = explode('.', $file_name);
+		$file_extention	= array_pop($name_parts);
+
+		$path_to_file = $root."/storage/".$file_name;
+
+		for ($i = 1; file_exists($path_to_file); $i++) {
+			$file_name =  implode('.', $name_parts).'_'.$i.'.'.$file_extention;
+			$path_to_file = $root.$file_name;
+		}
+
+		$folder = $root."/storage/".$file_name;
+
+		if( move_uploaded_file($tmp_name, $folder) ) {
+			return "/storage/".$file_name;
+		}
+	}
+
 	public function getColors() {
 		return $this->db->query('SELECT * FROM colors')->fetchAll();
 	}
@@ -97,5 +119,8 @@ class Admin extends Model {
 		return $res;
 	}
 
+	public function isSecure() {
+		return isset($_COOKIE['isallowedtodoactionsinadmin']);
+	}
 }
 
