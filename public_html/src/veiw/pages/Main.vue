@@ -29,13 +29,13 @@
 					span.line
 					span.romb
 					span.line
-			.vereteno-inner(v-if='goods')
+			.vereteno-inner(v-if='unsortedGoods')
 				i.fas.fa-chevron-circle-left.left.arr(@click='slideVereteno(0)')
 				i.fas.fa-chevron-circle-right.right.arr(@click='slideVereteno(1)')
 				.item(v-for='item in cur')
-					img(:src='goods[item].img')
-					.title {{goods[item].title}}
-					a.bb-btn.cherry(:href='"/catalog/" + goods[item].category + "/" + goods[item].id') Детальніше
+					img(:src='unsortedGoods[item].img')
+					.title {{unsortedGoods[item].title}}
+					a.bb-btn.cherry(:href='"/catalog/" + unsortedGoods[item].category + "/" + unsortedGoods[item].id') Детальніше
 		.news.inner-wrapper
 			h2 Новини
 				.decor
@@ -112,6 +112,10 @@
 						url: e.id
 					}
 				})
+			},
+			unsortedGoods() {
+				if (!this.goods) return;
+				return this.goods.sort(e => Math.random() - 0.5);
 			}
 		},
 		methods: {
@@ -120,14 +124,14 @@
 				if (d) {
 					this.cur = this.cur.map(e => {
 						e++;
-						if (e > this.goods.length - 1) return 0;
+						if (e > this.unsortedGoods.length - 1) return 0;
 						return e;
 					})
 				}
 				if (!d) {
 					this.cur = this.cur.map(e => {
 						e--;
-						if (e < 0) return this.goods.length - 1;
+						if (e < 0) return this.unsortedGoods.length - 1;
 						return e
 					})
 				}

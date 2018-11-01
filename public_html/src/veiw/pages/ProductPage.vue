@@ -27,13 +27,13 @@
 		.inner-wrapper
 			.vereteno
 				h3 Супутні товари
-				.vereteno-inner(v-if='goods')
+				.vereteno-inner(v-if='unsortedGoods')
 					i.fas.fa-chevron-circle-left.left.arr(@click='slideVereteno(0)')
 					i.fas.fa-chevron-circle-right.right.arr(@click='slideVereteno(1)')
 					.item(v-for='item in cur')
-						img(:src='goods[item].img')
-						.title {{goods[item].title}}
-						a.bb-btn.cherry(:href='"/catalog/" + goods[item].category + "/" + goods[item].id') Детальніше
+						img(:src='unsortedGoods[item].img')
+						.title {{unsortedGoods[item].title}}
+						a.bb-btn.cherry(:href='"/catalog/" + unsortedGoods[item].category + "/" + unsortedGoods[item].id') Детальніше
 		popup.popup(v-if='showPopup' @close='showPopup = null')
 			template(slot='head') Ми зателефонуємо Вам на протязі 15 хвилин
 			.form(slot='body')
@@ -91,6 +91,13 @@
 		computed: {
 			placeholder() {
 				return this.$route.params.category === 'pave' ? 'Вкажіть кількість, м2' : 'Вкажіть кількість, шт';
+			},
+			unsortedGoods() {
+				if (!this.goods) return;
+				let categories = ['pave', 'road', 'vert'].filter(e => e !== this.$route.params.category);
+				return this.goods
+					.filter(e => categories.includes(e.category))
+					.sort(e => Math.random() - 0.5);
 			}
 		},
 		methods: {
@@ -99,14 +106,14 @@
 				if (d) {
 					this.cur = this.cur.map(e => {
 						e++;
-						if (e > this.goods.length - 1) return 0;
+						if (e > this.unsortedGoods.length - 1) return 0;
 						return e;
 					})
 				}
 				if (!d) {
 					this.cur = this.cur.map(e => {
 						e--;
-						if (e < 0) return this.goods.length - 1;
+						if (e < 0) return this.unsortedGoods.length - 1;
 						return e
 					})
 				}
