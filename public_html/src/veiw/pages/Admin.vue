@@ -11,7 +11,7 @@
 				)
 					i(:class='i.cls')
 					| {{i.name}}
-			template(v-if='curSet && curSet.table !== "pages"')
+			template(v-if='curSet && curSet.table !== "pages" && curSet.table !== "meta"')
 				.bb-btn.brand.add-new(@click='showForm') Додати
 		.admin-body(
 			v-if='curSet && curSet.data'
@@ -48,6 +48,14 @@
 						label Тип
 						select(v-model="filters.type")
 							option(v-for='type, key in goods' :value='key') {{type}}
+					p.filter-item
+						label Заголовок
+						select(v-model="filters.type")
+							option(v-for='type, key in goods' :value='key') {{type}}
+					<!--p.filter-item(v-if="curSet.table == 'goods'")-->
+						<!--label Тип-->
+						<!--select(v-model="filters.type")-->
+							<!--option(v-for='type, key in goods' :value='key') {{type}}-->
 				table
 					thead
 						tr
@@ -72,6 +80,12 @@
 								template(v-else-if='key === "color"')
 									select(v-model='item[key]' @change='changeText(item, key)')
 										option(v-for='color, key in colors' :value='color.id') {{color.title}}
+								template(v-else-if='key === "related_to"')
+									select(v-model='item[key]' @change='changeUniqeText(item, key)')
+										option(value='')
+										option(value='vybir') Вибір тротуарної плитки
+										option(value='osnova') Рекомендації з улаштування основи під тротуарну плитку
+										option(value='ukladannya') Технології укладання бруківки
 								template(v-else-if='key === "img"')
 									img(
 										:src='f || "example.jpg"' 
@@ -83,30 +97,48 @@
 										.text(v-html='f')
 								template(v-else)
 									input(v-model='item[key]' @change='changeText(item, key)')
-		transition(name='appear')
-			img-loader(v-if='loadImg' @close='imgLoaded' :data='loadImg')
-		transition(name='appear')
+
+		img-loader(v-if='loadImg' @close='imgLoaded' :data='loadImg')
+		transition(name="appear")
 			.new-form(v-if='newForm')
-				table
-					tbody
-						tr(v-for='v, k in newForm')
-							template(v-if='k == "id" || k == "datetime" || k == "folder"')
-							template(v-else-if='k == "img"')
-								td {{fields[k] || k}}
-								td 
-									img(
-										:src='v || "example.jpg"' 
-										style='width: 50px; cursor: pointer'
-										@click='loadImg = newForm; loadImg["folder"] = curSet.table'
-									)
-							template(v-else)
-								td {{fields[k] || k}}
-								td 
-									input(v-model='newForm[k]')
-				.bb-btn.brand(@click='addRow(newForm)') Зберегти
-				.bb-btn.lady.wide(@click='newForm = null') Закрити без збереження
-		transition(name='appear')
-			text-editor(v-if='curPage' :value='curPage.description' @close='changePageData')
+				.bg(@click='newForm = null')
+				.new-form-inner
+					table
+						tbody
+							tr(v-for='v, k in newForm')
+								template(v-if='k == "id" || k == "datetime" || k == "folder"')
+								template(v-else)
+									td {{fields[k] || k}}
+									td
+										template(v-if='k == "img"')
+											img(
+												:src='v || "example.jpg"'
+												style='width: 50px; cursor: pointer'
+												@click='loadImg = newForm; loadImg["folder"] = curSet.table'
+											)
+										template(v-else-if='k == "description"')
+											div.page-esc( style='height: 100px; width: 80%' @click='curPage = newForm')
+												.text() Деякий текст
+										template(v-else-if='k == "related_to"')
+											select(v-model='newForm[k]')
+												option(value='')
+												option(value='vybir') Вибір тротуарної плитки
+												option(value='osnova') Рекомендації з улаштування основи під тротуарну плитку
+												option(value='ukladannya') Технології укладання бруківки
+										template(v-else-if='k === "category"')
+											select(v-model='newForm[k]')
+												option(v-for='category, key in categories' :value='key') {{category}}
+										template(v-else-if='k === "type"')
+											select(v-model='newForm[k]')
+												option(v-for='good, key in goods' :value='key') {{good}}
+										template(v-else-if='k === "color"')
+											select(v-model='newForm[k]')
+												option(v-for='color, key in colors' :value='color.id') {{color.title}}
+										template(v-else)
+											input(v-model='newForm[k]')
+					.bb-btn.brand(@click='addRow(newForm)') Зберегти
+					.bb-btn.lady.wide(@click='newForm = null') Закрити без збереження
+		text-editor(v-if='curPage' :value='curPage.description' @close='changePageData')
 
 </template>
 
@@ -202,6 +234,7 @@
 					length: "Довжина",
 					width: "Ширина",
 					height: "Товщина",
+					height_v: "Висота",
 					size: "Розмір",
 					row_weight: "Вага 1 кв. м, кг",
 					size_in_complect: "Розміри в комплекті, см",
@@ -239,6 +272,7 @@
 					edrpou: "ЄДРПОУ",
 					inn: "ІНН",
 					time: "Час",
+					related_to: "Привязати до"
 				}
 			}
 		},
@@ -263,7 +297,6 @@
 		methods: {
 			async fileChoose(e) {
 				let price_url = await this.loadFile(e);
-				console.log(price_url);
 				await this.admin('changeField',{table: 'meta',key: 'price_url',data: {...this.curSet.data[0], price_url}});
 			},
 			async load() {
@@ -276,7 +309,17 @@
 				let table = this.curSet.table;
 				this.admin('changeField',{table,key,data});
 			},
+			changeUniqeText(data, key) {
+				let table = this.curSet.table;
+				this.admin('changeUniqeText',{table,key,data});
+				this.curSet.data.forEach(e => {
+					if (e[key] === data[key] && e.id !== data.id) {
+						e[key] = '';
+					}
+				});
+			},
 			async changePageData(pageData) {
+				console.log(pageData);
 				if (pageData) {
 					let table = this.curSet.table;
 					this.curPage.description = pageData.html;

@@ -116,55 +116,82 @@
             line-height: 40px;
             cursor: pointer;
         }
+    }
 
-        //.add-new {
-        //    position: absolute;
-        //    left: 20px;
-        //    bottom: 10px;
-        //}
+    .page-esc {
+        width: 200px;
+        height: 250px;
+        margin: 20px;
+        border: 3px solid $brand;
+        overflow: hidden;
+        cursor: pointer;
+        box-shadow: 2px 2px 5px 0;
+        transition: all ease .2s;
 
-        .page-esc {
-            width: 200px;
-            height: 250px;
-            margin: 20px;
-            border: 3px solid $brand;
-            overflow: hidden;
-            cursor: pointer;
-            box-shadow: 2px 2px 5px 0;
-            position: relative;
-            top: 0;
-            left: 0;
-            transition: all ease .2s;
+        .title {
+            font-size: 14px;
+            padding: 8px;
+            color: $brand;
+        }
+        .text {
+            font-size: 10px;
+        }
 
-            .title {
-                font-size: 14px;
-                padding: 8px;
-                color: $brand;
-            }
-            .text {
-                font-size: 10px;
-            }
-
-            &:hover {
-               box-shadow: 5px 5px 5px 0;
-               top: -2px;
-               left: -2px;
-            }
+        &:hover {
+            box-shadow: 5px 5px 5px 0;
+            top: -2px;
+            left: -2px;
         }
     }
 
     .new-form {
-        position: absolute;
-        top: 0;
-        right: 0;
-        border: 2px solid grey;
-        left: 0;
-        width: 600px;
-        height: 100vh;
-        overflow-y: scroll;
-        overflow-x: auto;
-        margin: auto;
-        padding: 20px;
-        background: white;
+        transition: all ease .3s;
+        .bg {
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background: rgba(0,0,0,.7);
+        }
+
+        .new-form-inner {
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: 0;
+            border: 2px solid grey;
+            width: 600px;
+            height: 100vh;
+            overflow-y: scroll;
+            overflow-x: auto;
+            margin: auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 0 7px 0 white;
+
+        }
+        table {
+            margin: auto;
+            border-collapse: collapse;
+
+            tr:nth-child(even) {
+                background: $dust;
+            }
+            td, th {
+                min-width: 160px;
+                max-width: 160px;
+                width: 160px;
+                height: 60px;
+                border: 1px solid grey;
+                padding: 4px;
+                text-align: center;
+
+                & > input, & > select {
+                    width: 80%;
+                }
+            }
+        }
     }
 }

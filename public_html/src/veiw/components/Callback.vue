@@ -3,7 +3,12 @@
 		template(v-if='simple')
 			.bb-btn.brand.wide(@click='show = 1') Замовити консультацію
 		template(v-else)
-			.callback.bg-brand(@mouseenter='stop' @mouseleave='start' @click='show = phone' :style='"bottom: " + bottom + "px"')
+			.callback.bg-brand(
+				@mouseenter='stop'
+				@mouseleave='start'
+				@click='show = phone'
+				:style='"bottom: " + bottom + "px; transition: all ease .1s"'
+			)
 				transition(name='fade')
 					p.cherry.fas.fa-phone(v-if='phone')
 					p.cherry.fas.fa-envelope(v-else)
@@ -59,7 +64,7 @@
 				this.timer = setTimeout(this.circ, 3000)
 			},
 			circ() {
-				this.phone = !this.phone
+				this.phone = !this.phone;
 				this.timer = setTimeout(this.circ, 3000)
 			},
 			send(opt) {
@@ -108,15 +113,20 @@
 				setTimeout(e => this.$parent.showMessage = null, 4000);
 			},
 			scroll() {
-				let b = document.scrollingElement.offsetHeight - document.scrollingElement.scrollTop - document.scrollingElement.clientHeight;
+				let b = window.document.scrollingElement.offsetHeight - window.document.scrollingElement.scrollTop - window.document.scrollingElement.clientHeight;
 				this.bottom = b < 300 ? 300 - b : 0
 			}
 		},
 		mounted() {
 			if (!this.simple) {
-				this.start()
+				this.start();
 				window.addEventListener('scroll', this.scroll)
 			}			
+		},
+		watch: {
+			'$route'() {
+				this.bottom = 0;
+			}
 		}
 	}
 </script>

@@ -148,6 +148,7 @@
             justify-content: center;
             text-align: center;
             font-size: 15px;
+            min-height: 100px;
         }
 
         .clearfix {
@@ -155,10 +156,12 @@
         }
 
         .appear-enter, .appear-leave-to {
+            margin-top: -20px;
             opacity: 0;
         }
 
         .appear-enter-to, .appear-leave {
+            margin-top: 0;
             opacity: 1; 
         }
 

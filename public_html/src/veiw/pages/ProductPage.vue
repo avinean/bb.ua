@@ -60,6 +60,7 @@
 					length: "Довжина",
 					width: "Ширина",
 					height: "Товщина",
+					height_v: "Висота",
 					size: "Розмір",
 					row_weight: "Вага 1 кв. м, кг",
 					size_in_complect: "Розміри в комплекті, см",
@@ -95,7 +96,17 @@
 			unsortedGoods() {
 				if (!this.goods) return;
 				let categories = ['pave', 'road', 'vert'].filter(e => e !== this.$route.params.category);
-				return this.goods
+				let goods = [...this.goods];
+				if (this.$route.params.category === 'pave') {
+					return [
+						...goods.filter(e => categories.includes(e.category))							,
+						...goods
+							.filter(e => e.category === 'pave')
+							.sort(e => Math.random() - 0.5)
+							.slice(0,10)
+					].sort(e => Math.random() - 0.5)
+				}
+				return goods
 					.filter(e => categories.includes(e.category))
 					.sort(e => Math.random() - 0.5);
 			}
@@ -173,7 +184,8 @@
 				this.showPopup = null;
 				this.$parent.showMessage = `
 					Дякуємо! 
-					<br> Ваш запит відправлено
+					<br> Звернення передано до Вашого персонального менеджера.
+					<br> На протязі 15 хвилин з Вами зв'яжуться
 				`
 				setTimeout(e => this.$parent.showMessage = null, 3000)
 			}

@@ -3,13 +3,15 @@
 		.inner-wrapper
 			.footer-body
 				.contacts.logo
-					img.logo(src='/img/logo-white.png' alt='Blagobud-logo')
-					.addr
-						span У НАС Є РІШЕННЯ САМЕ ДЛЯ ВАС
-					.addr
-						span ЄДРПОУ {{meta.edrpou}}
-					.addr
-						span ІНН {{meta.inn}}
+					.logo-top
+						img.logo(src='/img/logo-white.png' alt='Blagobud-logo')
+						.addr
+							span У НАС Є РІШЕННЯ САМЕ ДЛЯ ВАС
+					.logo-bot
+						.addr
+							span ЄДРПОУ {{meta.edrpou}}
+						.addr
+							span ІПН {{meta.inn}}
 				.contacts.links
 					p.header1 Приєднуйтесь до нас в соціальних мережах
 					.addr

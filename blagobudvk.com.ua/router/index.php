@@ -61,7 +61,8 @@ $app->respond(['GET', 'POST'], '/admin', function($req, $res, $ser) {
 		@$_POST['user'] !== $config['admin']['login'] ||
 		@$_POST['pass'] !== $config['admin']['pass']
 	) $ser->render('admin.phtml');
-	else $ser->render('index.phtml', ["secure" => "someoneelse"]);
+	else
+		$ser->render('index.phtml', ["secure" => "someoneelse"]);
 });
 
 $app->respond('POST', '/secure/admin', function($req, $res, $ser) {
@@ -73,5 +74,10 @@ $app->respond('POST', '/secure/admin', function($req, $res, $ser) {
 
 $app->respond('POST', '/secure/upload', function($req, $res, $ser) {
 	$result = Admin::c()->uploadImg($req->params()['folder']);
+	return is_array($result) ? $res->json($result) : $result;
+});
+
+$app->respond('POST', '/secure/uploadFile', function($req, $res, $ser) {
+	$result = Admin::c()->uploadFile();
 	return is_array($result) ? $res->json($result) : $result;
 });

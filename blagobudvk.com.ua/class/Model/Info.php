@@ -80,4 +80,13 @@ class Info extends Model {
 	public function getMeta() {
 		return $this->db->query('SELECT * FROM meta')->fetchAssoc();
 	}
+
+	public function infoRelated() {
+		$res = $this->db->query('SELECT id, related_to FROM info')->fetchAll();
+		$r = [];
+		foreach ($res as $val) {
+			$r[$val['related_to']] = $val['id'];
+		}
+		return $r;
+	}
 }

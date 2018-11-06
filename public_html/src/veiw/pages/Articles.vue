@@ -69,7 +69,7 @@
 					methodName: 'getRows',
 					opts: {
 						offset: (this.portion - 1) * 3,
-						limit: 3
+						limit: 3,
 					}
 				})
 				this.rows = this.rows.concat(res.data)

@@ -22,8 +22,30 @@
                 color: $snow;
             }
 
+            &.logo {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+
+                .logo-top {
+                    .logo {
+                        margin-bottom: 0;
+                    }
+                    .addr {
+                        margin: 0;
+                    }
+                }
+
+                .logo-bot {
+                    .addr {
+                        margin: 5px 0 10px;
+                    }
+                }
+            }
+
             .logo {
-                display: block;
+                display: flex;
+                justify-content: space-between;
                 height: 70px;
                 margin: 20px auto;
             }

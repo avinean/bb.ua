@@ -20,6 +20,7 @@ class News extends Model {
 			SELECT id, DATE(datetime) as datetime, title, description, img 
 			FROM news 
 			WHERE '.$where.'
+			ORDER BY datetime DESC
 			LIMIT '.$limit.'
 			OFFSET '.$offset;
 		$res = $this->db->query($query)->fetchAll();

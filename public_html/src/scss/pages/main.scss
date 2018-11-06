@@ -203,6 +203,7 @@ $h: calc(50vh - 80px);
                 .pos-left, .pos-right {
                     overflow: hidden;
                     height: $newh;
+                    margin: 0 4px;
                     .item {
                         position: relative;
                         display: block;
@@ -217,6 +218,7 @@ $h: calc(50vh - 80px);
                             background: rgb(255, 255, 255);
                             color: $main;
                             text-transform: uppercase;
+                            min-height: 55px;
 
                             .date {
                                 font-size: 13px;

@@ -31,6 +31,12 @@ async function init() {
 		methodName: 'getMeta'
 	})).data;
 
+	Vue.prototype.infoRelated = (await is.request({
+		method: 'get',
+		className: 'Info',
+		methodName: 'infoRelated'
+	})).data;
+
 	Vue.prototype.finders = (await is.request({
 		method: 'get',
 		className: 'Info',

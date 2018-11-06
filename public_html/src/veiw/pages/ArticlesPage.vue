@@ -18,17 +18,17 @@
 			.use-info-title Корисна інформація
 			hr.devider
 			.use-info
-				router-link.info-item(to='/info/9')
+				router-link.info-item(:to='infoRelated.vybir ? "/info/" + infoRelated.vybir : "/info"')
 					img(src='/img/plug/vybir.png')
 					.subs Вибір тротуарної плитки
-				router-link.info-item(to='/info/10')
+				router-link.info-item(:to='infoRelated.osnova ? "/info/" + infoRelated.osnova : "/info"')
 					img(src='/img/plug/osnova.png')
 					.subs Рекомендації з улаштування основи під тротуарну плитку
-				router-link.info-item(to='/info/11')
+				router-link.info-item(:to='infoRelated.ukladannya ? "/info/" + infoRelated.ukladannya : "/info"')
 					img(src='/img/plug/ukladannya.png')
 					.subs Технології укладання бруківки
 		.banner
-			router-link.new(v-for='item in news' :key='item.img' :to='item.id')
+			router-link.new(v-for='item in news' :key='item.img' :to='"/news/" + item.id')
 				img.image(:src='item.img')
 				.text
 					.title {{item.title}}
