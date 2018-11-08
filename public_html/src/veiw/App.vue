@@ -30,10 +30,9 @@
 		},
 		methods: {
 			changeMeta(page) {
-				// console.log(page);
+				// page = page.path.split('/')[1]
 				// page = page || "";
 				// let meta = pagesMeta[page];
-				// console.log(meta);
 				// document.querySelector('title').innerText = meta.page_title || generalMeta.title;
 				// document.querySelector('meta[name=keywords]').content = meta.page_keywords || generalMeta.keywords;
 				// document.querySelector('meta[name=description]').content = meta.page_description || generalMeta.description;

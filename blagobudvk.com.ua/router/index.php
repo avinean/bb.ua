@@ -10,7 +10,7 @@ function route($path) {
 		$app->respond('GET', '', function($request, $response, $service) {
 			$service->render('index.phtml',[
 				"meta" => \App\Model\Info::c()->getMeta(),
-				"singlePageMeta" => \App\Model\InfoPage::c()->getAllPages()
+//				"singlePageMeta" => \App\Model\InfoPage::c()->getAllPages()
 			]);
 		});
 
