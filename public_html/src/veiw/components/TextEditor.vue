@@ -2,7 +2,7 @@
 	transition(name="appear")
 		.text-editor
 			.panel
-				.toolbar
+				.toolbar(v-if="!pure")
 					<!--select(v-model='format' @change="formatDoc('formatblock', format)")-->
 						<!--option(selected) Форматування-->
 						<!--option(v-for='v,k in formats' :value='k') {{v}}-->
@@ -40,7 +40,8 @@
 					<!--button.fas.fa-image(@click.prevent="insetImg")-->
 					<!--button.fas.fa-cut(@click.prevent="formatDoc('cut')")-->
 					<!--button.fas.fa-copy(@click.prevent="formatDoc('copy')")-->
-					<!--button.fas.fa-paste(@click.prevent="formatDoc('paste')")-->
+					<!--button.fas.fa-file-word(@click.prevent="formatDoc('paste')")-->
+					button.fas.fa-file-word(@click.prevent="pasteFromWord")
 				.closebar
 					button.snow.bg-grass(@click='close(1)')
 						i.far.fa-save.brand
@@ -68,15 +69,22 @@
 				.inner-wrapper(ref='editor' contenteditable v-html='value' @click='cursorClick')
 			transition(name='appear')
 				img-loader(v-if='imgData.action' @close='imgData.action' :data='imgData')
-
+			transition(name='appear')
+				popup(v-if="asyncObj.resolve" @close="asyncObj.resolve")
+					div(contenteditable style="width: 1000px; height: 500px; overflow-y: scroll;" slot="body" ref="wordclear")
+					button.bb-btn.brand(slot="foot" @click="asyncObj.resolve") Вставити
 </template>
 
 <script>
 	export default {
 		name: 'text-editor',
-		props: ['value'],
+		props: ['value', 'pure'],
 		data() {
 			return {
+				asyncObj: {
+					text: '',
+					resolve: null
+				},
 				curImg: null,
 				imgData: {
 					folder: '.',
@@ -151,7 +159,7 @@
 
 				let url = await new Promise((resolve, reject) => {
 					this.imgData.action = resolve;
-				})
+				});
 
 				if (url) {
 					this.$refs.editor.innerHTML = this.$refs.editor.innerHTML.replace(/<img src="tmp\.jpg".*?>/, `<img src="${url}">`);
@@ -161,6 +169,17 @@
 				}
 
 				this.imgData.action = null;
+			},
+			async pasteFromWord() {
+				document.execCommand('insertImage', true, '$$WORD_INSERTION$$');
+				await new Promise((resolve, reject) => {
+					this.asyncObj.resolve = resolve;
+				});
+				let text = this.$refs.wordclear.innerText;
+				console.log(text);
+				text = text.replace(/\n/ig, '<br>');
+				this.$refs.editor.innerHTML = this.$refs.editor.innerHTML.replace(/<img src="\$\$WORD_INSERTION\$\$".*?>/, text);
+				this.asyncObj.resolve = null;
 			},
 			async cursorClick(e) {
 				if (e.target.tagName === 'IMG') {
@@ -183,6 +202,7 @@
 			},
 			close(mode) {
 				let html = this.$refs.editor.innerHTML;
+				if (this.pure) html = this.$refs.editor.innerText;
 				this.$emit('close', mode ? {html} : null)
 			}
 		}

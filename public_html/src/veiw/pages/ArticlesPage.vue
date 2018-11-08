@@ -11,9 +11,9 @@
 				.desc(v-html='row.description')
 			hr.devider
 			.share-block
-				a.zmdi.zmdi-facebook.bg-facebook.share-link(:href='"http://www.facebook.com/sharer.php?u=" + linkUrl')
-				a.zmdi.zmdi-google-plus.bg-google.share-link(:href='"https://plus.google.com/share?url=" + linkUrl')
-				a.zmdi.zmdi-linkedin.bg-linkedin.share-link(:href='"https://www.linkedin.com/shareArticle?url=" + linkUrl')
+				a.fab.fa-facebook-f.bg-facebook.share-link(:href='"http://www.facebook.com/sharer.php?u=" + linkUrl')
+				a.fab.fa-google-plus-g.bg-google.share-link(:href='"https://plus.google.com/share?url=" + linkUrl')
+				a.fab.fa-linkedin-in.bg-linkedin.share-link(:href='"https://www.linkedin.com/shareArticle?url=" + linkUrl')
 				//- .bg-instagram.share-link(href='http://www.facebook.com/sharer.php?u=')
 			.use-info-title Корисна інформація
 			hr.devider

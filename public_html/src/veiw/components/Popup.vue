@@ -52,7 +52,7 @@
 
 		.popup-wrap {
 			position: absolute;
-			width: 400px;
+			min-width: 400px;
 			display: flex;
 			flex-direction: column;
 			background: #fff;

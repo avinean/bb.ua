@@ -8,7 +8,10 @@ function route($path) {
 	$app->with($path, function() use ($app, $path) {
 
 		$app->respond('GET', '', function($request, $response, $service) {
-			$service->render('index.phtml');
+			$service->render('index.phtml',[
+				"meta" => \App\Model\Info::c()->getMeta(),
+				"singlePageMeta" => \App\Model\InfoPage::c()->getAllPages()
+			]);
 		});
 
 		$filename = ROOT.'/router/routes/'.$path.'.php';
@@ -20,8 +23,6 @@ function route($path) {
 }
 
 route('/');
-route('/gallery');
-route('/price');
 route('/quality');
 route('/contacts');
 route('/payment');
@@ -54,7 +55,7 @@ $app->respond(['GET', 'POST'], '/api/request', function($req, $res, $ser) {
 //admin
 
 $app->respond(['GET', 'POST'], '/admin', function($req, $res, $ser) {
-	$config = require_once($_SERVER['DOCUMENT_ROOT'].'/../blagobudvk.com.ua/config/config.php');
+	global $config;
 	if (
 		!isset($_POST['user']) ||
 		!isset($_POST['pass']) ||
@@ -62,7 +63,9 @@ $app->respond(['GET', 'POST'], '/admin', function($req, $res, $ser) {
 		@$_POST['pass'] !== $config['admin']['pass']
 	) $ser->render('admin.phtml');
 	else
-		$ser->render('index.phtml', ["secure" => "someoneelse"]);
+		$ser->render('index.phtml', [
+			"secure" => "someoneelse"
+		]);
 });
 
 $app->respond('POST', '/secure/admin', function($req, $res, $ser) {

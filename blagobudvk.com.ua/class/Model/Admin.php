@@ -81,12 +81,13 @@ class Admin extends Model {
 
 	public function uploadImg($cur_folder) {
 		$file = $_FILES['userpic'];
+//return phpinfo();
 		$root = $_SERVER['DOCUMENT_ROOT'];
 		$tmp_name = $file['tmp_name'];
 		$file_name = basename($file['name']);
 		$name_parts = explode('.', $file_name);
 		$file_extention	= array_pop($name_parts);
-
+//		upload_max_filesize
 		$path_to_file = $root."/img/$cur_folder/".$file_name;
 
 		for ($i = 1; file_exists($path_to_file); $i++) {

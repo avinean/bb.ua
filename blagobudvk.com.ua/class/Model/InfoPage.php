@@ -11,4 +11,15 @@ class InfoPage extends Model {
 		)->fetchAssoc();
 	}
 
+	public function getAllPages($opts = []) {
+		$tmp = $this->db->query(
+			'SELECT page,title,description,page_title,page_description,page_keywords FROM pages'
+		)->fetchAll();
+		$res = [];
+		foreach ($tmp as $page) {
+			$res[$page['page']] = $page;
+		}
+		return $res;
+	}
+
 }

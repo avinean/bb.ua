@@ -18,9 +18,24 @@
 			:class='curSet.table == "pages" ? "flexbox flex-wrap" : ""'
 		)
 			template(v-if='curSet.table == "pages"')
-				div.page-esc(v-for='page in curSet.data' @click='curPage = page')
-					.title {{page.title}}
-					.text(v-html='page.description')
+				.page-settings(v-for='page in curSet.data')
+					.page-title {{page.title}}
+						i.fas.fa-pencil-alt(v-if="editablePages.includes(page.page)" @click='textObj = {key: "title", table: curSet.table, value: page.title, data: page}')
+						a.fas.fa-external-link-alt(:href="page.page")
+					.settings(v-if="editablePages.includes(page.page)")
+						.text.page-esc(v-html='page.description' @click='curPage = page')
+					.settings.meta-settings
+						.set-block
+							span.input-title Заголовок вкладки
+							.input(@click='textObj = {key: "page_title", table: curSet.table, value: page.page_title, data: page}') {{page.page_title}}
+						.set-block
+							span.input-title Опис сторінки
+							.input(@click='textObj = {key: "page_description", table: curSet.table, value: page.page_description, data: page}') {{page.page_description}}
+						.set-block
+							span.input-title Ключові слова сторінки
+							.input(@click='textObj = {key: "page_keywords", table: curSet.table, value: page.page_keywords, data: page}') {{page.page_keywords}}
+
+
 			template(v-else-if='curSet.table == "meta"')
 				table
 					tbody
@@ -33,8 +48,16 @@
 										for='file'
 									)
 									input#file(type='file' style="display: none" @change='fileChoose')
+								template(v-else-if='key === "description" || key === "keywords" || key === "title"')
+									div.page-esc(
+										style='height: 100px; width: 80%'
+										@click='textObj = {key: key, table: "meta", value: curSet.data[0][key], data: curSet.data[0]}'
+									)
+										.text {{val}}
 								template(v-else)
 									input(v-model='curSet.data[0][key]' @change='changeText(curSet.data[0], key)')
+
+
 			template(v-else)
 				.filters-row
 					p.filter-item
@@ -98,7 +121,10 @@
 								template(v-else)
 									input(v-model='item[key]' @change='changeText(item, key)')
 
+
 		img-loader(v-if='loadImg' @close='imgLoaded' :data='loadImg')
+
+
 		transition(name="appear")
 			.new-form(v-if='newForm')
 				.bg(@click='newForm = null')
@@ -138,7 +164,12 @@
 											input(v-model='newForm[k]')
 					.bb-btn.brand(@click='addRow(newForm)') Зберегти
 					.bb-btn.lady.wide(@click='newForm = null') Закрити без збереження
+
+
 		text-editor(v-if='curPage' :value='curPage.description' @close='changePageData')
+
+
+		text-editor(v-if='textObj' :value='textObj.value' @close='changeBigText' pure="1")
 
 </template>
 
@@ -159,6 +190,7 @@
 				loadImg: false,
 				newForm: null,
 				curPage: null,
+				textObj: null,
 				categories: {
 					vert: "Вертикальні елементи",
 					pave: "Тротуарна плитка",
@@ -272,8 +304,10 @@
 					edrpou: "ЄДРПОУ",
 					inn: "ІНН",
 					time: "Час",
-					related_to: "Привязати до"
-				}
+					related_to: "Привязати до",
+					keywords: "Ключові слова",
+				},
+				editablePages: ['dillers', 'arrival', 'payment', 'about', 'quality', 'policy']
 			}
 		},
 		computed: {
@@ -319,7 +353,6 @@
 				});
 			},
 			async changePageData(pageData) {
-				console.log(pageData);
 				if (pageData) {
 					let table = this.curSet.table;
 					this.curPage.description = pageData.html;
@@ -332,6 +365,14 @@
 					}
 				}
 				this.curPage = null;
+			},
+			async changeBigText(pageData) {
+				if (pageData) {
+					this.textObj.data[this.textObj.key] = pageData.html;
+					let data = this.textObj.data;
+					let res = await this.changeText(data, this.textObj.key);
+				}
+				this.textObj = null;
 			},
 			async deleteRow(id) {
 				let table = this.curSet.table;

@@ -28,10 +28,21 @@
 				validTitle: ''
 			}
 		},
+		methods: {
+			changeMeta(page) {
+				// console.log(page);
+				// page = page || "";
+				// let meta = pagesMeta[page];
+				// console.log(meta);
+				// document.querySelector('title').innerText = meta.page_title || generalMeta.title;
+				// document.querySelector('meta[name=keywords]').content = meta.page_keywords || generalMeta.keywords;
+				// document.querySelector('meta[name=description]').content = meta.page_description || generalMeta.description;
+			}
+		},
 		async mounted() {
 
 			this.writeVisitStat(this.$route);
-
+			this.changeMeta(this.$route);
 			if (this.$route.name === 'Admin') {
 				this.styles = `
 					    position: absolute;
@@ -56,6 +67,7 @@
 			"$route"(val) {
 				window.scrollTo({top: 0, behavior: 'smooth'});
 				this.writeVisitStat(val);
+				this.changeMeta(val);
 			}
 		}
 	}

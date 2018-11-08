@@ -9,7 +9,8 @@ use App\Core\Singleton;
 class MySQL extends Singleton {
 
     function __construct() {
-        $this->config = require_once($_SERVER['DOCUMENT_ROOT'].'/../blagobudvk.com.ua/config/config.php');
+    	global $config;
+        $this->config = $config;
     }
 
     private function open_conn() {

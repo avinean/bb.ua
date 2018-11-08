@@ -1,9 +1,16 @@
+<?php
+//print_r($this->meta);
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset=utf-8>
+	<meta name="description" content="<?=$this->meta['description']?>">
+	<meta name="keywords" content="<?=$this->meta['keywords']?>">
+	<meta name="author" content="Vladyslav Lubeznyy">
 	<meta name=viewport content="width=device-width,initial-scale=1">
-	<title>БЛАГОБУД - ВИРОБНИЧА КОМПАНІЯ</title>
+	<title><?=$this->meta['title']?></title>
 	<link rel="stylesheet" href="/fonts/fontawesome/css/all.css">
 	<link rel="shortcut icon" href="/img/favicon.png" type="image/png" />
 </head>
@@ -11,6 +18,16 @@
 <div id=app></div>
 <script>
 	let someoneelse = "<?=$this->secure?>";
+	let pagesMeta = <?php
+			$meta = $this->singlePageMeta;
+			$meta = json_encode($meta);
+			echo $meta;
+		?>;
+	let generalMeta = <?php
+			$meta = $this->meta;
+			$meta = json_encode($meta);
+			echo $meta;
+		?>;
 </script>
 <script type=text/javascript src=/main.js></script>
 </body>
