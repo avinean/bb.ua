@@ -10,9 +10,9 @@
 				:style='"bottom: " + bottom + "px; transition: all ease .1s"'
 			)
 				transition(name='fade')
-					p.cherry.fas.fa-phone(v-if='phone')
-					p.cherry.fas.fa-envelope(v-else)
-				p.title {{phone ? 'Замовте дзвінок' : 'Напишіть, що вас цікавить'}}
+					p.cherry.fas.fa-phone.bg-snow(v-if='phone')
+					p.cherry.fas.fa-envelope.bg-snow(v-else)
+				p.title.snow {{phone ? 'Замовте дзвінок' : 'Напишіть, що вас цікавить'}}
 		popup(v-if='show !== null' @close='show = null')
 			template(slot='head') {{ show ? 'Ми зателефонуємо Вам на протязі 15 хвилин' : 'Напишіть, що Вас цікавить?'}}
 			.form(slot='body')
@@ -143,15 +143,13 @@
 		float: right;
 		padding: 10px;
 		cursor: pointer;
-		color: white;
 		position: fixed;
 		bottom: 0;
 		right: 0;
 		z-index: 1;
 
-		.fas {
-			font-size: 28px;
-			background: white;
+		svg {
+			font-size: 49px;
 			padding: 10px;
 			border-radius: 100%;
 			margin: 0 10px;

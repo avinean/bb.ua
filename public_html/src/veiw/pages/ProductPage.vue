@@ -28,8 +28,10 @@
 			.vereteno
 				h3 Супутні товари
 				.vereteno-inner(v-if='unsortedGoods')
-					i.fas.fa-chevron-circle-left.left.arr(@click='slideVereteno(0)')
-					i.fas.fa-chevron-circle-right.right.arr(@click='slideVereteno(1)')
+					span(@click='slideVereteno(0)')
+						i.fas.fa-chevron-circle-left.left.arr.cherry
+					span(@click='slideVereteno(1)')
+						i.fas.fa-chevron-circle-right.right.arr.cherry
 					.item(v-for='item in cur')
 						img(:src='unsortedGoods[item].img')
 						.title {{unsortedGoods[item].title}}
@@ -134,11 +136,11 @@
 					method: 'get',
 					className: 'Catalog',
 					methodName: 'getGoods'
-				})
+				});
 				this.goods = res.data;
 			},
 			send(i) {
-				let opts
+				let opts;
 				if (i) {
 					
 					if (!this.showPopup.phone || !this.showPopup.name || !this.showPopup.cnt)  {

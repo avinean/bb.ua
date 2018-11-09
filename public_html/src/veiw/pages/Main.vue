@@ -4,17 +4,17 @@
 		slider.slider(v-if="formedSale.length" :items='formedSale' auto='0' interval='7000')
 		.inf-icons.inner-wrapper
 			.inf-ico
-				i.ico.fas.fa-at
-				.lable Онлайн замовлення
+				.ico-box: i.fas.fa-at.cherry
+				.lable.main Онлайн замовлення
 			.inf-ico
-				i.ico.fas.fa-thumbs-up
-				.lable Актуальні ціни
+				.ico-box: i.fas.fa-thumbs-up.cherry
+				.lable.main Актуальні ціни
 			.inf-ico
-				i.ico.fas.fa-award
-				.lable Якісна продукція
+				.ico-box: i.fas.fa-award.cherry
+				.lable.main Якісна продукція
 			.inf-ico
-				i.ico.fas.fa-shipping-fast
-				.lable Оперативна доставка
+				.ico-box: i.fas.fa-shipping-fast.cherry
+				.lable.main Оперативна доставка
 		.goods-banner.inner-wrapper
 			a.good-item(
 				v-for='item in goodsBannerItems'
@@ -30,8 +30,10 @@
 					span.romb
 					span.line
 			.vereteno-inner(v-if='unsortedGoods')
-				i.fas.fa-chevron-circle-left.left.arr(@click='slideVereteno(0)')
-				i.fas.fa-chevron-circle-right.right.arr(@click='slideVereteno(1)')
+				span(@click='slideVereteno(0)')
+					i.fas.fa-chevron-circle-left.left.arr.cherry
+				span(@click='slideVereteno(1)')
+					i.fas.fa-chevron-circle-right.right.arr.cherry
 				.item(v-for='item in cur')
 					img(:src='unsortedGoods[item].img')
 					.title {{unsortedGoods[item].title}}

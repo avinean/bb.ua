@@ -6,7 +6,7 @@
 				.head
 					.title
 						slot(name='head')
-					i.fas.fa-times.close(@click='close')
+					i.fas.fa-times.close.snow(@click='close')
 				.body
 					slot(name='body')
 				.foot(v-if="!nofooter")
@@ -79,7 +79,6 @@
 					right: 11px;
 					bottom: 11px;
 					cursor: pointer;
-					color: #fff;
 				}
 			}
 

@@ -26,15 +26,14 @@
                 display: block;
                 padding: 10px 20px;
                 margin: 25px 10px;
-                background: $dust;
-                color: $cherry;
                 border: 1px solid;
                 font-size: 14px;
 
-                &>i {
-                    font-size: 20px;
-                    color: $cherry;
+                .ico {
                     margin-right: 10px;
+                    i, svg {
+                        font-size: 20px !important;
+                    }
                 }
             }
         }
@@ -82,8 +81,7 @@
                             text-align: center;
                             line-height: 26px;
 
-                            &>i {
-                                color: $snow;
+                            .ico {
                                 margin-left: 10px
                             }
                         }

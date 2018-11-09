@@ -22,7 +22,8 @@
 							:to='inf.url'
 							:key='inf.url'
 							)
-							i(:class='inf.ico')
+							span.ico
+								i.snow(:class='inf.ico')
 							span.name {{inf.name}}
 </template>
 

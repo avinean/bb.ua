@@ -27,22 +27,19 @@ $h: calc(50vh - 80px);
         .inf-ico {
             flex: 1;
             text-align: center;
-            // box-shadow: 0px 8px 22px -7px grey;
 
-            .ico {
-                color: $cherry;
+            .ico-box {
                 border: 1px solid rgba(206, 88, 25, 0.6);
                 border-radius: 100%;
                 width: 100px;
                 height: 100px;
                 line-height: 98px;
                 font-size: 62px;
-                margin-bottom: 15px;
+                margin: 0 auto 15px;
             }
 
             .lable {
                 text-align: center;
-                color: $main;
                 font-weight: bold;
                 padding: 2px;
             }
@@ -143,7 +140,6 @@ $h: calc(50vh - 80px);
                 font-size: 45px;
                 position: absolute;
                 z-index: 100;
-                color: $cherry;
                 cursor: pointer;
             }
 

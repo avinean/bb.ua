@@ -69,8 +69,11 @@
                 a:hover {
                     color: #cd3c3c;
                 }
-                a.facebook-link:hover {
-                    color: $facebook;
+                a.facebook-link svg path {
+                    fill: $snow !important;
+                }
+                a.facebook-link:hover svg path {
+                    fill: $facebook !important;
                 }
 
                 .partner>img {
