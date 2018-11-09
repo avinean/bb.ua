@@ -8,17 +8,17 @@
 						alt='Blagobud-logo'
 					)
 				.address
-					i.fas.fa-map-marked-alt
+					i.fas.fa-map-marked-alt.brand
 					span
 						strong Адреса:<br>
 						| {{meta.city}}, <br>{{meta.street}}
 				.time
-					i.fas.fa-clock
+					i.fas.fa-clock.brand
 					span
 						strong Графік роботи:
 						|<br> {{meta.time}}
 				.access
-					i.fas.fa-at
+					i.fas.fa-at.brand
 					span
 						strong Приймання замовлень онлайн:
 						|<br> Цілодобово
@@ -42,8 +42,12 @@
 					router-link(:to='child.url') {{child.name}}
 					.after
 		.header-mob
-			.open-btn(@click='show = !show')
-				i.fas(:class='show ? "fa-times" : "fa-bars"')
+			.open-btn.brand(@click='show = !show')
+				//decision for svg
+				span(:style="show ? 'display: block' : 'display: none'")
+					i.fas.fa-times
+				span(:style="show ? 'display: none' : 'display: block'")
+					i.fas.fa-bars
 			transition(name='live')
 				.nav-panel(v-show='show')
 					router-link.logo(to='/')

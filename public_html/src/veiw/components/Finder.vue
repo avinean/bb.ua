@@ -7,7 +7,8 @@
 			v-model='searchVal'
 			@keypress.enter='goToPage'
 		)
-		i.fas.fa-search.brand.search(@click='find = !find; searchVal = ""')
+		span(@click='find = !find; searchVal = ""')
+			i.fas.fa-search.brand.search
 		<!--.searchRes(v-show='searchVal && filteredFinders.length && find')-->
 			<!--router-link.brand.item(v-for='res in filteredFinders' :key='res.url' :to='res.url')-->
 				<!--p.title {{res.title}}-->

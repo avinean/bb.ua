@@ -53,14 +53,13 @@
 
             .addr {
                 margin: 10px 0;
-                i {
-                    color: $brand;
+                i, svg {
                     margin: 0 15px 0 0;
                 }
                 span, a {
                     color: $snow;
                     font-size: 13px;
-                    &.fa-facebook {
+                    .fa-facebook {
                         font-size: 34px;
                     }
                     &>img {
@@ -70,7 +69,7 @@
                 a:hover {
                     color: #cd3c3c;
                 }
-                a.fa-facebook:hover {
+                a.facebook-link:hover {
                     color: $facebook;
                 }
 
@@ -146,7 +145,6 @@
         position: absolute;
         bottom: 15px;
         right: 35px;
-        color: $brand;
         font-size: 29px;
     }
 
