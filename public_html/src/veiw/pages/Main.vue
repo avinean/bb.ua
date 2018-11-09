@@ -1,6 +1,6 @@
 <template lang="pug">
 	.main
-		img.logo-mob(src='/img/logo-big-blue.png' alt='Blagobud-logo')
+		img.logo-mob(src='/img/logo-big-blue.png' alt='ТОВ БЛАГОБУД')
 		slider.slider(v-if="formedSale.length" :items='formedSale' auto='0' interval='7000')
 		.inf-icons.inner-wrapper
 			.inf-ico
@@ -35,7 +35,7 @@
 				span(@click='slideVereteno(1)')
 					i.fas.fa-chevron-circle-right.right.arr.cherry
 				.item(v-for='item in cur')
-					img(:src='unsortedGoods[item].img')
+					img(:src='unsortedGoods[item].img' :alt='unsortedGoods[item].alt || unsortedGoods[item].cases')
 					.title {{unsortedGoods[item].title}}
 					a.bb-btn.cherry(:href='"/catalog/" + unsortedGoods[item].category + "/" + unsortedGoods[item].id') Детальніше
 		.news.inner-wrapper
