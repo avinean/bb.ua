@@ -122,9 +122,6 @@
 									input(v-model='item[key]' @change='changeText(item, key)')
 
 
-		img-loader(v-if='loadImg' @close='imgLoaded' :data='loadImg')
-
-
 		transition(name="appear")
 			.new-form(v-if='newForm')
 				.bg(@click='newForm = null')
@@ -167,9 +164,8 @@
 
 
 		text-editor(v-if='curPage' :value='curPage.description' @close='changePageData')
-
-
 		text-editor(v-if='textObj' :value='textObj.value' @close='changeBigText' pure="1")
+		img-loader(v-if='loadImg' @close='imgLoaded' :data='loadImg')
 
 </template>
 

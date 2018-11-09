@@ -12,6 +12,9 @@
 	<meta name=viewport content="width=device-width,initial-scale=1">
 	<title><?=$this->meta['title']?></title>
 	<link rel="stylesheet" href="/fonts/fontawesome/css/all.css">
+	<? if (isset($_GET['test_mode'])) { ?>
+		<script defer src="/fonts/fontawesome/js/all.js"></script>
+	<?}?>
 	<link rel="shortcut icon" href="/img/favicon.png" type="image/png" />
 </head>
 <body>
@@ -21,7 +24,7 @@
 	let pagesMeta = <?php
 			$meta = $this->singlePageMeta;
 			$meta = json_encode($meta);
-			echo $meta;
+			print_r($meta);
 		?>;
 	let generalMeta = <?php
 			$meta = $this->meta;

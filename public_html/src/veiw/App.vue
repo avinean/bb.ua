@@ -30,12 +30,15 @@
 		},
 		methods: {
 			changeMeta(page) {
-				// page = page.path.split('/')[1]
-				// page = page || "";
-				// let meta = pagesMeta[page];
-				// document.querySelector('title').innerText = meta.page_title || generalMeta.title;
-				// document.querySelector('meta[name=keywords]').content = meta.page_keywords || generalMeta.keywords;
-				// document.querySelector('meta[name=description]').content = meta.page_description || generalMeta.description;
+				page = page.path.split('/')[1];
+				if (page == 'admin') return;
+				page = page || "";
+				let meta = pagesMeta[page];
+				if (meta) {
+					document.querySelector('title').innerText = meta.page_title || generalMeta.title;
+					document.querySelector('meta[name=keywords]').content = meta.page_keywords || generalMeta.keywords;
+					document.querySelector('meta[name=description]').content = meta.page_description || generalMeta.description;
+				}
 			}
 		},
 		async mounted() {
