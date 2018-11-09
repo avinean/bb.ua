@@ -23,31 +23,31 @@
 						<!--option(v-for='v,k in backcolors' :value='k') {{v}}-->
 					<!--button.fas.fa-undo(@click.prevent="formatDoc('undo')")-->
 					<!--button.fas.fa-redo(@click.prevent="formatDoc('redo')")-->
-					button.fas.fa-eraser(@click.prevent="formatDoc('removeFormat')")
-					button.fas.fa-bold(@click.prevent="formatDoc('bold')")
-					button.fas.fa-italic(@click.prevent="formatDoc('italic')")
-					button.fas.fa-underline(@click.prevent="formatDoc('underline')")
-					button.fas.fa-align-left(@click.prevent="formatDoc('justifyleft')")
-					button.fas.fa-align-center(@click.prevent="formatDoc('justifycenter')")
-					button.fas.fa-align-right(@click.prevent="formatDoc('justifyright')")
-					button.fas.fa-list-ol(@click.prevent="formatDoc('insertorderedlist')")
-					button.fas.fa-list-ul(@click.prevent="formatDoc('insertunorderedlist')")
+					button(@click.prevent="formatDoc('removeFormat')"): .fas.fa-eraser.brand
+					button(@click.prevent="formatDoc('bold')"): .fas.fa-bold.brand
+					button(@click.prevent="formatDoc('italic')"): .fas.fa-italic.brand
+					button(@click.prevent="formatDoc('underline')"): .fas.fa-underline.brand
+					button(@click.prevent="formatDoc('justifyleft')"): .fas.fa-align-left.brand
+					button(@click.prevent="formatDoc('justifycenter')"): .fas.fa-align-center.brand
+					button(@click.prevent="formatDoc('justifyright')"): .fas.fa-align-right.brand
+					button(@click.prevent="formatDoc('insertorderedlist')"): .fas.fa-list-ol.brand
+					button(@click.prevent="formatDoc('insertunorderedlist')"): .fas.fa-list-ul.brand
 					<!--button.fas.fa-quote-right(@click.prevent="formatDoc('formatblock','blockquote')")-->
-					button.fas.fa-outdent(@click.prevent="formatDoc('outdent')")
-					button.fas.fa-indent(@click.prevent="formatDoc('indent')")
-					button.fas.fa-link(@click.prevent="createLink()")
-					button.fas.fa-image(@click.prevent="createImg")
+					button(@click.prevent="formatDoc('outdent')"): .fas.fa-outdent.brand
+					button(@click.prevent="formatDoc('indent')"): .fas.fa-indent.brand
+					button(@click.prevent="createLink()"): .fas.fa-link.brand
+					button(@click.prevent="createImg"): .fas.fa-image.brand
 					<!--button.fas.fa-image(@click.prevent="insetImg")-->
 					<!--button.fas.fa-cut(@click.prevent="formatDoc('cut')")-->
 					<!--button.fas.fa-copy(@click.prevent="formatDoc('copy')")-->
 					<!--button.fas.fa-file-word(@click.prevent="formatDoc('paste')")-->
-					button.fas.fa-file-word(@click.prevent="pasteFromWord")
+					button(@click.prevent="pasteFromWord"): .fas.fa-file-word.brand
 				.closebar
 					button.snow.bg-grass(@click='close(1)')
 						i.far.fa-save.brand
 						| &#32;&#32;&#32;&#32;Зберегти
 					button.snow.bg-lady(@click='close(0)')
-						i.far.fa-slose.brand
+						i.far.fa-close.brand
 						| &#32;&#32;&#32;&#32;Закрити без збереження
 						transition(name='appear')
 			.sub-panel(v-if='curImg')
@@ -63,7 +63,7 @@
 						i.far.fa-save.brand
 						| &#32;&#32;&#32;&#32;Зберегти
 					button.snow.bg-lady(@click='curImg.customReject')
-						i.far.fa-slose.brand
+						i.far.fa-close.brand
 						| &#32;&#32;&#32;&#32;Закрити без збереження
 			div.screen
 				.inner-wrapper(ref='editor' contenteditable v-html='value' @click='cursorClick')

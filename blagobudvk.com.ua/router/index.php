@@ -10,7 +10,10 @@ function route($path) {
 		$app->respond('GET', '', function($request, $response, $service) {
 			$service->render('index.phtml',[
 				"meta" => \App\Model\Info::c()->getMeta(),
-				"singlePageMeta" => \App\Model\InfoPage::c()->getAllPages()
+				"pagesMeta" => \App\Model\InfoPage::c()->getAllPages(),
+				"infoRelated" => \App\Model\Info::c()->infoRelated(),
+				"finders" => \App\Model\Info::c()->getFinder(),
+				"colorsMap" => \App\Model\Catalog::c()->getColors()
 			]);
 		});
 

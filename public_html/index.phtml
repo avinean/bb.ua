@@ -20,17 +20,12 @@
 <body>
 <div id=app></div>
 <script>
+	let pagesMeta = <?=json_encode($this->pagesMeta)?>;
+	let generalMeta = <?=json_encode($this->meta)?>;
+	let infoRelated = <?=json_encode($this->infoRelated)?>;
+	let finders = <?=json_encode($this->finders)?>;
+	let colorsMap = <?=json_encode($this->colorsMap)?>;
 	let someoneelse = "<?=$this->secure?>";
-	let pagesMeta = <?php
-			$meta = $this->singlePageMeta;
-			$meta = json_encode($meta);
-			print_r($meta);
-		?>;
-	let generalMeta = <?php
-			$meta = $this->meta;
-			$meta = json_encode($meta);
-			echo $meta;
-		?>;
 </script>
 <script type=text/javascript src=/main.js></script>
 </body>

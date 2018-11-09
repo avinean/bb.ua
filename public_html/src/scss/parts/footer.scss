@@ -53,8 +53,13 @@
 
             .addr {
                 margin: 10px 0;
-                i, svg {
-                    margin: 0 15px 0 0;
+                .ico {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 20px;
+                    margin-right: 15px;
+                    font-size: 18px;
                 }
                 span, a {
                     color: $snow;

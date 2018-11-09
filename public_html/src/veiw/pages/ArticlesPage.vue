@@ -34,10 +34,10 @@
 			router-link.new(v-for='item in news' :key='item.img' :to='"/news/" + item.id')
 				img.image(:src='item.img')
 				.text
-					.title {{item.title}}
 					.date
-						i.fas.fa-calendar-alt
+						i.fas.fa-calendar-alt.brand
 						|   {{item.datetime}}
+					.title {{item.title}}
 				.clearfix
 </template>
 

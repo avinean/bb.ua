@@ -33,11 +33,11 @@
 				page = page.path.split('/')[1];
 				if (page == 'admin') return;
 				page = page || "";
-				let meta = pagesMeta[page];
-				if (meta) {
-					document.querySelector('title').innerText = meta.page_title || generalMeta.title;
-					document.querySelector('meta[name=keywords]').content = meta.page_keywords || generalMeta.keywords;
-					document.querySelector('meta[name=description]').content = meta.page_description || generalMeta.description;
+				let pageMeta = this.pagesMeta[page];
+				if (pageMeta) {
+					document.querySelector('title').innerText = pageMeta.page_title || this.meta.title;
+					document.querySelector('meta[name=keywords]').content = pageMeta.page_keywords || this.meta.keywords;
+					document.querySelector('meta[name=description]').content = pageMeta.page_description || this.meta.description;
 				}
 			}
 		},

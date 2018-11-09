@@ -9,7 +9,8 @@
 				@click='curSet = i'
 				:class='curSet && i.table == curSet.table ? "bg-grass snow active" : "bg-dust"'
 				)
-					i(:class='i.cls')
+					span
+						i.brand(:class='i.cls')
 					| {{i.name}}
 			template(v-if='curSet && curSet.table !== "pages" && curSet.table !== "meta"')
 				.bb-btn.brand.add-new(@click='showForm') Додати
@@ -20,8 +21,10 @@
 			template(v-if='curSet.table == "pages"')
 				.page-settings(v-for='page in curSet.data')
 					.page-title {{page.title}}
-						i.fas.fa-pencil-alt(v-if="editablePages.includes(page.page)" @click='textObj = {key: "title", table: curSet.table, value: page.title, data: page}')
-						a.fas.fa-external-link-alt(:href="page.page")
+						span(v-if="editablePages.includes(page.page)" @click='textObj = {key: "title", table: curSet.table, value: page.title, data: page}')
+							i.fas.fa-pencil-alt.brand
+						a(:href="page.page")
+							.fas.fa-external-link-alt.brand
 					.settings(v-if="editablePages.includes(page.page)")
 						.text.page-esc(v-html='page.description' @click='curPage = page')
 					.settings.meta-settings
@@ -56,7 +59,6 @@
 										.text {{val}}
 								template(v-else)
 									input(v-model='curSet.data[0][key]' @change='changeText(curSet.data[0], key)')
-
 
 			template(v-else)
 				.filters-row

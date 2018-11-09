@@ -7,12 +7,14 @@
 					autofocus
 					v-model='searchVal'
 				)
-				i.fas.fa-search.bg-brand.snow
+				span.bg-brand.search-button
+					i.fas.fa-search.snow
 			.searchRes(v-if='searchVal && filteredFinders.length')
 				router-link.brand.item.bg-dust(v-for='res in filteredFinders' :key='res.url' :to='res.url')
 					span.url {{res.url}}
 					p.title {{res.title}}
-					.description(v-html='res.description.slice(0, 200)')
+					.description {{ getText(res.description) + "..." }}
+		div(ref="clear" style="display: none;")
 </template>
 
 <script>
@@ -31,6 +33,12 @@
 						e.description.toLowerCase().includes(this.searchVal.toLowerCase())
 					)
 					.slice(0, 10);
+			}
+		},
+		methods: {
+			getText(val) {
+				this.$refs.clear.innerHTML = val;
+				return this.$refs.clear.textContent.slice(0, 500);
 			}
 		},
 		mounted() {
@@ -64,7 +72,7 @@
 				font-size: 18px;
 			}
 
-			i {
+			.search-button {
 				flex-basis: 100px;
 				font-size: 28px;
 				line-height: 50px;

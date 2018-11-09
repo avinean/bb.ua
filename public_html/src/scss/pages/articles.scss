@@ -72,6 +72,14 @@
                 margin-bottom: 20px;
                 font-size: 13px;
             }
+            .desc {
+                max-width: 1024px;
+                overflow: hidden;
+                img {
+                    max-width: 1024px;
+                }
+
+            }
         }
 
         .share-block {
@@ -139,9 +147,6 @@
             }
             .text {
                 font-size: 12px;
-                .title {
-                    font-size: 18px;
-                }
                 .date, .date>i {
                     color: #d8d5d5;
                 }

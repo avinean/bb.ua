@@ -6,7 +6,8 @@
 				.head
 					.title
 						slot(name='head')
-					i.fas.fa-times.close.snow(@click='close')
+					span(@click='close')
+						i.fas.fa-times.close.snow
 				.body
 					slot(name='body')
 				.foot(v-if="!nofooter")

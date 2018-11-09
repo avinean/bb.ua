@@ -15,11 +15,12 @@
             display: block;
             height: 35px;
             padding: 6px;
-            margin-bottom: 2px;
+            margin: 2px 5px;
             cursor: pointer;
             text-decoration: none;
 
-            i {
+            span {
+                display: inline-block;
                 min-width: 20px;
                 margin: 0 3px 0 0;
                 text-align: center;
@@ -159,8 +160,7 @@
             justify-content: center;
             align-items: center;
 
-            .fas {
-                color: $brand;
+            span, a {
                 margin: 0 7px;
                 cursor: pointer;
                 font-size: 13px;
@@ -184,6 +184,12 @@
                     height: 40px;
                     font-size: 12px;
                     background-color: $snow;
+
+                    &:hover {
+                        box-shadow: 5px 5px 5px 0;
+                        top: -2px;
+                        left: -2px;
+                    }
                 }
             }
         }

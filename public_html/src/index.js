@@ -8,13 +8,13 @@ import VueAxios from 'vue-axios'
 const axiosInstance = axios.create({
 	headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 });
-Vue.use(VueAxios, axiosInstance)
+Vue.use(VueAxios, axiosInstance);
 
 import VueAgile from 'vue-agile'
-Vue.use(VueAgile)
+Vue.use(VueAgile);
 
 import Mixins from './mixins'
-Vue.mixin(Mixins)
+Vue.mixin(Mixins);
 
 import Components from './components'
 Components.forEach(e => Vue.component(e.name, e.comp));
@@ -25,29 +25,11 @@ async function init() {
 
 	let is = new Vue();
 
-	Vue.prototype.meta = (await is.request({
-		method: 'get',
-		className: 'Info',
-		methodName: 'getMeta'
-	})).data;
-
-	Vue.prototype.infoRelated = (await is.request({
-		method: 'get',
-		className: 'Info',
-		methodName: 'infoRelated'
-	})).data;
-
-	Vue.prototype.finders = (await is.request({
-		method: 'get',
-		className: 'Info',
-		methodName: 'getFinder'
-	})).data;
-
-	Vue.prototype.colorsMap = (await is.request({
-		method: 'get',
-		className: 'Catalog',
-		methodName: 'getColors'
-	})).data;
+	Vue.prototype.pagesMeta = pagesMeta;
+	Vue.prototype.meta = generalMeta;
+	Vue.prototype.infoRelated = infoRelated;
+	Vue.prototype.finders = finders;
+	Vue.prototype.colorsMap = colorsMap;
 
 	new Vue({
 		el: '#app',
