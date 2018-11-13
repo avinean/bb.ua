@@ -19,8 +19,8 @@
 			template(v-else) На даний період {{classes[this.page].title.toLowerCase()}} відсутні.
 		router-link.banner(
 			:to='"/catalog/"'
-			style='background-image: url(/img/plug/road.jpg)'
-			) 250 видів тротуарної плитки
+			style='background-image: url(/img/catalog/3.jpg)'
+			) Перейти до каталогу
 
 		div(ref="clear" style="display: none;")
 

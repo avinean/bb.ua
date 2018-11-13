@@ -305,7 +305,7 @@
 					related_to: "Привязати до",
 					keywords: "Ключові слова",
 				},
-				editablePages: ['dillers', 'arrival', 'payment', 'about', 'quality', 'policy']
+				editablePages: ['dillers', 'arrival', 'payment', 'about', 'quality', 'policy', 'test']
 			}
 		},
 		computed: {

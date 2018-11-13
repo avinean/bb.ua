@@ -10,6 +10,7 @@ $hei: 91px;
     right: 0;
     z-index: 9999;
     height: $hei;
+    width: calc(100vw - 10px);
     background-color: $snow;
     .inner-wrapper {
         height: $hei;
@@ -95,11 +96,11 @@ $hei: 91px;
     top: $hei;
     z-index: 999;
     height: 70px;
+    width: calc(100vw - 10px);
     font-size: 20px;
     background-color: $dust;
 
     .nav-panel {
-        width: 100vw;
 
         .items-row {
             height: 70px;

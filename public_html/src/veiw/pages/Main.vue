@@ -1,7 +1,8 @@
 <template lang="pug">
 	.main
 		img.logo-mob(src='/img/logo-big-blue.png' alt='ТОВ БЛАГОБУД')
-		slider.slider(v-if="formedSale.length" :items='formedSale' auto='0' interval='7000')
+		<!--slider.slider(v-if="formedSale.length" :items='formedSale' auto='0' interval='7000')-->
+		router-link.top-banner.inner-wrapper(to="/catalog")
 		.inf-icons.inner-wrapper
 			.inf-ico
 				.ico-box: i.fas.fa-at.cherry
@@ -86,17 +87,17 @@
 				goodsBannerItems: [
 					{
 						url: '/catalog/pave',
-						img: '/img/trot.jpg',
+						img: '/img/catalog/1_1.jpg',
 						title: 'Тротуарна плитка'
 					},
 					{
 						url: '/catalog/road',
-						img: '/img/dor.jpg',
+						img: '/img/catalog/1_2.jpg',
 						title: 'Дорожні елементи'
 					},
 					{
 						url: '/catalog/vert',
-						img: '/img/vert.jpg',
+						img: '/img/catalog/1_3.jpg',
 						title: 'Вертикальні елементи'
 					}
 				],

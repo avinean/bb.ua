@@ -15,12 +15,12 @@
 				.good-item.info(
 					style='background-image: url(/img/catalog/dor.jpg)'
 					)
-					span.title.info-title Корисна інформація
+					span.title.info-title
 					.links
 						router-link.link(
 							v-for='inf in usefullInfo'
-							:to='inf.url'
-							:key='inf.url'
+							:to='"/info/" + infoRelated[inf.key]'
+							:key='inf.key'
 							)
 							span.ico
 								i.snow(:class='inf.ico')
@@ -36,17 +36,17 @@
 				goodsBannerItems: [
 					{
 						url: '/catalog/pave',
-						img: '/img/catalog/trot.jpg',
+						img: '/img/catalog/2_1.jpg',
 						title: 'Тротуарна плитка'
 					},
 					{
 						url: '/catalog/road',
-						img: '/img/catalog/road.jpg',
+						img: '/img/catalog/2_2.jpg',
 						title: 'Дорожні елементи'
 					},
 					{
 						url: '/catalog/vert',
-						img: '/img/catalog/vert.jpg',
+						img: '/img/catalog/2_3.jpg',
 						title: 'Вертикальні елементи'
 					}
 				],
@@ -54,19 +54,19 @@
 					{
 						name: 'Вибір тротуарної плитки',
 						ico: 'fas fa-chess-board',
-						url: '/info/1'
+						key: 'vybir'
 					},
 					{
 						name: 'Рекомендації з улаштування основи',
 						ico: 'fas fa-bars',
-						url: '/info/2'
+						key: 'osnova'
 					},
 					{
 						name: 'Технології укладання бруківки',
 						ico: 'fas fa-th-large',
-						url: '/info/3'
+						key: 'ukladannya'
 					}
-				]
+				],
 			}
 		}
 	}

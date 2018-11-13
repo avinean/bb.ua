@@ -17,6 +17,17 @@ $h: calc(50vh - 80px);
         min-height: $h;
     }
 
+    .top-banner {
+        display: block;
+        min-height: $h;
+        width: 100%;
+        background-image: url('/img/catalog/baner11.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position-y: bottom;
+        background-position-x: center;
+    }
+
     .inf-icons {
         display: flex;
         justify-content: space-around;
@@ -63,7 +74,7 @@ $h: calc(50vh - 80px);
         padding: 30px 0;
         .good-item {
             position: relative;
-            height: 200px;
+            height: 300px;
             width: 30%;
             overflow: hidden;
             background-repeat: no-repeat;
@@ -73,9 +84,9 @@ $h: calc(50vh - 80px);
 
             .good-item-inner {
                 position: absolute;
-                height: 200px;
+                height: 300px;
                 width: 100%;
-                top: 125px;
+                top: 225px;
                 background: rgba(0,0,0,0);
                 color: $snow;
                 font-weight: bold;

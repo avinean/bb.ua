@@ -179,6 +179,7 @@
 				console.log(text);
 				text = text.replace(/\n/ig, '<br>');
 				this.$refs.editor.innerHTML = this.$refs.editor.innerHTML.replace(/<img src="\$\$WORD_INSERTION\$\$".*?>/, text);
+				this.$refs.editor.innerHTML = this.$refs.editor.innerHTML.replace(/<pre .+?>|<\/pre>/, '');
 				this.asyncObj.resolve = null;
 			},
 			async cursorClick(e) {
