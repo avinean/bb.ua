@@ -70,6 +70,11 @@
 						select(v-model="filters.category")
 							option(v-for='category, key in categories' :value='key') {{category}}
 					p.filter-item(v-if="curSet.table == 'goods'")
+						label Акція
+						select(v-model="filters.sale")
+							option(value='0')
+							option(value='1') Акція
+					p.filter-item(v-if="curSet.table == 'goods'")
 						label Тип
 						select(v-model="filters.type")
 							option(v-for='type, key in goods' :value='key') {{type}}
@@ -98,13 +103,20 @@
 									a.lady(href='javascript:;' @click='deleteRow(item.id)') (видалити)
 								template(v-else-if='key === "category"')
 									select(v-model='item[key]' @change='changeText(item, key)')
+										option(value='0')
 										option(v-for='category, key in categories' :value='key') {{category}}
 								template(v-else-if='key === "type"')
 									select(v-model='item[key]' @change='changeText(item, key)')
+										option(value='0')
 										option(v-for='good, key in goods' :value='key') {{good}}
 								template(v-else-if='key === "color"')
 									select(v-model='item[key]' @change='changeText(item, key)')
+										option(value='0')
 										option(v-for='color, key in colors' :value='color.id') {{color.title}}
+								template(v-else-if='key === "sale"')
+									select(v-model='item[key]' @change='changeText(item, key)')
+										option(value='0')
+										option(value='1') Акція
 								template(v-else-if='key === "related_to"')
 									select(v-model='item[key]' @change='changeUniqeText(item, key)')
 										option(value='')
@@ -304,6 +316,7 @@
 					time: "Час",
 					related_to: "Привязати до",
 					keywords: "Ключові слова",
+					sale: "Акція"
 				},
 				editablePages: ['dillers', 'arrival', 'payment', 'about', 'quality', 'policy', 'test']
 			}
@@ -320,6 +333,9 @@
 					}
 					if (this.filters.type) {
 						fil = fil.filter(e => e.type == this.filters.type);
+					}
+					if (this.filters.sale) {
+						fil = fil.filter(e => e.sale == this.filters.sale);
 					}
 				}
 

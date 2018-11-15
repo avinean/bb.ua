@@ -13,9 +13,8 @@
 					.good-item-inner {{item.title}}
 						.btn Детальніше
 				.good-item.info(
-					style='background-image: url(/img/catalog/dor.jpg)'
+					style='background-image: url(/img/catalog/2_4.jpg)'
 					)
-					span.title.info-title
 					.links
 						router-link.link(
 							v-for='inf in usefullInfo'

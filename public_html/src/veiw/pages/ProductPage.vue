@@ -5,7 +5,7 @@
 				.card
 					.image
 						img(:src="item.img")
-						p {{item.price}} грн
+						p(:class="item.sale == 1 ? 'lined-text' : ''") {{item.price}} грн
 					.short-info
 						.title {{item.title}}
 						hr.devider

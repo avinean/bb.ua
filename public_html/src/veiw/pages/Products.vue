@@ -46,7 +46,7 @@
 							.title {{item.title}} <br>
 								|
 								span.short-desc ({{colorsMap[item.color]}}, {{category == 'pave' ? item.height+" см" : item.size+" см"}})
-							.price {{item.price}} грн
+							.price(:class="item.sale == 1 ? 'lined-text' : ''") {{item.price}} грн
 							router-link.bb-btn.brand(:to='"/catalog/" + item.category + "/" + item.id') Детальніше
 </template>
 

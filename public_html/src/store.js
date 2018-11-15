@@ -46,7 +46,7 @@ export default new Vuex.Store({
 				url: '/about'
 			},
 			{
-				name: 'Диллерам',
+				name: 'Дилерам',
 				url: '/dillers'
 			},
 			{
