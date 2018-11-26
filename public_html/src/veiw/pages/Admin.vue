@@ -47,9 +47,10 @@
 							td
 								template(v-if="key == 'id'") {{val}}
 								template(v-else-if='key === "price_url"')
-									label.fas.fa-file-pdf(
+									label(
 										for='file'
 									)
+										i.fas.fa-file-pdf.pointer
 									input#file(type='file' style="display: none" @change='fileChoose')
 								template(v-else-if='key === "description" || key === "keywords" || key === "title"')
 									div.page-esc(
@@ -175,7 +176,6 @@
 											input(v-model='newForm[k]')
 					.bb-btn.brand(@click='addRow(newForm)') Зберегти
 					.bb-btn.lady.wide(@click='newForm = null') Закрити без збереження
-
 
 		text-editor(v-if='curPage' :value='curPage.description' @close='changePageData')
 		text-editor(v-if='textObj' :value='textObj.value' @close='changeBigText' pure="1")
