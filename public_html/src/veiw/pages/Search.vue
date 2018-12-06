@@ -13,8 +13,7 @@
 				router-link.brand.item.bg-dust(v-for='res in filteredFinders' :key='res.url' :to='res.url')
 					span.url {{res.url}}
 					p.title {{res.title}}
-					.description {{ getText(res.description) + "..." }}
-		div(ref="clear" style="display: none;")
+					.description {{ getClearText(res.description, 500) + "..." }}
 </template>
 
 <script>
@@ -33,12 +32,6 @@
 						e.description.toLowerCase().includes(this.searchVal.toLowerCase())
 					)
 					.slice(0, 10);
-			}
-		},
-		methods: {
-			getText(val) {
-				this.$refs.clear.innerHTML = val;
-				return this.$refs.clear.textContent.slice(0, 500);
 			}
 		},
 		mounted() {

@@ -344,7 +344,7 @@
 		},
 		methods: {
 			async fileChoose(e) {
-				let price_url = await this.loadFile(e);
+				let price_url = await this.upload(e);
 				await this.admin('changeField',{table: 'meta',key: 'price_url',data: {...this.curSet.data[0], price_url}});
 			},
 			async load() {

@@ -5,7 +5,11 @@
 			.category-block
 				.list
 					.item(v-for='v, k in categories[category].list' @click='curItem = k') {{v}}
-					a.price.cherry.bg-dust(:href='meta.price_url' download="price" @click='showMessage')
+					a.price.cherry.bg-dust(
+						:href='meta.price_url'
+						download="price"
+						@click='showInfoMessage("Дякуємо, що вибрали продукцію<br> виробничої компанії «Благобуд»!", 5000, 500, true);'
+						)
 						span.ico.cherry
 							i.fas.fa-file-pdf.cherry
 						|Cкачати прайс
@@ -130,16 +134,6 @@
 			}
 		},
 		methods: {
-			showMessage() {
-				// console.log(1);
-				setTimeout(() => {
-					this.$parent.showMessage = `
-					Дякуємо, що вибрали продукцію
-					<br> виробничої компанії «Благобуд»!
-				`;
-					setTimeout(() => this.$parent.showMessage = null, 5000);
-				}, 500);
-			},
 			async loadGoodsList() {
 				this.goods = (await this.request({
 					method: 'get',

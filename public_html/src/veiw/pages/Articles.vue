@@ -13,7 +13,7 @@
 						.date
 							i.fas.fa-calendar-alt
 							|   {{item.datetime}}
-						.description {{ getText(item.description) + "..." }}
+						.description {{ getClearText(item.description, 500) + "..." }}
 						router-link.link(:to='"/" + page + "/" + item.id') Читати далі >
 				.bb-btn.mid.brand(@click='loadRows') Показати більше
 			template(v-else) На даний період {{classes[this.page].title.toLowerCase()}} відсутні.
@@ -21,8 +21,6 @@
 			:to='"/catalog/"'
 			style='background-image: url(/img/catalog/3.jpg)'
 			) Перейти до каталогу
-
-		div(ref="clear" style="display: none;")
 
 </template>
 
@@ -75,10 +73,6 @@
 					}
 				})
 				this.rows = this.rows.concat(res.data)
-			},
-			getText(val) {
-				this.$refs.clear.innerHTML = val;
-				return this.$refs.clear.textContent.slice(0, 500);
 			}
 		},
 		watch: {

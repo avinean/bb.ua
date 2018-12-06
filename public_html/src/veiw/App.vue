@@ -6,6 +6,7 @@
 			callback(v-if='isCallback')
 			up(v-if='isUp')
 			div(ref="validTitle") {{ validTitle }}
+			div(ref="clear" style="display: none;")
 			transition(name='appear')
 				popup(v-if='showMessage !== null' @close='showMessage = null' nofooter="1")
 					.message(slot='body' v-html='showMessage')

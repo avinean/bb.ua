@@ -96,11 +96,6 @@
 
 				this.show = null;
 
-				this.$parent.showMessage = `
-					Дякуємо! 
-					<br> Ваш запит відправлено
-				`;
-
 				this.showPopup = {
 					name: '',
 					phone: '',
@@ -110,7 +105,7 @@
 					email: ''
 				};
 
-				setTimeout(e => this.$parent.showMessage = null, 4000);
+				this.showInfoMessage(`Дякуємо! <br> Ваш запит відправлено`, 4000, null, true);
 			},
 			scroll() {
 				let b = window.document.scrollingElement.offsetHeight - window.document.scrollingElement.scrollTop - window.document.scrollingElement.clientHeight;

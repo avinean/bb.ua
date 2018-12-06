@@ -184,12 +184,12 @@
 
 				this.request(opts)
 				this.showPopup = null;
-				this.$parent.showMessage = `
-					Дякуємо! 
+
+				this.showInfoMessage(`
+					Дякуємо!
 					<br> Звернення передано до Вашого персонального менеджера.
 					<br> На протязі 15 хвилин з Вами зв'яжуться
-				`
-				setTimeout(e => this.$parent.showMessage = null, 3000)
+				`, 3000, null, true);
 			}
 		},
 		async mounted() {

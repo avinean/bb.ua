@@ -71,12 +71,13 @@
 				this.phone = '';
 				this.name = '';
 
-				this.$parent.showMessage = `
-					Дякуємо! 
-					<br> Звернення передано до Вашого персонального менеджера.
-					<br> На протязі 15 хвилин з Вами зв’яжуться
-				`
-				setTimeout(e => this.$parent.showMessage = null, 5000)
+				this.showInfoMessage(
+					`
+						Дякуємо!
+						<br> Звернення передано до Вашого персонального менеджера.
+						<br> На протязі 15 хвилин з Вами зв’яжуться
+					`
+					, 5000, null, true);
 			}
 		},
 		mounted() {
