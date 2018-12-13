@@ -7,12 +7,13 @@
 					autofocus
 					v-model='searchVal'
 				)
-				i.fas.fa-search.bg-brand.snow
+				span.bg-brand.search-button
+					i.fas.fa-search.snow
 			.searchRes(v-if='searchVal && filteredFinders.length')
 				router-link.brand.item.bg-dust(v-for='res in filteredFinders' :key='res.url' :to='res.url')
 					span.url {{res.url}}
 					p.title {{res.title}}
-					.description(v-html='res.description.slice(0, 200)')
+					.description {{ getClearText(res.description, 500) + "..." }}
 </template>
 
 <script>
@@ -64,7 +65,7 @@
 				font-size: 18px;
 			}
 
-			i {
+			.search-button {
 				flex-basis: 100px;
 				font-size: 28px;
 				line-height: 50px;

@@ -3,11 +3,16 @@
 		template(v-if='simple')
 			.bb-btn.brand.wide(@click='show = 1') Замовити консультацію
 		template(v-else)
-			.callback.bg-brand(@mouseenter='stop' @mouseleave='start' @click='show = phone' :style='"bottom: " + bottom + "px"')
+			.callback.bg-brand(
+				@mouseenter='stop'
+				@mouseleave='start'
+				@click='show = phone'
+				:style='"bottom: " + bottom + "px; transition: all ease .1s"'
+			)
 				transition(name='fade')
-					p.cherry.fas.fa-phone(v-if='phone')
-					p.cherry.fas.fa-envelope(v-else)
-				p.title {{phone ? 'Замовте дзвінок' : 'Напишіть, що вас цікавить'}}
+					p.cherry.fas.fa-phone.bg-snow(v-if='phone')
+					p.cherry.fas.fa-envelope.bg-snow(v-else)
+				p.title.snow {{phone ? 'Замовте дзвінок' : 'Напишіть, що вас цікавить'}}
 		popup(v-if='show !== null' @close='show = null')
 			template(slot='head') {{ show ? 'Ми зателефонуємо Вам на протязі 15 хвилин' : 'Напишіть, що Вас цікавить?'}}
 			.form(slot='body')
@@ -59,7 +64,7 @@
 				this.timer = setTimeout(this.circ, 3000)
 			},
 			circ() {
-				this.phone = !this.phone
+				this.phone = !this.phone;
 				this.timer = setTimeout(this.circ, 3000)
 			},
 			send(opt) {
@@ -91,11 +96,6 @@
 
 				this.show = null;
 
-				this.$parent.showMessage = `
-					Дякуємо! 
-					<br> Ваш запит відправлено
-				`;
-
 				this.showPopup = {
 					name: '',
 					phone: '',
@@ -105,18 +105,23 @@
 					email: ''
 				};
 
-				setTimeout(e => this.$parent.showMessage = null, 4000);
+				this.showInfoMessage(`Дякуємо! <br> Ваш запит відправлено`, 4000, null, true);
 			},
 			scroll() {
-				let b = document.scrollingElement.offsetHeight - document.scrollingElement.scrollTop - document.scrollingElement.clientHeight;
+				let b = window.document.scrollingElement.offsetHeight - window.document.scrollingElement.scrollTop - window.document.scrollingElement.clientHeight;
 				this.bottom = b < 300 ? 300 - b : 0
 			}
 		},
 		mounted() {
 			if (!this.simple) {
-				this.start()
+				this.start();
 				window.addEventListener('scroll', this.scroll)
 			}			
+		},
+		watch: {
+			'$route'() {
+				this.bottom = 0;
+			}
 		}
 	}
 </script>
@@ -133,15 +138,13 @@
 		float: right;
 		padding: 10px;
 		cursor: pointer;
-		color: white;
 		position: fixed;
 		bottom: 0;
 		right: 0;
 		z-index: 1;
 
-		.fas {
-			font-size: 28px;
-			background: white;
+		svg {
+			font-size: 49px;
 			padding: 10px;
 			border-radius: 100%;
 			margin: 0 10px;

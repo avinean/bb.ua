@@ -1,20 +1,21 @@
 <template lang="pug">
 	.main
-		img.logo-mob(src='/img/logo-big-blue.png' alt='Blagobud-logo')
-		slider.slider(v-if="formedSale.length" :items='formedSale' auto='0' interval='7000')
+		img.logo-mob(src='/img/logo-big-blue.png' alt='ТОВ БЛАГОБУД')
+		<!--slider.slider(v-if="formedSale.length" :items='formedSale' auto='0' interval='7000')-->
+		router-link.top-banner.inner-wrapper(to="/catalog")
 		.inf-icons.inner-wrapper
 			.inf-ico
-				i.ico.fas.fa-at
-				.lable Онлайн замовлення
+				.ico-box: i.fas.fa-at.cherry
+				.lable.main Онлайн замовлення
 			.inf-ico
-				i.ico.fas.fa-thumbs-up
-				.lable Актуальні ціни
+				.ico-box: i.fas.fa-thumbs-up.cherry
+				.lable.main Актуальні ціни
 			.inf-ico
-				i.ico.fas.fa-award
-				.lable Якісна продукція
+				.ico-box: i.fas.fa-award.cherry
+				.lable.main Якісна продукція
 			.inf-ico
-				i.ico.fas.fa-shipping-fast
-				.lable Оперативна доставка
+				.ico-box: i.fas.fa-shipping-fast.cherry
+				.lable.main Оперативна доставка
 		.goods-banner.inner-wrapper
 			a.good-item(
 				v-for='item in goodsBannerItems'
@@ -29,13 +30,15 @@
 					span.line
 					span.romb
 					span.line
-			.vereteno-inner(v-if='goods')
-				i.fas.fa-chevron-circle-left.left.arr(@click='slideVereteno(0)')
-				i.fas.fa-chevron-circle-right.right.arr(@click='slideVereteno(1)')
+			.vereteno-inner(v-if='unsortedGoods')
+				span(@click='slideVereteno(0)')
+					i.fas.fa-chevron-circle-left.left.arr.cherry
+				span(@click='slideVereteno(1)')
+					i.fas.fa-chevron-circle-right.right.arr.cherry
 				.item(v-for='item in cur')
-					img(:src='goods[item].img')
-					.title {{goods[item].title}}
-					a.bb-btn.cherry(:href='"/catalog/" + goods[item].category + "/" + goods[item].id') Детальніше
+					img(:src='unsortedGoods[item].img' :alt='unsortedGoods[item].alt || unsortedGoods[item].cases')
+					.title {{unsortedGoods[item].title}}
+					a.bb-btn.cherry(:href='"/catalog/" + unsortedGoods[item].category + "/" + unsortedGoods[item].id') Детальніше
 		.news.inner-wrapper
 			h2 Новини
 				.decor
@@ -84,17 +87,17 @@
 				goodsBannerItems: [
 					{
 						url: '/catalog/pave',
-						img: '/img/trot.jpg',
+						img: '/img/catalog/1_1.jpg',
 						title: 'Тротуарна плитка'
 					},
 					{
 						url: '/catalog/road',
-						img: '/img/dor.jpg',
+						img: '/img/catalog/1_2.jpg',
 						title: 'Дорожні елементи'
 					},
 					{
 						url: '/catalog/vert',
-						img: '/img/vert.jpg',
+						img: '/img/catalog/1_3.jpg',
 						title: 'Вертикальні елементи'
 					}
 				],
@@ -112,6 +115,10 @@
 						url: e.id
 					}
 				})
+			},
+			unsortedGoods() {
+				if (!this.goods) return;
+				return this.goods.sort(e => Math.random() - 0.5);
 			}
 		},
 		methods: {
@@ -120,14 +127,14 @@
 				if (d) {
 					this.cur = this.cur.map(e => {
 						e++;
-						if (e > this.goods.length - 1) return 0;
+						if (e > this.unsortedGoods.length - 1) return 0;
 						return e;
 					})
 				}
 				if (!d) {
 					this.cur = this.cur.map(e => {
 						e--;
-						if (e < 0) return this.goods.length - 1;
+						if (e < 0) return this.unsortedGoods.length - 1;
 						return e
 					})
 				}

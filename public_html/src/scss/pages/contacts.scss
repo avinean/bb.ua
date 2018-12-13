@@ -2,6 +2,16 @@
 
 .contacts {
 
+    .jump-enter, .jump-leave-to {
+        top: 20px;
+        left: 18px;
+    }
+
+    .jump-enter-to, .jump-leave {
+        top: -19px;
+        left: 0px;
+    }
+
     .send-form, .content-section {
         width: 60%;
         margin: 20px auto !important;
@@ -30,6 +40,20 @@
 
         .contacts-list {
             display: flex;
+
+            p {
+                position: relative;
+
+                label {
+                    position: absolute;
+                    display: block;
+                    top: -19px;
+                    left: 0px;
+                    font-size: 17px;
+                    transition: all ease .3s;
+                    color: #8a8a8a;
+                }
+            }
 
             .cen {
                 margin: 0 20px;

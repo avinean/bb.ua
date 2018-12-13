@@ -1,5 +1,18 @@
 export default {
     methods: {
+    	showInfoMessage(text, time = 3000, delay = 0, withSuccess ) {
+    		setTimeout(() => {
+				if (withSuccess) {
+					this.$router.push('#success');
+				}
+				this.$parent.showMessage = text;
+				setTimeout(e => this.$parent.showMessage = null, time)
+			}, delay);
+		},
+		getClearText(val, length = 300) {
+			this.$parent.$refs.clear.innerHTML = val;
+			return this.$parent.$refs.clear.textContent.slice(0, length);
+		},
         async request(j) {
             let params;
             if (j['method'] === 'get') {
@@ -20,13 +33,7 @@ export default {
 			params.append('methodName', methodName);
 			return await this.axios.post('/secure/admin', params)
         },
-		isValidEmail(email) {
-			return /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/.test(email);
-		},
-		isValidPhone(phone) {
-			return /^((8|\+38|38)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{10,10}$/.test(phone);
-		},
-		async loadFile(e) {
+		async upload(e) {
 			let file = e.target.files[0];
 			let form = new FormData;
 			form.append('file', file);
@@ -36,6 +43,12 @@ export default {
 				{headers: {'Content-Type': 'multipart/form-data'}}
 			);
 			return res.data;
+		},
+		isValidEmail(email) {
+			return /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/.test(email);
+		},
+		isValidPhone(phone) {
+			return /^((8|\+38|38)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{10,10}$/.test(phone);
 		},
 		writeVisitStat(val) {
 			this.request({

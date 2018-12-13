@@ -1,15 +1,17 @@
 <template lang="pug">
-	.popup
-		.popup-bg(@click='close')
-		.popup-wrap
-			.head
-				.title
-					slot(name='head')
-				i.fas.fa-times.close(@click='close')
-			.body
-				slot(name='body')
-			.foot(v-if="!nofooter")
-				slot(name='foot')
+	transition(name="appear")
+		.popup
+			.popup-bg(@click='close')
+			.popup-wrap
+				.head
+					.title
+						slot(name='head')
+					span(@click='close')
+						i.fas.fa-times.close.snow
+				.body
+					slot(name='body')
+				.foot(v-if="!nofooter")
+					slot(name='foot')
 </template>
 
 <script>
@@ -40,6 +42,7 @@
 		align-items: center;
 		width: 100vw;
 		height: 100vh;
+		transition: all ease .3s;
 
 		.popup-bg {
 			position: absolute;
@@ -50,7 +53,7 @@
 
 		.popup-wrap {
 			position: absolute;
-			width: 400px;
+			min-width: 400px;
 			display: flex;
 			flex-direction: column;
 			background: #fff;
@@ -77,7 +80,6 @@
 					right: 11px;
 					bottom: 11px;
 					cursor: pointer;
-					color: #fff;
 				}
 			}
 

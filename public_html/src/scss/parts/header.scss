@@ -10,6 +10,7 @@ $hei: 91px;
     right: 0;
     z-index: 9999;
     height: $hei;
+    width: calc(100vw - 10px);
     background-color: $snow;
     .inner-wrapper {
         height: $hei;
@@ -41,7 +42,7 @@ $hei: 91px;
             padding-left: 30px;
             padding-right: 3px;
 
-            & > i {
+            & > i, & > svg {
                 margin-right: 7px;
                 color: $brand;
                 font-size: 20px;
@@ -53,11 +54,12 @@ $hei: 91px;
         }
 
         .phone {
+            display: flex;
             font-weight: bold;
             text-align: right;
             font-size: 25px;
 
-            i {
+            i, svg {
                 font-weight: normal;
                 margin: 5px;
             }
@@ -95,11 +97,11 @@ $hei: 91px;
     top: $hei;
     z-index: 999;
     height: 70px;
+    width: calc(100vw - 10px);
     font-size: 20px;
     background-color: $dust;
 
     .nav-panel {
-        width: 100vw;
 
         .items-row {
             height: 70px;
@@ -136,7 +138,6 @@ $hei: 91px;
 
                 &:hover {
                     color: $brand;
-                    // color: $snow;
                 }
 
                 @media screen and (max-width: 1321px) {

@@ -17,6 +17,17 @@ $h: calc(50vh - 80px);
         min-height: $h;
     }
 
+    .top-banner {
+        display: block;
+        min-height: $h;
+        width: 100%;
+        background-image: url('/img/catalog/baner11.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position-y: bottom;
+        background-position-x: center;
+    }
+
     .inf-icons {
         display: flex;
         justify-content: space-around;
@@ -27,22 +38,19 @@ $h: calc(50vh - 80px);
         .inf-ico {
             flex: 1;
             text-align: center;
-            // box-shadow: 0px 8px 22px -7px grey;
 
-            .ico {
-                color: $cherry;
+            .ico-box {
                 border: 1px solid rgba(206, 88, 25, 0.6);
                 border-radius: 100%;
                 width: 100px;
                 height: 100px;
                 line-height: 98px;
                 font-size: 62px;
-                margin-bottom: 15px;
+                margin: 0 auto 15px;
             }
 
             .lable {
                 text-align: center;
-                color: $main;
                 font-weight: bold;
                 padding: 2px;
             }
@@ -66,7 +74,7 @@ $h: calc(50vh - 80px);
         padding: 30px 0;
         .good-item {
             position: relative;
-            height: 200px;
+            height: 300px;
             width: 30%;
             overflow: hidden;
             background-repeat: no-repeat;
@@ -76,9 +84,9 @@ $h: calc(50vh - 80px);
 
             .good-item-inner {
                 position: absolute;
-                height: 200px;
+                height: 300px;
                 width: 100%;
-                top: 125px;
+                top: 225px;
                 background: rgba(0,0,0,0);
                 color: $snow;
                 font-weight: bold;
@@ -143,7 +151,6 @@ $h: calc(50vh - 80px);
                 font-size: 45px;
                 position: absolute;
                 z-index: 100;
-                color: $cherry;
                 cursor: pointer;
             }
 
@@ -203,11 +210,13 @@ $h: calc(50vh - 80px);
                 .pos-left, .pos-right {
                     overflow: hidden;
                     height: $newh;
+                    margin: 0 4px;
                     .item {
                         position: relative;
                         display: block;
                         width: 100%;
                         background-size: cover;
+                        background-position: center;
                         transition: all ease .3s;
                         .title {
                             position: absolute;
@@ -217,6 +226,7 @@ $h: calc(50vh - 80px);
                             background: rgb(255, 255, 255);
                             color: $main;
                             text-transform: uppercase;
+                            min-height: 55px;
 
                             .date {
                                 font-size: 13px;

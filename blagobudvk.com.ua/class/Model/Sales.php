@@ -3,7 +3,7 @@
 namespace App\Model;
 use App\Core\Model;
 
-class Sale extends Model {
+class Sales extends Model {
 
 	public function getRows($opts = []) {
 

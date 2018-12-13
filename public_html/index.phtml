@@ -1,0 +1,32 @@
+<?php
+//print_r($this->meta);
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset=utf-8>
+	<meta name="description" content="<?=$this->meta['description']?>">
+	<meta name="keywords" content="<?=$this->meta['keywords']?>">
+	<meta name="author" content="Vladyslav Lubeznyy">
+	<meta name=viewport content="width=device-width,initial-scale=1">
+	<title><?=$this->meta['title']?></title>
+<!--	<link rel="stylesheet" href="/fonts/fontawesome/css/all.css">-->
+<!--	--><?// if (isset($_GET['test_mode'])) { ?>
+		<script defer src="/fonts/fontawesome/js/all.js"></script>
+<!--	--><?//}?>
+	<link rel="shortcut icon" href="/img/favicon.png" type="image/png" />
+</head>
+<body>
+<div id=app></div>
+<script>
+	let pagesMeta = <?=json_encode($this->pagesMeta)?>;
+	let generalMeta = <?=json_encode($this->meta)?>;
+	let infoRelated = <?=json_encode($this->infoRelated)?>;
+	let finders = <?=json_encode($this->finders)?>;
+	let colorsMap = <?=json_encode($this->colorsMap)?>;
+	let someoneelse = "<?=$this->secure?>";
+</script>
+<script type=text/javascript src=/main.js></script>
+</body>
+</html>

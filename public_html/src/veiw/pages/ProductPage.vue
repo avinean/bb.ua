@@ -5,7 +5,7 @@
 				.card
 					.image
 						img(:src="item.img")
-						p {{item.price}} грн
+						p(:class="item.sale == 1 ? 'lined-text' : ''") {{item.price}} грн
 					.short-info
 						.title {{item.title}}
 						hr.devider
@@ -27,13 +27,15 @@
 		.inner-wrapper
 			.vereteno
 				h3 Супутні товари
-				.vereteno-inner(v-if='goods')
-					i.fas.fa-chevron-circle-left.left.arr(@click='slideVereteno(0)')
-					i.fas.fa-chevron-circle-right.right.arr(@click='slideVereteno(1)')
+				.vereteno-inner(v-if='unsortedGoods')
+					span(@click='slideVereteno(0)')
+						i.fas.fa-chevron-circle-left.left.arr.cherry
+					span(@click='slideVereteno(1)')
+						i.fas.fa-chevron-circle-right.right.arr.cherry
 					.item(v-for='item in cur')
-						img(:src='goods[item].img')
-						.title {{goods[item].title}}
-						a.bb-btn.cherry(:href='"/catalog/" + goods[item].category + "/" + goods[item].id') Детальніше
+						img(:src='unsortedGoods[item].img')
+						.title {{unsortedGoods[item].title}}
+						a.bb-btn.cherry(:href='"/catalog/" + unsortedGoods[item].category + "/" + unsortedGoods[item].id') Детальніше
 		popup.popup(v-if='showPopup' @close='showPopup = null')
 			template(slot='head') Ми зателефонуємо Вам на протязі 15 хвилин
 			.form(slot='body')
@@ -60,6 +62,7 @@
 					length: "Довжина",
 					width: "Ширина",
 					height: "Товщина",
+					height_v: "Висота",
 					size: "Розмір",
 					row_weight: "Вага 1 кв. м, кг",
 					size_in_complect: "Розміри в комплекті, см",
@@ -91,6 +94,23 @@
 		computed: {
 			placeholder() {
 				return this.$route.params.category === 'pave' ? 'Вкажіть кількість, м2' : 'Вкажіть кількість, шт';
+			},
+			unsortedGoods() {
+				if (!this.goods) return;
+				let categories = ['pave', 'road', 'vert'].filter(e => e !== this.$route.params.category);
+				let goods = [...this.goods];
+				if (this.$route.params.category === 'pave') {
+					return [
+						...goods.filter(e => categories.includes(e.category))							,
+						...goods
+							.filter(e => e.category === 'pave')
+							.sort(e => Math.random() - 0.5)
+							.slice(0,10)
+					].sort(e => Math.random() - 0.5)
+				}
+				return goods
+					.filter(e => categories.includes(e.category))
+					.sort(e => Math.random() - 0.5);
 			}
 		},
 		methods: {
@@ -99,14 +119,14 @@
 				if (d) {
 					this.cur = this.cur.map(e => {
 						e++;
-						if (e > this.goods.length - 1) return 0;
+						if (e > this.unsortedGoods.length - 1) return 0;
 						return e;
 					})
 				}
 				if (!d) {
 					this.cur = this.cur.map(e => {
 						e--;
-						if (e < 0) return this.goods.length - 1;
+						if (e < 0) return this.unsortedGoods.length - 1;
 						return e
 					})
 				}
@@ -116,11 +136,11 @@
 					method: 'get',
 					className: 'Catalog',
 					methodName: 'getGoods'
-				})
+				});
 				this.goods = res.data;
 			},
 			send(i) {
-				let opts
+				let opts;
 				if (i) {
 					
 					if (!this.showPopup.phone || !this.showPopup.name || !this.showPopup.cnt)  {
@@ -157,18 +177,21 @@
 						className: 'Contacts',
 						methodName: 'sendCallBack',
 						opts: {
-							phone: this.phone
+							phone: this.phone,
+							url: this.$route.path,
+							item: this.item
 						}
 					}
 				}
 
-				this.request(opts)
+				this.request(opts);
 				this.showPopup = null;
-				this.$parent.showMessage = `
-					Дякуємо! 
-					<br> Ваш запит відправлено
-				`
-				setTimeout(e => this.$parent.showMessage = null, 3000)
+
+				this.showInfoMessage(`
+					Дякуємо!
+					<br> Звернення передано до Вашого персонального менеджера.
+					<br> На протязі 15 хвилин з Вами зв'яжуться
+				`, 3000, null, true);
 			}
 		},
 		async mounted() {

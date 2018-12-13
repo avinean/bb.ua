@@ -6,6 +6,8 @@
 	define('ROOT', $_SERVER['DOCUMENT_ROOT'].'/../blagobudvk.com.ua/');
 	define('URI', explode('/', $_SERVER['REQUEST_URI'])[1]);
 
+	$config = require_once($_SERVER['DOCUMENT_ROOT'].'/../blagobudvk.com.ua/config/config.php');
+
 	require_once ROOT.'vendor/autoload.php';
 
 	$app = new \Klein\Klein();

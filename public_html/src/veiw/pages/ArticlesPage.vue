@@ -11,30 +11,33 @@
 				.desc(v-html='row.description')
 			hr.devider
 			.share-block
-				a.zmdi.zmdi-facebook.bg-facebook.share-link(:href='"http://www.facebook.com/sharer.php?u=" + linkUrl')
-				a.zmdi.zmdi-google-plus.bg-google.share-link(:href='"https://plus.google.com/share?url=" + linkUrl')
-				a.zmdi.zmdi-linkedin.bg-linkedin.share-link(:href='"https://www.linkedin.com/shareArticle?url=" + linkUrl')
+				a.bg-facebook.share-link(:href='"http://www.facebook.com/sharer.php?u=" + linkUrl')
+					i.fab.fa-facebook-f.snow
+				a.bg-google.share-link(:href='"https://plus.google.com/share?url=" + linkUrl')
+					i.fab.fa-google-plus-g.snow
+				a.bg-linkedin.share-link(:href='"https://www.linkedin.com/shareArticle?url=" + linkUrl')
+					i.fab.fa-linkedin-in.snow
 				//- .bg-instagram.share-link(href='http://www.facebook.com/sharer.php?u=')
 			.use-info-title Корисна інформація
 			hr.devider
 			.use-info
-				router-link.info-item(to='/info/9')
+				router-link.info-item(:to='infoRelated.vybir ? "/info/" + infoRelated.vybir : "/info"')
 					img(src='/img/plug/vybir.png')
 					.subs Вибір тротуарної плитки
-				router-link.info-item(to='/info/10')
+				router-link.info-item(:to='infoRelated.osnova ? "/info/" + infoRelated.osnova : "/info"')
 					img(src='/img/plug/osnova.png')
 					.subs Рекомендації з улаштування основи під тротуарну плитку
-				router-link.info-item(to='/info/11')
+				router-link.info-item(:to='infoRelated.ukladannya ? "/info/" + infoRelated.ukladannya : "/info"')
 					img(src='/img/plug/ukladannya.png')
 					.subs Технології укладання бруківки
 		.banner
-			router-link.new(v-for='item in news' :key='item.img' :to='item.id')
+			router-link.new(v-for='item in news' :key='item.img' :to='"/news/" + item.id')
 				img.image(:src='item.img')
 				.text
-					.title {{item.title}}
 					.date
-						i.fas.fa-calendar-alt
+						i.fas.fa-calendar-alt.brand
 						|   {{item.datetime}}
+					.title {{item.title}}
 				.clearfix
 </template>
 

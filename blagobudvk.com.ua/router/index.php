@@ -8,7 +8,13 @@ function route($path) {
 	$app->with($path, function() use ($app, $path) {
 
 		$app->respond('GET', '', function($request, $response, $service) {
-			$service->render('index.html');
+			$service->render('index.phtml',[
+				"meta" => \App\Model\Info::c()->getMeta(),
+				"pagesMeta" => \App\Model\InfoPage::c()->getAllPages(),
+				"infoRelated" => \App\Model\Info::c()->infoRelated(),
+				"finders" => \App\Model\Info::c()->getFinder(),
+				"colorsMap" => \App\Model\Catalog::c()->getColors()
+			]);
 		});
 
 		$filename = ROOT.'/router/routes/'.$path.'.php';
@@ -20,8 +26,6 @@ function route($path) {
 }
 
 route('/');
-route('/gallery');
-route('/price');
 route('/quality');
 route('/contacts');
 route('/payment');
@@ -54,14 +58,17 @@ $app->respond(['GET', 'POST'], '/api/request', function($req, $res, $ser) {
 //admin
 
 $app->respond(['GET', 'POST'], '/admin', function($req, $res, $ser) {
-	$config = require_once($_SERVER['DOCUMENT_ROOT'].'/../blagobudvk.com.ua/config/config.php');
+	global $config;
 	if (
 		!isset($_POST['user']) ||
 		!isset($_POST['pass']) ||
 		@$_POST['user'] !== $config['admin']['login'] ||
 		@$_POST['pass'] !== $config['admin']['pass']
-	) $ser->render('admin.html');
-	else $ser->render('index.html');
+	) $ser->render('admin.phtml');
+	else
+		$ser->render('index.phtml', [
+			"secure" => "someoneelse"
+		]);
 });
 
 $app->respond('POST', '/secure/admin', function($req, $res, $ser) {
@@ -73,5 +80,10 @@ $app->respond('POST', '/secure/admin', function($req, $res, $ser) {
 
 $app->respond('POST', '/secure/upload', function($req, $res, $ser) {
 	$result = Admin::c()->uploadImg($req->params()['folder']);
+	return is_array($result) ? $res->json($result) : $result;
+});
+
+$app->respond('POST', '/secure/uploadFile', function($req, $res, $ser) {
+	$result = Admin::c()->uploadFile();
 	return is_array($result) ? $res->json($result) : $result;
 });

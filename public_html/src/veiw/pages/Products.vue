@@ -5,8 +5,13 @@
 			.category-block
 				.list
 					.item(v-for='v, k in categories[category].list' @click='curItem = k') {{v}}
-					a.price(:href='meta.price_url' download="price" @click='showMessage')
-						i.fas.fa-file-pdf
+					a.price.cherry.bg-dust(
+						:href='meta.price_url'
+						download="price"
+						@click='showInfoMessage("Дякуємо, що вибрали продукцію<br> виробничої компанії «Благобуд»!", 5000, 500, true);'
+						)
+						span.ico.cherry
+							i.fas.fa-file-pdf.cherry
 						|Cкачати прайс
 				.grid
 					.grid-head {{curItem ? categories[category].list[curItem] : ''}}
@@ -19,7 +24,7 @@
 									@click='curColors.includes(+color) ? curColors = remove(curColors, +color) : curColors.push(+color)'
 									:class='curColors.includes(+color) ? "bg-lady snow" : "bg-dust"'
 								) {{colorsMap[+color]}}
-									i.fas.fa-times(v-if='curColors.includes(+color)')
+									span.ico.chery(v-if='curColors.includes(+color)'): i.fas.fa-times.snow
 						.params-block(v-if='category == "pave"')
 							.title Висота, см
 							.params-items
@@ -28,7 +33,7 @@
 									@click='curHeights.includes(height)  ? curHeights = remove(curHeights, height) : curHeights.push(height)'
 									:class='curHeights.includes(height) ? "bg-lady snow" : "bg-dust"'
 								) {{height}}
-									i.fas.fa-times(v-if='curHeights.includes(height)')
+									span.ico.chery(v-if='curHeights.includes(height)'): i.fas.fa-times.snow
 						.params-block(v-else)
 							.title Розмір, см
 							.params-items
@@ -37,15 +42,15 @@
 									@click='curSizes.includes(size)  ? curSizes = remove(curSizes, size) : curSizes.push(size)'
 									:class='curSizes.includes(size) ? "bg-lady snow" : "bg-dust"'
 								) {{size}}
-									i.fas.fa-times(v-if='curSizes.includes(size)')
-					.clear-filter(v-if='curHeights.length || curColors.length' @click='curHeights = []; curColors = []') Очистити всі фільтри
+									span.ico.chery(v-if='curSizes.includes(size)'): i.fas.fa-times.snow
+					.clear-filter(v-if='curHeights.length || curColors.length' @click='curHeights = []; curColors = []; curSizes = []') Очистити всі фільтри
 					.grid-items(v-if='curItem')
 						.grid-item(v-for='item in filteredGoods')
 							img(:src='item.img')
 							.title {{item.title}} <br>
 								|
 								span.short-desc ({{colorsMap[item.color]}}, {{category == 'pave' ? item.height+" см" : item.size+" см"}})
-							.price {{item.price}} грн
+							.price(:class="item.sale == 1 ? 'lined-text' : ''") {{item.price}} грн
 							router-link.bb-btn.brand(:to='"/catalog/" + item.category + "/" + item.id') Детальніше
 </template>
 
@@ -129,16 +134,6 @@
 			}
 		},
 		methods: {
-			showMessage() {
-				// console.log(1);
-				setTimeout(() => {
-					this.$parent.showMessage = `
-					Дякуємо, що вибрали продукцію
-					<br> виробничої компанії «Благобуд»!
-				`;
-					setTimeout(() => this.$parent.showMessage = null, 5000);
-				}, 500);
-			},
 			async loadGoodsList() {
 				this.goods = (await this.request({
 					method: 'get',

@@ -13,14 +13,14 @@
 						.date
 							i.fas.fa-calendar-alt
 							|   {{item.datetime}}
-						.description(v-html="item.description.slice(0, 400)")
+						.description {{ getClearText(item.description, 500) + "..." }}
 						router-link.link(:to='"/" + page + "/" + item.id') Читати далі >
 				.bb-btn.mid.brand(@click='loadRows') Показати більше
 			template(v-else) На даний період {{classes[this.page].title.toLowerCase()}} відсутні.
 		router-link.banner(
 			:to='"/catalog/"'
-			style='background-image: url(/img/plug/road.jpg)'
-			) 250 видів тротуарної плитки
+			style='background-image: url(/img/catalog/3.jpg)'
+			) Перейти до каталогу
 
 </template>
 
@@ -69,7 +69,7 @@
 					methodName: 'getRows',
 					opts: {
 						offset: (this.portion - 1) * 3,
-						limit: 3
+						limit: 3,
 					}
 				})
 				this.rows = this.rows.concat(res.data)
