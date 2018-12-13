@@ -177,12 +177,14 @@
 						className: 'Contacts',
 						methodName: 'sendCallBack',
 						opts: {
-							phone: this.phone
+							phone: this.phone,
+							url: this.$route.path,
+							item: this.item
 						}
 					}
 				}
 
-				this.request(opts)
+				this.request(opts);
 				this.showPopup = null;
 
 				this.showInfoMessage(`
