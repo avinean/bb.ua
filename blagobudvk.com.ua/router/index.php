@@ -13,7 +13,8 @@ function route($path) {
 				"pagesMeta" => \App\Model\InfoPage::c()->getAllPages(),
 				"infoRelated" => \App\Model\Info::c()->infoRelated(),
 				"finders" => \App\Model\Info::c()->getFinder(),
-				"colorsMap" => \App\Model\Catalog::c()->getColors()
+				"colorsMap" => \App\Model\Catalog::c()->getColors(),
+				"bannersMap" => \App\Model\Info::c()->getBanners()
 			]);
 		});
 
@@ -35,8 +36,8 @@ route('/info');
 route('/info/[:id]');
 route('/news');
 route('/news/[:id]');
-route('/sale');
-route('/sale/[:id]');
+route('/sales');
+route('/sales/[:id]');
 route('/about');
 route('/catalog');
 route('/catalog/[:action]');

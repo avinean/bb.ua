@@ -214,7 +214,8 @@
 					bruk: "Бруківка",
 					old: "Старе місто",
 					t: "Подвійне Т",
-					square: "Квадрат"
+					square: "Квадрат",
+					polifasad: "Поліфасад"
 				},
 				sets: [
 					{
@@ -252,6 +253,12 @@
 						table: "pages",
 						data: null,
 						cls: 'fas fa-file-alt'
+					},
+					{
+						name: "Баннери",
+						table: "banners",
+						data: null,
+						cls: 'far fa-images'
 					},
 					{
 						name: "Мета дані",

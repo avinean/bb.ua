@@ -9,7 +9,7 @@ $h: calc(50vh - 80px);
     position: relative;
     overflow: hidden;
     color: #eee;
-    box-shadow: 0 0 20px 0 grey;
+    // box-shadow: 0 0 20px 0 grey;
 
     .arr {
         position: absolute;
@@ -75,6 +75,10 @@ $h: calc(50vh - 80px);
             left: 0;
             width: 100%;
             height: $h;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position-y: bottom;
+            background-position-x: center;
 
             .img {
                 flex: 1;

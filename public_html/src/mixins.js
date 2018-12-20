@@ -71,6 +71,9 @@ export default {
 				methodName: 'writeContactStat',
 				opts
 			});
+		},
+		getBanner(name) {
+			return bannersMap[name];
 		}
     }
 }

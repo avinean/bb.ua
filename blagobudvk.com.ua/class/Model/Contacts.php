@@ -102,9 +102,14 @@ class Contacts extends Model {
 			"phone" => $phone
 		]);
 
-		$message = "З сайту blagobudvk.com.ua відправлено запит передзвонити \n\n
-		телефон: <i> $phone </i>";
+		$message = "
+		З сайту blagobudvk.com.ua відправлено запит передзвонити \n\n
+		телефон: <i> $phone </i>
+		\n\n
+		<a href='http://blagobudvk.com.ua".$opts['url']."'>".$opts['item']['title']." ".$opts['color']."</a>
 
+		";
+return $message;
 		return Mail::c()->send($message);
 
 	}

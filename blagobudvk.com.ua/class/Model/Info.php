@@ -81,6 +81,15 @@ class Info extends Model {
 		return $this->db->query('SELECT * FROM meta')->fetchAssoc();
 	}
 
+	public function getBanners() {
+		$data = $this->db->query('SELECT * FROM banners')->fetchAll();
+		$res = [];
+		foreach ($data as $value) {
+			$res[$value['where']][] = $value['img'];
+		}
+		return $res;
+	}
+
 	public function infoRelated() {
 		$res = $this->db->query('SELECT id, related_to FROM info')->fetchAll();
 		$r = [];

@@ -15,7 +15,7 @@ class Admin extends Model {
 		$query = '
 			UPDATE '.$this->db->escape($opts['table']).'
 			SET '.$this->db->escape($opts['key']).' = '.$this->db->quote($opts['data'][$opts['key']]).'
-			WHERE id = '.intval($opts['data']['id']);
+			WHERE id = '.$this->db->quote($opts['data']['id']);
 			// return $query;
 		return $this->db->query($query)->fetchAll();
 	}

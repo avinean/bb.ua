@@ -15,11 +15,11 @@
 							|   {{item.datetime}}
 						.description {{ getClearText(item.description, 500) + "..." }}
 						router-link.link(:to='"/" + page + "/" + item.id') Читати далі >
-				.bb-btn.mid.brand(@click='loadRows') Показати більше
+				.bb-btn.mid.brand(v-if='!noMore' @click='loadRows') Показати більше
 			template(v-else) На даний період {{classes[this.page].title.toLowerCase()}} відсутні.
 		router-link.banner(
 			:to='"/catalog/"'
-			style='background-image: url(/img/catalog/3.jpg)'
+			:style="'background-image: url(' + getBanner('new_sales_info')[0] + ')'"
 			) Перейти до каталогу
 
 </template>
@@ -29,6 +29,7 @@
 		name: 'page-articles',
 		data() {
 			return {
+				noMore: false,
 				rows: [],
 				portion: 1,
 				classes: {
@@ -73,6 +74,10 @@
 					}
 				})
 				this.rows = this.rows.concat(res.data)
+
+				if (res.data.length < 3) {
+					this.noMore = true;
+				}
 			}
 		},
 		watch: {

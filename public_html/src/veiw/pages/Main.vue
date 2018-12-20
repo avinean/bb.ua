@@ -1,8 +1,8 @@
 <template lang="pug">
 	.main
 		img.logo-mob(src='/img/logo-big-blue.png' alt='ТОВ БЛАГОБУД')
-		<!--slider.slider(v-if="formedSale.length" :items='formedSale' auto='0' interval='7000')-->
-		router-link.top-banner.inner-wrapper(to="/catalog")
+		slider.slider.top-banner(:items='getBanner("main")' auto='0' interval='7000')
+		//- router-link.top-banner.inner-wrapper(to="/catalog" :style="'background-image: url(' + getBanner('main').img + ')'")
 		.inf-icons.inner-wrapper
 			.inf-ico
 				.ico-box: i.fas.fa-at.cherry

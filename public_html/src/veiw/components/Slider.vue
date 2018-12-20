@@ -1,22 +1,16 @@
 <template lang="pug">
-	.slider(@mouseenter='pause' @mouseleave='outStart')
+	.slider.inner-wrapper(@mouseenter='pause' @mouseleave='outStart')
 		//- i.fas.fa-arrow-left.left.arr(@click='slide(--cur); mode="left"')
 		//- i.fas.fa-arrow-right.right.arr(@click='slide(++cur); mode="right"')
-		.dots
-			.dot(
-				v-for='(dot, i) in items'
-				:class='i == cur ? "dot-cur" : ""'
-				@click='dotSlide(i)'
-			)
-		router-link.slide(v-for='(item, i) in items' :to="item.url" :key="item.url")
+		//- .dots
+		//- 	.dot(
+		//- 		v-for='(dot, i) in items'
+		//- 		:class='i == cur ? "dot-cur" : ""'
+		//- 		@click='dotSlide(i)'
+		//- 	)
+		router-link.slide(v-for='(item, i) in items' :key="item" to="/catalog")
 			transition(:name='mode')
-				.slide-inner(v-show='i == cur')
-					.img
-						img(:src='item.img')
-					.text
-						.wrap
-							.title {{item.title}}
-							.desc(v-html='item.description')
+				.slide-inner(v-show='i == cur' :style="'background-image: url(' + item + ')'")
 </template>
 
 <script>

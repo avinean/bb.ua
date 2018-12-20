@@ -16,11 +16,11 @@
 						strong.key {{title}}: 
 						.val(v-if="key == 'color'") {{colorsMap[item[key]]}}
 						.val(v-else) {{item[key]}}
-		.contact-us
+		.contact-us(:style="'background-image: url(' + getBanner('product_page_calback')[0] + ')'")
 			.bgc
 				.title
 					h3 Виникли питання?
-					p Заповніть номер телефону та отримайте безкоштовну консультаці від наших менеджерів
+					p Заповніть номер телефону та отримайте безкоштовну консультацію від наших менеджерів
 				.form
 					input(v-model='phone' placeholder='Ваш номер телефону')
 					.snow.btn(@click='send(0)') Замовити консультацію
@@ -179,7 +179,8 @@
 						opts: {
 							phone: this.phone,
 							url: this.$route.path,
-							item: this.item
+							item: this.item,
+							color: this.colorsMap[this.item.color]
 						}
 					}
 				}
