@@ -26,7 +26,7 @@
 								) {{colorsMap[+color]}}
 									span.ico.chery(v-if='curColors.includes(+color)'): i.fas.fa-times.snow
 						.params-block(v-if='category == "pave"')
-							.title Висота, см
+							.title Висота, мм
 							.params-items
 								span.params-item(
 									v-for='height in heights'
@@ -35,7 +35,7 @@
 								) {{height}}
 									span.ico.chery(v-if='curHeights.includes(height)'): i.fas.fa-times.snow
 						.params-block(v-else)
-							.title Розмір, см
+							.title Розмір, мм
 							.params-items
 								span.params-item(
 									v-for='size in sizes'
@@ -49,7 +49,7 @@
 							img(:src='item.img')
 							.title {{item.title}} <br>
 								|
-								span.short-desc ({{colorsMap[item.color]}}, {{category == 'pave' ? item.height+" см" : item.size+" см"}})
+								span.short-desc ({{colorsMap[item.color]}}, {{category == 'pave' ? item.height+" мм" : item.size+" мм"}})
 							.price(:class="item.sale == 1 ? 'lined-text' : ''") {{item.price}} грн
 							router-link.bb-btn.brand(:to='"/catalog/" + item.category + "/" + item.id') Детальніше
 </template>
