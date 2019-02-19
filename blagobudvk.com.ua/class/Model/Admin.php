@@ -81,7 +81,7 @@ class Admin extends Model {
 
 	public function uploadImg($cur_folder) {
 		$file = $_FILES['userpic'];
-//return phpinfo();
+
 		$root = $_SERVER['DOCUMENT_ROOT'];
 		$tmp_name = $file['tmp_name'];
 		$file_name = basename($file['name']);
@@ -93,6 +93,7 @@ class Admin extends Model {
 		for ($i = 1; file_exists($path_to_file); $i++) {
 			$file_name =  implode('.', $name_parts).'_'.$i.'.'.$file_extention;
 			$file_name = str_replace(' ', '_', $file_name);
+			$file_name = preg_replace("~\s~", '_', $file_name);
 			$path_to_file = $root.$file_name;
 		}
 

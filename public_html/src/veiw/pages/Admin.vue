@@ -25,6 +25,7 @@
 							i.fas.fa-pencil-alt.brand
 						a(:href="page.page")
 							.fas.fa-external-link-alt.brand
+							| /{{page.page}}
 					.settings(v-if="editablePages.includes(page.page)")
 						.text.page-esc(v-html='page.description' @click='curPage = page')
 					.settings.meta-settings
